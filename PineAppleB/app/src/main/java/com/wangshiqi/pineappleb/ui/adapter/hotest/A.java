@@ -1,4 +1,4 @@
-package com.wangshiqi.pineappleb.ui.activity;
+package com.wangshiqi.pineappleb.ui.adapter.hotest;
 
 /**
  * Created by dllo on 16/10/17.

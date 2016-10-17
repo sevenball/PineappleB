@@ -1,4 +1,4 @@
-package com.wangshiqi.pineappleb.ui;
+package com.wangshiqi.pineappleb.ui.adapter.focus;
 
 /**
  * Created by dllo on 16/10/17.
