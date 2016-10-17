@@ -8,4 +8,11 @@
         <item>推荐</item>
         <item>必看</item>
     </string-array>
+
+    <!--关注标题-->
+    <string-array name="focus_tab">
+        <item>动态</item>
+        <item>频道</item>
+    </string-array>
+
 </resources>
