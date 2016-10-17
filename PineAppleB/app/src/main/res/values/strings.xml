@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">PineAppleB</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--首页标题-->
+    <string-array name="discovery_tab">
+        <item>推荐</item>
+        <item>必看</item>
+    </string-array>
 </resources>
