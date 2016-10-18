@@ -1,6 +1,7 @@
 package com.wangshiqi.pineappleb.ui.fragment.hotest;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
@@ -10,6 +11,8 @@ import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
  */
 public class HotestFragment extends AbsFragment {
 
+    private TextView hotestTitle;
+
     public static HotestFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -18,6 +21,7 @@ public class HotestFragment extends AbsFragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_hotest;
@@ -25,11 +29,11 @@ public class HotestFragment extends AbsFragment {
 
     @Override
     protected void initView() {
-
+        hotestTitle = byView(R.id.title_tv);
     }
 
     @Override
     protected void initDatas() {
-
+        hotestTitle.setText(getResources().getString(R.string.hotest_tv));
     }
 }

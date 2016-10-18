@@ -15,4 +15,9 @@
         <item>频道</item>
     </string-array>
 
+    <!--最火标题-->
+    <string name="hotest_tv">
+        <item>最火</item>
+    </string>
+
 </resources>
