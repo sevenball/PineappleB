@@ -70,7 +70,7 @@ public abstract class AbsBaseAdapter<D, VH extends AbsBaseAdapter.BaseAdaper> ex
     protected abstract void onBindViewHolder(VH vh, D itemData, int position);
 
     protected static class BaseAdaper {
-        private View itemView;
+        View itemView;
         public BaseAdaper(View itemView) {
             this.itemView = itemView;
         }
