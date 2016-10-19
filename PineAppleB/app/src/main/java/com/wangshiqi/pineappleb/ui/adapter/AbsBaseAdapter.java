@@ -13,7 +13,7 @@ import java.util.List;
  * Created by dllo on 16/10/18.
  * BaseAdapter的基类
  */
-public abstract class AbsBaseAdapter<D, VH extends AbsBaseAdapter.BaseAdaper> extends BaseAdapter {
+public abstract class AbsBaseAdapter<D, VH extends AbsBaseAdapter.BaseHolder> extends BaseAdapter {
 
     protected List<D> mDatas;
     protected Context context;
@@ -69,9 +69,9 @@ public abstract class AbsBaseAdapter<D, VH extends AbsBaseAdapter.BaseAdaper> ex
 
     protected abstract void onBindViewHolder(VH vh, D itemData, int position);
 
-    protected static class BaseAdaper {
-        private View itemView;
-        public BaseAdaper(View itemView) {
+    public static class BaseHolder {
+        View itemView;
+        public BaseHolder(View itemView) {
             this.itemView = itemView;
         }
     }
