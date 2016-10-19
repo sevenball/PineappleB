@@ -26,7 +26,6 @@ public class RecommendFragment extends AbsFragment {
 
     @Override
     protected void initView() {
-
     }
 
     @Override
