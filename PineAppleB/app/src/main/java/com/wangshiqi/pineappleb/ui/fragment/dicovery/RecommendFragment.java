@@ -2,13 +2,12 @@ package com.wangshiqi.pineappleb.ui.fragment.dicovery;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 推荐
  */
 public class RecommendFragment extends AbsFragment {
 

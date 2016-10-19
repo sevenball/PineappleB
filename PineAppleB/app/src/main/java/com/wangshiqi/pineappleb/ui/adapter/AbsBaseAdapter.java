@@ -69,6 +69,7 @@ public abstract class AbsBaseAdapter<D, VH extends AbsBaseAdapter.BaseHolder> ex
 
     protected abstract void onBindViewHolder(VH vh, D itemData, int position);
 
+
     public static class BaseHolder {
         View itemView;
         public BaseHolder(View itemView) {
