@@ -54,7 +54,7 @@ public class FocusFragment extends AbsFragment {
     protected void initDatas() {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(DynamicFragment.newInstance());
-        fragments.add(DynamicFragment.newInstance());
+        fragments.add(ChannelFragment.newInstance());
         fragmentAdapter = new FocusFragmentAdapter(getChildFragmentManager(),fragments);
         focusVp.setAdapter(fragmentAdapter);
         titleTab.setupWithViewPager(focusVp);
