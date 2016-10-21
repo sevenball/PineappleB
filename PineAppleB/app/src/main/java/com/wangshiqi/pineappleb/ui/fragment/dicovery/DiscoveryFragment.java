@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.ui.adapter.discovery.DiscoveryFragmentAdapter;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
-import com.wangshiqi.pineappleb.ui.fragment.focus.FocusFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +53,7 @@ public class DiscoveryFragment extends AbsFragment {
     protected void initDatas() {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(RecommendFragment.newInstance());
-        fragments.add(FocusFragment.newInstance());
+        fragments.add(RecommendFragment.newInstance());
         fragmentAdapter = new DiscoveryFragmentAdapter(getChildFragmentManager(), fragments);
         discoveryVp.setAdapter(fragmentAdapter);
         titleTab.setupWithViewPager(discoveryVp);

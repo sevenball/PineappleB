@@ -21,6 +21,14 @@
         android:clipChildren="false"
         android:layout_height="match_parent" />
 </FrameLayout>
+        <TextView
+            android:id="@+id/recommend_head_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            />
     <!--<android.support.v7.widget.RecyclerView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content" />-->

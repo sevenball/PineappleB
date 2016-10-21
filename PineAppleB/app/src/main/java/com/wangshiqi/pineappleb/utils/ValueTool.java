@@ -5,4 +5,6 @@ package com.wangshiqi.pineappleb.utils;
  */
 public class ValueTool {
     public static final String HOT_CARD = "http://m.live.netease.com/bolo/api/rank/hotVideo.htm?userId=-2798972347206426236";
+    public static final String HEAD_VP = "http://m.live.netease.com/bolo/api/index/bannerVideoNew.htm"; // 发现-推荐-轮播图
+
 }

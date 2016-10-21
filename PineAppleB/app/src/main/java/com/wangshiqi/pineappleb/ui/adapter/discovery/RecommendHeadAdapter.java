@@ -55,7 +55,6 @@ public class RecommendHeadAdapter extends PagerAdapter{
             final int newPosition = position % datas.size();
             ImageView imageView = (ImageView) convertView.findViewById(R.id.item_rotate_img);
             final HeadBean bean = datas.get(newPosition);
-//            ImageLoaderTool.loadImage(bean.getCover(), imageView);
             Glide.with(context).load(bean.getCover()).into(imageView);
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
