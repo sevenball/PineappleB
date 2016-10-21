@@ -40,7 +40,7 @@ public class MainActivity extends AbsBaseActivity {
                         transaction.replace(R.id.replace_view, FocusFragment.newInstance());
                         break;
                     case R.id.mine_rb:
-                        transaction.replace(R.id.replace_view, DiscoveryFragment.newInstance());
+                        transaction.replace(R.id.replace_view, FocusFragment.newInstance());
                         break;
                 }
                 transaction.commit();

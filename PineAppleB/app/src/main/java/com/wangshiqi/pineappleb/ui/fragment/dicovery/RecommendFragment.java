@@ -27,9 +27,7 @@ public class RecommendFragment extends AbsFragment {
     private RecommendHeadAdapter headAdapter;
     private List<HeadBean> datas;
     public static RecommendFragment newInstance() {
-        
         Bundle args = new Bundle();
-        
         RecommendFragment fragment = new RecommendFragment();
         fragment.setArguments(args);
         return fragment;
@@ -47,15 +45,13 @@ public class RecommendFragment extends AbsFragment {
     @Override
     protected void initDatas() {
         startRoll();
-        
     }
-
-
-
     // 上方自定义3D轮播图
     private int pagerWidth;
     private void startRoll() {
         headAdapter = new RecommendHeadAdapter(context);
+        // 1.线程,  ok+线程池
+        // 2.在欢迎页请求数据,
         VolleyInstance.getInstance().startRequest("http://m.live.netease.com/bolo/api/index/bannerVideoNew.htm", new IVolleyResult() {
             @Override
             public void success(String resultStr) {
@@ -66,7 +62,6 @@ public class RecommendFragment extends AbsFragment {
 //                datas = gson.fromJson(resultStr, type);
 //                Toast.makeText(context, "datas.size():" + datas.size(), Toast.LENGTH_SHORT).show();
                 headAdapter.setDatas(datas);
-                viewPager.setCurrentItem(datas.size() * 100);
                 pagerWidth = (int) (getResources().getDisplayMetrics().widthPixels * 4.0f / 5.0f);
                 ViewGroup.LayoutParams lp = viewPager.getLayoutParams();
                 if (lp == null) {
@@ -79,15 +74,14 @@ public class RecommendFragment extends AbsFragment {
                 viewPager.setPageTransformer(true, new MyTransformation());
                 viewPager.setOffscreenPageLimit(datas.size());
                 viewPager.setAdapter(headAdapter);
-                viewPager.setCurrentItem((Integer.MAX_VALUE - datas.size()) / 2 - 1);
+                viewPager.setCurrentItem(datas.size() * 100);
+//                viewPager.setCurrentItem(Integer.MAX_VALUE / 2);
             }
-
             @Override
             public void failure() {
-
             }
         });
-        startRotate(); //开始轮播
+//        startRotate(); //开始轮播
     }
 
     private Handler handler;
@@ -109,15 +103,12 @@ public class RecommendFragment extends AbsFragment {
             handler.postDelayed(rotateRunnable, TIME);
             flag = false;
         }
-
     }
-
     @Override
     public void onResume() {
         super.onResume();
         isRotate = true;
     }
-
     @Override
     public void onPause() {
         super.onPause();

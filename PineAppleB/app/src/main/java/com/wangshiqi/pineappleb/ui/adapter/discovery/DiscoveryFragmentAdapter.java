@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class DiscoveryFragmentAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments;
+    private String[] titles = new String[]{"推荐", "必看"};
 
     public DiscoveryFragmentAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
@@ -25,5 +26,10 @@ public class DiscoveryFragmentAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return fragments.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles[position];
     }
 }
