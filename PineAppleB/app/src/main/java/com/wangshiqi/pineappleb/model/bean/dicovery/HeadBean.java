@@ -5,6 +5,7 @@ package com.wangshiqi.pineappleb.model.bean.dicovery;
  */
 public class HeadBean {
 
+
     /**
      * id : 14769800942881
      * type : 2
@@ -35,7 +36,7 @@ public class HeadBean {
     private int type;
     private String title;
     private String cover;
-    private int videoId;
+    private long videoId;
     private String url;
     private Object priority;
     private int isTop;
@@ -87,11 +88,11 @@ public class HeadBean {
         this.cover = cover;
     }
 
-    public int getVideoId() {
+    public long getVideoId() {
         return videoId;
     }
 
-    public void setVideoId(int videoId) {
+    public void setVideoId(long videoId) {
         this.videoId = videoId;
     }
 

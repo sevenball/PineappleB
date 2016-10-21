@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.HeadBean;
+import com.wangshiqi.pineappleb.utils.ImageLoaderTool;
 
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class RecommendHeadAdapter extends PagerAdapter{
         View convertView = inflater.inflate(R.layout.item_recommend_head, container, false);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.item_rotate_img);
         final HeadBean bean = datas.get(newPosition);
-        Glide.with(context).load(bean.getCover()).into(imageView);
+        ImageLoaderTool.loadImage(bean.getCover(), imageView);
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
