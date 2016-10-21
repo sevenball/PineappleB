@@ -81,7 +81,7 @@ public class RecommendFragment extends AbsFragment {
             public void failure() {
             }
         });
-//        startRotate(); //开始轮播
+        startRotate(); //开始轮播
     }
 
     private Handler handler;
