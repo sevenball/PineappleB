@@ -11,8 +11,8 @@
         android:id="@+id/hot_swipe_card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        card:alphaOffsetStep="40"
-        card:scaleOffsetStep="0.08"
-        card:yOffsetStep="20dp" />
+        card:alphaOffsetStep="10"
+        card:scaleOffsetStep="0.05"
+        card:yOffsetStep="15dp" />
 
 </android.support.design.widget.CoordinatorLayout>
