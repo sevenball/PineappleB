@@ -66,7 +66,7 @@ public class HotCardAdapter extends BaseCardAdapter implements View.OnClickListe
         hotCardChannelIntro.setText(datas.get(position).getChannelIntro());
         Picasso.with(context).load(datas.get(position).getCover()).config(Bitmap.Config.RGB_565).into(hotCardCover);
         hotCardTitle.setText(datas.get(position).getTitle());
-        hotCardPlayCount.setText(datas.get(position).getPlayCount());
+//        hotCardPlayCount.setText(datas.get(position).getPlayCount());
         // 卡片上的点击事件
         hotCardPlayFavor.setOnClickListener(this);
         hotCardShare.setOnClickListener(this);
