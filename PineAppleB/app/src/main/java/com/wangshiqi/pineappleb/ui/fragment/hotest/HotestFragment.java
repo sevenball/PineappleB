@@ -76,14 +76,14 @@ public class HotestFragment extends AbsFragment {
                     case LEFT:
 
                         Log.d("zzz", "index:" + index);
-                        if (index == bean.size() - 3) {
+                        if (index == bean.size() - 4) {
                             bean.addAll(bean);
                             Toast.makeText(context, "向左滑动了图片", Toast.LENGTH_SHORT).show();
                         }
 
                         break;
                     case RIGHT:
-                        if (index == bean.size() - 3) {
+                        if (index == bean.size() - 4) {
                             bean.addAll(bean);
                             Toast.makeText(context, "向右滑动了图片", Toast.LENGTH_SHORT).show();
                         }
