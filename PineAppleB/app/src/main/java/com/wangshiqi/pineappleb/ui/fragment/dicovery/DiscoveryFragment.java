@@ -62,6 +62,5 @@ public class DiscoveryFragment extends AbsFragment {
             titleTab.getTabAt(i).setText(titles[i]);
         }
         titleTv.setVisibility(View.GONE);
-
     }
 }

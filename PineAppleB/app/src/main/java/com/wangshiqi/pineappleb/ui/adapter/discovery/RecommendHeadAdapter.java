@@ -1,6 +1,7 @@
 package com.wangshiqi.pineappleb.ui.adapter.discovery;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.HeadBean;
 
@@ -36,7 +37,7 @@ public class RecommendHeadAdapter extends PagerAdapter{
 
     @Override
     public int getCount() {
-        return datas == null ? 0 : Integer.MAX_VALUE;
+        return Integer.MAX_VALUE;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class RecommendHeadAdapter extends PagerAdapter{
         View convertView = inflater.inflate(R.layout.item_recommend_head, container, false);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.item_rotate_img);
         final HeadBean bean = datas.get(newPosition);
-        Glide.with(context).load(bean.getCover()).into(imageView);
+        Picasso.with(context).load(bean.getCover()).config(Bitmap.Config.RGB_565).into(imageView);
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
