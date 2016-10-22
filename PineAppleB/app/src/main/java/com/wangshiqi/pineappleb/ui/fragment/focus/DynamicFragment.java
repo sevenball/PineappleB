@@ -55,7 +55,7 @@ public class DynamicFragment extends AbsFragment {
 
 
     }
-    // listview监听事件
+    // listview监听事件和传值
     private void ItemListener() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
