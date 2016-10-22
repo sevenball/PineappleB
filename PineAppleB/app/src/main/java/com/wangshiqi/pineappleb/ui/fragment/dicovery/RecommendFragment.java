@@ -4,17 +4,22 @@ package com.wangshiqi.pineappleb.ui.fragment.dicovery;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.HeadBean;
+import com.wangshiqi.pineappleb.model.bean.dicovery.RecommendStrongBean;
 import com.wangshiqi.pineappleb.model.net.IVolleyResult;
 import com.wangshiqi.pineappleb.model.net.VolleyInstance;
 import com.wangshiqi.pineappleb.ui.adapter.discovery.RecommendHeadAdapter;
+import com.wangshiqi.pineappleb.ui.adapter.discovery.RecommendStrongRvAdapter;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
 import com.wangshiqi.pineappleb.utils.MyTransformation;
 import com.wangshiqi.pineappleb.utils.ValueTool;
@@ -32,6 +37,10 @@ public class RecommendFragment extends AbsFragment {
     private TextView recommendTv;
 
     private RecyclerView recyclerView;
+    private RecommendStrongRvAdapter recommendStrongRvAdapter;
+    private List<RecommendStrongBean> strongBeanList;
+    private ImageView refreshIv;
+
     public static RecommendFragment newInstance() {
         Bundle args = new Bundle();
         RecommendFragment fragment = new RecommendFragment();
@@ -49,12 +58,47 @@ public class RecommendFragment extends AbsFragment {
         viewPager = byView(R.id.recommend_head_vp);
         recommendTv = byView(R.id.recommend_head_tv);
         recyclerView = byView(R.id.recommend_rv_boluo);
+        refreshIv = byView(R.id.refresh_civ);
     }
+
+    int i = 1;
 
     @Override
     protected void initDatas() {
         startRoll();  // 上方自定义3D轮播图
-        
+        strongRv();
+        refreshIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i++;
+                strongRv();
+            }
+        });
+    }
+
+    private void strongRv() {
+        recommendStrongRvAdapter = new RecommendStrongRvAdapter(context);
+        GridLayoutManager manager = new GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(recommendStrongRvAdapter);
+
+        VolleyInstance.getInstance().startRequest(ValueTool.STRONG_RV + i, new IVolleyResult() {
+            @Override
+            public void success(String resultStr) {
+                strongBeanList = JSON.parseArray(resultStr, RecommendStrongBean.class);
+                recommendStrongRvAdapter.setDatas(strongBeanList);
+            }
+
+            @Override
+            public void failure() {
+
+            }
+        });
     }
 
     private int pagerWidth;
