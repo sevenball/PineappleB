@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:background="#efebeb"
+        android:maxLines="5"
+        android:maxEms="10"
+        android:layout_marginBottom="10dp"
+        android:textSize="10sp"
+        android:id="@+id/item_sort_set_tv"
+        android:layout_width="match_parent"
+        android:text="佛开多久发快递福利大空间风格带过来看大家观看了打破赶紧的开始给"
+        android:layout_height="match_parent" />
+</LinearLayout>
