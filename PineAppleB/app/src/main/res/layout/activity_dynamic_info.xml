@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -14,11 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:title="哈哈哈"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/colorClassic"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="哈哈哈">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -48,6 +49,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:background="#eff5f7"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -55,23 +57,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical">
 
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:background="#fff"
+                    android:layout_height="wrap_content">
                 <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/dynamic_info_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:text="每日一梗 77 人渣相亲"
                     android:textColor="#000000" />
 
                 <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/dynamic_info_intro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="每日一梗:不管你笑不笑,反正我每天都更新.不定时跟新的搞笑.有趣小视频" />
+                    android:textSize="8sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -79,22 +90,23 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/dynamic_info_tag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="#每日一梗" />
+                        android:text="#每日一梗"
+                        android:textSize="10sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="#搞笑" />
                 </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:id="@+id/dynamic_info_play"
@@ -102,7 +114,9 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/focus_dynamic"
                         android:drawablePadding="5dp"
-                        android:text="106次" />
+                        android:layout_marginBottom="10dp"
+                        android:text="106次"
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/dynamic_info_share"
@@ -112,7 +126,8 @@
                         android:layout_marginRight="20dp"
                         android:drawableLeft="@mipmap/video_player_share"
                         android:drawablePadding="5dp"
-                        android:text="安利" />
+                        android:text="安利"
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/dynamic_info_favor"
@@ -122,7 +137,8 @@
                         android:layout_toLeftOf="@id/dynamic_info_share"
                         android:drawableLeft="@mipmap/video_player_favor"
                         android:drawablePadding="5dp"
-                        android:text="马克" />
+                        android:text="马克"
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/dynamic_info_download"
@@ -132,28 +148,52 @@
                         android:layout_toLeftOf="@id/dynamic_info_favor"
                         android:drawableLeft="@mipmap/video_player_content_download_n"
                         android:drawablePadding="5dp"
-                        android:text="下载" />
+                        android:text="下载"
+                        android:textSize="10sp" />
 
                 </RelativeLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="#f03"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp"
-                        android:text="分集"
-                        android:textColor="#000000" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:background="#fff"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/dyanmic_sort_set_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="分集"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/dynamic_set_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="3dp"
+
+                            android:layout_toRightOf="@id/dyanmic_sort_set_tv"
+                            android:text="456" />
+
+                    </RelativeLayout>
+
 
                     <android.support.v7.widget.RecyclerView
+                        android:id="@+id/sort_set_rl"
+                        android:background="#fff"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp">
+                        android:layout_height="wrap_content">
 
                     </android.support.v7.widget.RecyclerView>
 
@@ -162,7 +202,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#e1bb22"
+                    android:background="#fff"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -171,17 +212,22 @@
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
                         android:text="更多推荐"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:text="真人段子秀" />
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="LOL" />
 
                     <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recommend_more_rl"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp">
+                        android:layout_height="wrap_content">
 
                     </android.support.v7.widget.RecyclerView>
                 </LinearLayout>
@@ -189,23 +235,40 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#ffffff">
-
-
+                    android:background="#fff"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="评论区"
-                        android:textColor="#ffffff" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="#000000" />
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:text="456"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/discuss_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-                    <ListView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></ListView>
 
                 </LinearLayout>
             </LinearLayout>
 
+            <com.wangshiqi.pineappleb.view.DiscussListView
+                android:background="#fff"
+                android:id="@+id/dynamic_info_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
         </LinearLayout>
+
+
 
     </android.support.v4.widget.NestedScrollView>
 
