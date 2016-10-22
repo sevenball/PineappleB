@@ -62,11 +62,18 @@ public class HotCardAdapter extends BaseCardAdapter implements View.OnClickListe
         hotCardPlayFavor = (ImageView) cardview.findViewById(R.id.hot_card_play_favor);
         hotCardShare = (ImageView) cardview.findViewById(R.id.hot_card_share);
         // 控件绑定数据
+        Picasso.with(context).load(datas.get(position).getAvatar()).config(Bitmap.Config.RGB_565).into(hotCardAvatar);
         hotCardChannelName.setText(datas.get(position).getChannelName());
         hotCardChannelIntro.setText(datas.get(position).getChannelIntro());
         Picasso.with(context).load(datas.get(position).getCover()).config(Bitmap.Config.RGB_565).into(hotCardCover);
         hotCardTitle.setText(datas.get(position).getTitle());
-//        hotCardPlayCount.setText(datas.get(position).getPlayCount());
+        int playCount = datas.get(position).getPlayCount();
+        if (playCount > 10000) {
+            String playCountFormat = String.format("%." + 1 + "f", playCount / 10000.0) + context.getResources().getString(R.string.hotest_play_count_unit);
+            hotCardPlayCount.setText(playCountFormat);
+        } else {
+            hotCardPlayCount.setText(playCount + "");
+        }
         // 卡片上的点击事件
         hotCardPlayFavor.setOnClickListener(this);
         hotCardShare.setOnClickListener(this);
