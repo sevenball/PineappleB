@@ -1,16 +1,17 @@
 package com.wangshiqi.pineappleb.ui.adapter.discovery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.HeadBean;
+import com.wangshiqi.pineappleb.ui.activity.discovery.TestActivity;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class RecommendHeadAdapter extends PagerAdapter{
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "点击", Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, TestActivity.class));
                 }
             });
             container.addView(convertView);

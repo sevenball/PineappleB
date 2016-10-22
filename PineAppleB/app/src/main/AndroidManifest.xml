@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.focus.DynamicInfoActivity"/>
+        <activity android:name=".ui.activity.discovery.TestActivity"/>
     </application>
 
 </manifest>

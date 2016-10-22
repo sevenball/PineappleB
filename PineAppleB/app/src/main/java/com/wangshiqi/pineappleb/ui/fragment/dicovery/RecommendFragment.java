@@ -51,6 +51,7 @@ public class RecommendFragment extends AbsFragment {
     @Override
     protected void initDatas() {
         startRoll();  // 上方自定义3D轮播图
+
     }
 
     private int pagerWidth;
