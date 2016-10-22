@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.ui.activity.AbsBaseActivity;
@@ -20,6 +21,7 @@ import wkvideoplayer.view.SuperVideoPlayer;
  */
 public class TestActivity extends AbsBaseActivity {
     private SuperVideoPlayer mSuperVideoPlayer;
+    private LinearLayout linearLayout;
     @Override
     protected int setLayout() {
         return R.layout.activity_recommend_info;
@@ -28,6 +30,7 @@ public class TestActivity extends AbsBaseActivity {
     @Override
     protected void initViews() {
         mSuperVideoPlayer = byView(R.id.test_video);
+        linearLayout = byView(R.id.recommend_ll);
     }
 
     @Override
