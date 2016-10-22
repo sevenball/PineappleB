@@ -1,6 +1,7 @@
 package com.wangshiqi.pineappleb.ui.adapter.discovery;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.RecommendStrongBean;
 import com.wangshiqi.pineappleb.utils.OnRvItemClick;
@@ -49,8 +50,8 @@ public class RecommendStrongRvAdapter extends RecyclerView.Adapter<RecommendStro
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         RecommendStrongBean bean = datas.get(position);
-        Glide.with(context).load(bean.getAvatar()).into(holder.avatarImg);
-        Glide.with(context).load(bean.getCover()).into(holder.coverImg);
+        Picasso.with(context).load(bean.getAvatar()).config(Bitmap.Config.RGB_565).into(holder.avatarImg);
+        Picasso.with(context).load(bean.getCover()).config(Bitmap.Config.RGB_565).into(holder.coverImg);
         holder.titleTv.setText(bean.getTitle());
         holder.playCount.setText(bean.getPlayCount() + "次");
         holder.channelName.setText(bean.getChannelName());
