@@ -1,5 +1,6 @@
 package com.wangshiqi.pineappleb.ui.fragment.hotest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.hotest.HotCardBean;
 import com.wangshiqi.pineappleb.model.net.IVolleyResult;
 import com.wangshiqi.pineappleb.model.net.VolleyInstance;
+import com.wangshiqi.pineappleb.ui.activity.hotest.HotestInfoActivity;
 import com.wangshiqi.pineappleb.ui.adapter.hotest.HotCardAdapter;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
 import com.wangshiqi.pineappleb.utils.ValueTool;
@@ -29,6 +31,8 @@ public class HotestFragment extends AbsFragment {
     private HotCardAdapter cardAdapter;
     private SwipeCardsView cardsView;
     private List<HotCardBean> bean;
+    private boolean isState = false;
+
 
     public static HotestFragment newInstance() {
 
@@ -48,6 +52,7 @@ public class HotestFragment extends AbsFragment {
     protected void initView() {
         hotestTitle = byView(R.id.title_tv);
         cardsView = byView(R.id.hot_swipe_card_view);
+
     }
 
     @Override
@@ -76,23 +81,43 @@ public class HotestFragment extends AbsFragment {
                     case LEFT:
 
                         Log.d("zzz", "index:" + index);
-                        if (index == bean.size() - 4) {
+                        if (index == bean.size() - 3) {
                             bean.addAll(bean);
                             Toast.makeText(context, "向左滑动了图片", Toast.LENGTH_SHORT).show();
                         }
+                        Log.d("HotestFragment", "index = :" + index + "");
 
                         break;
                     case RIGHT:
-                        if (index == bean.size() - 4) {
+                        if (index == bean.size() - 3) {
                             bean.addAll(bean);
                             Toast.makeText(context, "向右滑动了图片", Toast.LENGTH_SHORT).show();
                         }
+                        Log.d("HotestFragment", "bean.size():" + bean.size() + "这是总数");
+                        Log.d("HotestFragment", "index = :" + index + "");
                         break;
                 }
             }
 
             @Override
             public void onItemClick(View cardImageView, int index) {
+                Intent intent = new Intent(context, HotestInfoActivity.class);
+                if (index < 4) {
+                    intent.putExtra("mp4Url", bean.get(index % bean.size()).getLinkMp4());
+                    intent.putExtra("title", bean.get(index % bean.size()).getTitle());
+                    intent.putExtra("intro", bean.get(index % bean.size()).getIntro());
+                    intent.putExtra("count", bean.get(index % bean.size()).getPlayCount());
+                    intent.putExtra("tag", bean.get(index % bean.size()).getTag());
+                } else {
+                    intent.putExtra("mp4Url", bean.get(index % bean.size() + 1).getLinkMp4());
+                    intent.putExtra("title", bean.get(index % bean.size() + 1).getTitle());
+                    intent.putExtra("intro", bean.get(index % bean.size() + 1).getIntro());
+                    intent.putExtra("count", bean.get(index % bean.size() + 1).getPlayCount());
+                    intent.putExtra("tag", bean.get(index % bean.size() + 1).getTag());
+                }
+
+                Log.d("HotestFragment", "index%15:" + index + "---->" + (index % 15) + "");
+                context.startActivity(intent);
                 Toast.makeText(context, "卡片的点击事件", Toast.LENGTH_SHORT).show();
             }
         });
@@ -107,7 +132,7 @@ public class HotestFragment extends AbsFragment {
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<HotCardBean>>() {
                 }.getType();
-                bean =  gson.fromJson(resultStr, type);
+                bean = gson.fromJson(resultStr, type);
                 // 把这个集合每一个元素放一个新集合里
                 cardAdapter.setDatas(bean);
                 cardsView.setAdapter(cardAdapter);

@@ -15,7 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
+<<<<<<< HEAD
+            app:contentScrim="?attr/colorPrimary"
+=======
             app:contentScrim="@color/colorClassic"
+>>>>>>> ff2b8db0dd499c813531dccd1b8d9d67e575c271
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -27,9 +31,7 @@
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"
-                app:layout_collapseMode="parallax">
-
-            </ImageView>
+                app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

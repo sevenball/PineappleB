@@ -11,4 +11,16 @@
     <dimen name="media_controller_view_height">48dip</dimen>
     <dimen name="media_controller_button_height">52dip</dimen>
     <dimen name="media_controller_button_width">71dip</dimen>
+
+
+    <!--最火界面字体大小-->
+    <dimen name="hot_card_channelName_text_size">12sp</dimen>
+    <dimen name="hot_card_channelIntro_text_size">8sp</dimen>
+    <dimen name="hot_card_title_text_size">13sp</dimen>
+    <dimen name="hot_card_tag_text_size">10sp</dimen>
+    <dimen name="hot_card_play_count_text_size">8sp</dimen>
+    <dimen name="hot_card_play_favor_count_text_size">10sp</dimen>
+    <dimen name="hot_card_play_share_text_size">10sp</dimen>
+
+
 </resources>

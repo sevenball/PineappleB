@@ -40,33 +40,41 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="姓名"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/hot_card_channelName_text_size" />
 
                 <TextView
                     android:id="@+id/hot_card_channelIntro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="内容简介"
-                    android:textSize="8sp" />
+                    android:textSize="@dimen/hot_card_channelIntro_text_size" />
             </LinearLayout>
         </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6">
+            android:layout_weight="7.5">
 
             <ImageView
                 android:id="@+id/hot_card_cover"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="fitXY"
                 android:src="@mipmap/dk_qingxin" />
 
             <ImageView
+                android:id="@+id/hoe_card_video_player"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@mipmap/ic_video_play" />
+
+            <wkvideoplayer.view.SuperVideoPlayer
+                android:id="@+id/hot_card_super_video_player"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
 
         </FrameLayout>
 
@@ -78,7 +86,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="15dp"
             android:text="这样不行吗?"
-            android:textSize="12sp" />
+            android:textSize="@dimen/hot_card_title_text_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,28 +95,29 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/hot_card_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:text="#生涯"
-                android:textSize="8sp" />
+                android:textSize="@dimen/hot_card_tag_text_size" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:text="#生涯"
-                android:textSize="8sp" />
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="#生涯"-->
+            <!--android:textSize="8sp" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:text="#生涯"
-                android:textSize="8sp" />
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="#生涯"-->
+            <!--android:textSize="8sp" />-->
         </LinearLayout>
 
 
@@ -131,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="4.5万次"
-                android:textSize="10sp" />
+                android:textSize="@dimen/hot_card_tag_text_size" />
         </LinearLayout>
 
 
@@ -155,11 +164,12 @@
                     android:src="@mipmap/video_player_favor" />
 
                 <TextView
+                    android:id="@+id/hot_card_play_favor_count"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:text="马克"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/hot_card_play_favor_count_text_size" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,7 +189,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:text="安利"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/hot_card_play_share_text_size" />
             </LinearLayout>
         </LinearLayout>
 
