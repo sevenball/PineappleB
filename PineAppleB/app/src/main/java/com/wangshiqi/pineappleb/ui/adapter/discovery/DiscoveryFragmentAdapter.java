@@ -28,8 +28,5 @@ public class DiscoveryFragmentAdapter extends FragmentPagerAdapter {
         return fragments.size();
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return titles[position];
-    }
+
 }

@@ -1,12 +1,12 @@
 package com.wangshiqi.pineappleb.ui.activity.discovery;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.ui.activity.AbsBaseActivity;
@@ -21,7 +21,7 @@ import wkvideoplayer.view.SuperVideoPlayer;
  */
 public class TestActivity extends AbsBaseActivity {
     private SuperVideoPlayer mSuperVideoPlayer;
-    private LinearLayout linearLayout;
+
     @Override
     protected int setLayout() {
         return R.layout.activity_recommend_info;
@@ -30,7 +30,6 @@ public class TestActivity extends AbsBaseActivity {
     @Override
     protected void initViews() {
         mSuperVideoPlayer = byView(R.id.test_video);
-        linearLayout = byView(R.id.recommend_ll);
     }
 
     @Override
@@ -38,10 +37,13 @@ public class TestActivity extends AbsBaseActivity {
         mSuperVideoPlayer.setVideoPlayCallback(mVideoPlayCallback);
         mSuperVideoPlayer.setVisibility(View.VISIBLE);
         mSuperVideoPlayer.setAutoHideController(true);
-        Uri uri = Uri.parse("http://bobolive.nosdn.127.net/aac_bobo_1476082108730_65513164.mp4");
-        mSuperVideoPlayer.loadAndPlay(uri,0);
+        Intent intent = getIntent();
+        String url = intent.getStringExtra("mp4Url");
+        Uri uri = Uri.parse(url);
+        mSuperVideoPlayer.loadAndPlay(uri, 0);
 
     }
+
     /**
      * 播放器的回调函数
      */

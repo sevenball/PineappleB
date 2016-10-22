@@ -4,6 +4,7 @@ package com.wangshiqi.pineappleb.ui.fragment.dicovery;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class RecommendFragment extends AbsFragment {
     private List<HeadBean> datas;
     private TextView recommendTv;
 
+    private RecyclerView recyclerView;
     public static RecommendFragment newInstance() {
         Bundle args = new Bundle();
         RecommendFragment fragment = new RecommendFragment();
@@ -46,12 +48,13 @@ public class RecommendFragment extends AbsFragment {
     protected void initView() {
         viewPager = byView(R.id.recommend_head_vp);
         recommendTv = byView(R.id.recommend_head_tv);
+        recyclerView = byView(R.id.recommend_rv_boluo);
     }
 
     @Override
     protected void initDatas() {
         startRoll();  // 上方自定义3D轮播图
-
+        
     }
 
     private int pagerWidth;
@@ -79,9 +82,9 @@ public class RecommendFragment extends AbsFragment {
                 viewPager.setLayoutParams(lp);
                 viewPager.setPageMargin(-85);
                 viewPager.setPageTransformer(true, new MyTransformation());
-                viewPager.setOffscreenPageLimit(datas.size());
+                viewPager.setOffscreenPageLimit(3);
                 viewPager.setAdapter(headAdapter);
-                viewPager.setCurrentItem(datas.size() * 100);
+                viewPager.setCurrentItem(datas.size() * 1000);
                 viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
