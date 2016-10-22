@@ -1,9 +1,11 @@
 package com.wangshiqi.pineappleb.ui.adapter.focus;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -53,9 +55,9 @@ public class DynamicFragmentAdapter extends AbsBaseAdapter<DynamicBean.ListBean,
         TextView channelNameTv,nameTv,titleTv,tagOneTv,tagTwoTv,tagThreeTv,countTv;
         Button durationBtn;
         ImageView circleImg,playImg,countImg,coverImg;
+
         public ViewHolder(View itemView) {
             super(itemView);
-
             channelNameTv = (TextView) itemView.findViewById(R.id.dynamic_channel_name);
             nameTv = (TextView) itemView.findViewById(R.id.dynamic_name);
             titleTv = (TextView) itemView.findViewById(R.id.dynamic_title);
