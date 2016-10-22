@@ -17,7 +17,7 @@ public class ImageLoaderTool {
             .cacheInMemory(true) // 设置下载的图片是否缓存在内存中
             .cacheOnDisk(true) // 设置下载的图片是否缓存在SD卡中
 //                 .displayer(new RoundedBitmapDisplayer(20)) // 设置成圆角图片
-            .delayBeforeLoading(3000)
+//            .delayBeforeLoading(3000)
             .build();
     public static void loadImage(String url, ImageView imageView) {
 //        ImageLoader.getInstance().loadImage();

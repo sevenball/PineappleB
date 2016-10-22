@@ -19,5 +19,7 @@
     <string name="hotest_tv">
         <item>最火</item>
     </string>
+    <!--最火界面的播放量的单位-->
+    <string name="hotest_play_count_unit">万</string>
 
 </resources>

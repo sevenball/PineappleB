@@ -23,4 +23,5 @@
     <style name="TabText" parent="TextAppearance.AppCompat">
         <item name="android:textSize">14sp</item>
     </style>
+
 </resources>

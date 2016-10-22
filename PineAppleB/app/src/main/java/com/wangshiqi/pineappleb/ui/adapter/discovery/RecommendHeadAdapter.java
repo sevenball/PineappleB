@@ -1,17 +1,17 @@
 package com.wangshiqi.pineappleb.ui.adapter.discovery;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.HeadBean;
+import com.wangshiqi.pineappleb.ui.activity.discovery.TestActivity;
 
 import java.util.List;
 
@@ -47,24 +47,24 @@ public class RecommendHeadAdapter extends PagerAdapter{
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-
     }
-
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         // position是int最大值所以这里可能是几百甚至上千, 因此取余避免数组越界
-        final int newPosition = position % datas.size();
         View convertView = inflater.inflate(R.layout.item_recommend_head, container, false);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.item_rotate_img);
-        final HeadBean bean = datas.get(newPosition);
-        Picasso.with(context).load(bean.getCover()).config(Bitmap.Config.RGB_565).into(imageView);
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "点击", Toast.LENGTH_SHORT).show();
-            }
-        });
-        container.addView(convertView);
+        if (datas != null) {
+            final int newPosition = position % datas.size();
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.item_rotate_img);
+            final HeadBean bean = datas.get(newPosition);
+            Glide.with(context).load(bean.getCover()).into(imageView);
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, TestActivity.class));
+                }
+            });
+            container.addView(convertView);
+        }
         return convertView;
     }
 }
