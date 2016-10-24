@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.focus.RecommendMoreBean;
-import com.wangshiqi.pineappleb.model.bean.focus.SortSetBean;
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class RecmmendMoreAdapter extends RecyclerView.Adapter<RecmmendMoreAdapte
 
     @Override
     public RecommendMoreViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_rexommend_more,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_recommend_more,parent,false);
         RecommendMoreViewHolder holder = new RecommendMoreViewHolder(view);
         return holder;
     }
