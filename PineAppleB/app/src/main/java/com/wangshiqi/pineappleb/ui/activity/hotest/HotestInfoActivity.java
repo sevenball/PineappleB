@@ -86,14 +86,14 @@ public class HotestInfoActivity extends AbsBaseActivity {
         } else {
             infoPlayCount.setText(playCount + "");
         }
+        infoTitle.setText(title);
+        infoIntro.setText(intro);
 
         mSuperVideoPlayer.setVisibility(View.VISIBLE);
         mSuperVideoPlayer.setAutoHideController(false);
         Uri uri = Uri.parse(mp4Url);
         mSuperVideoPlayer.loadAndPlay(uri, 0);
         mSuperVideoPlayer.setVideoPlayCallback(mVideoPlayCallback);
-        infoTitle.setText(title);
-        infoIntro.setText(intro);
     }
 
     /***
