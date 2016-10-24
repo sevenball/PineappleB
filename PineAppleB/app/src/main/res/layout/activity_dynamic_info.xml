@@ -103,6 +103,7 @@
                         android:textColor="#000000" />
 
                     <TextView
+                        android:textColor="#000"
                         android:id="@+id/dynamic_info_intro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -144,6 +145,7 @@
                             android:drawableLeft="@mipmap/focus_dynamic"
                             android:drawablePadding="5dp"
                             android:text="106次"
+                            android:textColor="#000"
                             android:textSize="10sp" />
 
                         <TextView
@@ -155,6 +157,7 @@
                             android:drawableLeft="@mipmap/video_player_share"
                             android:drawablePadding="5dp"
                             android:text="安利"
+                            android:textColor="#000"
                             android:textSize="10sp" />
 
                         <TextView
@@ -166,6 +169,7 @@
                             android:drawableLeft="@mipmap/video_player_favor"
                             android:drawablePadding="5dp"
                             android:text="马克"
+                            android:textColor="#000"
                             android:textSize="10sp" />
 
                         <TextView
@@ -177,6 +181,7 @@
                             android:drawableLeft="@mipmap/video_player_content_download_n"
                             android:drawablePadding="5dp"
                             android:text="下载"
+                            android:textColor="#000"
                             android:textSize="10sp" />
 
                     </RelativeLayout>

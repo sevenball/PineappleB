@@ -3,6 +3,7 @@ package com.wangshiqi.pineappleb.ui.activity.focus;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -136,6 +137,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
                 DiscussBean bean = gson.fromJson(resultStr,DiscussBean.class);
                 List<DiscussBean.DataBean> listBean = bean.getData();
                 discussCount.setText("("+listBean.size()+")");
+                discussCount.setTextColor(Color.parseColor("#F09800"));
                 discussAdapter.setmDatas(listBean);
                 listView.setAdapter(discussAdapter);
             }
@@ -182,6 +184,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
                 List<SortSetBean> bean= gson.fromJson(resultStr,type);
                 sortSetAdapter.setSortSetBean(bean);
                 setTv.setText("("+bean.size()+")");
+                setTv.setTextColor(Color.parseColor("#F09800"));
                 sortSetRl.setAdapter(sortSetAdapter);
             }
 
@@ -202,7 +205,8 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         finalTag = formatTag.replace(",","   #  ");
         tagTv.setText("#  "+ finalTag);
         videoId = intent.getLongExtra("videoId", 0);
-        playCount.setText(intent.getIntExtra("playCount", 0) + "");
+        playCount.setText(intent.getIntExtra("playCount", 0) + "次");
+        playCount.setTextColor(Color.parseColor("#000000"));
 
 
     }
