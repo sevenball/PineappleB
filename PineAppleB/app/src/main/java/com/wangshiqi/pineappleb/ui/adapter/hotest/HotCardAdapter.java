@@ -1,14 +1,12 @@
 package com.wangshiqi.pineappleb.ui.adapter.hotest;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.huxq17.swipecardsview.BaseCardAdapter;
-import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.hotest.HotCardBean;
 import com.wangshiqi.pineappleb.utils.ImageLoaderTool;
@@ -84,7 +82,8 @@ public class HotCardAdapter extends BaseCardAdapter implements View.OnClickListe
         ImageView hotCardShare = (ImageView) cardview.findViewById(R.id.hot_card_share);
         // 控件绑定数据
         int newPosition = position % datas.size();
-        Picasso.with(context).load(datas.get(newPosition).getAvatar()).config(Bitmap.Config.RGB_565).into(hotCardAvatar);
+        ImageLoaderTool.loadImage(datas.get(newPosition).getAvatar(), hotCardAvatar);
+//        Picasso.with(context).load(datas.get(newPosition).getAvatar()).config(Bitmap.Config.RGB_565).into(hotCardAvatar);
         hotCardChannelName.setText(datas.get(newPosition).getChannelName());
         hotCardChannelIntro.setText(datas.get(newPosition).getChannelIntro());
         ImageLoaderTool.loadImage(datas.get(newPosition).getCover(), hotCardCover);
