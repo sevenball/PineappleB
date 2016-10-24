@@ -1,7 +1,0 @@
-package com.wangshiqi.pineappleb.ui.activity.focus;
-
-/**
- * Created by dllo on 16/10/17.
- */
-public class A {
-}
