@@ -17,7 +17,8 @@ public class ValueTool {
     public static final String STRONG_RV = "http://m.live.netease.com/bolo/api/index/videoRecommend.htm?pageNum=";
     // 发现-推荐-周榜
     public static final String RANK_RV = "http://m.live.netease.com/bolo/api/index/dailyPopList.htm?pageNum=1&pageSize=6";
-
+    // 发现-必看
+    public static final String MUST_WATCH = "http://m.live.netease.com/bolo/api/index/headPic.htm";
 
     /**
      * 关注界面的接口
