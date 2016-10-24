@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -59,6 +60,7 @@ public class ChannelFragment extends AbsFragment{
             @Override
             public void onRvItemClickListener(int position, Object o) {
                 Toast.makeText(context, "position:" + position, Toast.LENGTH_SHORT).show();
+                Log.d("ChannelFragment", "o:" + o);
             }
         });
     }

@@ -77,6 +77,9 @@ public class DynamicFragment extends AbsFragment {
                     intent.putExtra(DynamicInfoActivity.VIDEOID,videoId);
                     intent.putExtra(DynamicInfoActivity.PLAYCOUNT,playCount);
                     context.startActivity(intent);
+
+
+
                 }
             }
         });
@@ -84,7 +87,6 @@ public class DynamicFragment extends AbsFragment {
 
     // 动态界面数据获取
     private void getDatas() {
-//        "http://m.live.netease.com/bolo/api/user/timeLine.htm?pageNum=1&lastTime=2016-10-15%2010%3A59%3A46&encryptToken=dfc23870c7ad025e735f8a76859d1a0d&random=0.2582823928479111&userId=-2798972347206426236&pageSize=20&timeStamp=1476446520350"
         VolleyInstance.getInstance().startRequest(ValueTool.DYNAMICURL, new IVolleyResult() {
             @Override
             public void success(String resultStr) {
