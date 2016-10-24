@@ -1,6 +1,7 @@
 package com.wangshiqi.pineappleb.ui.fragment.dicovery;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
@@ -10,20 +11,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.HeadBean;
+import com.wangshiqi.pineappleb.model.bean.dicovery.RecommendRankBean;
 import com.wangshiqi.pineappleb.model.bean.dicovery.RecommendStrongBean;
 import com.wangshiqi.pineappleb.model.net.IVolleyResult;
 import com.wangshiqi.pineappleb.model.net.VolleyInstance;
+import com.wangshiqi.pineappleb.ui.activity.focus.DynamicInfoActivity;
 import com.wangshiqi.pineappleb.ui.adapter.discovery.RecommendHeadAdapter;
+import com.wangshiqi.pineappleb.ui.adapter.discovery.RecommendRankRvAdapter;
 import com.wangshiqi.pineappleb.ui.adapter.discovery.RecommendStrongRvAdapter;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
 import com.wangshiqi.pineappleb.utils.MyTransformation;
+import com.wangshiqi.pineappleb.utils.OnRvItemClick;
 import com.wangshiqi.pineappleb.utils.ValueTool;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +45,10 @@ public class RecommendFragment extends AbsFragment {
     private RecommendStrongRvAdapter recommendStrongRvAdapter;
     private List<RecommendStrongBean> strongBeanList;
     private ImageView refreshIv;
+
+    private RecyclerView rankRv;
+    private List<RecommendRankBean> rankBeanList;
+    private RecommendRankRvAdapter rankRvAdapter;
 
     public static RecommendFragment newInstance() {
         Bundle args = new Bundle();
@@ -59,6 +68,7 @@ public class RecommendFragment extends AbsFragment {
         recommendTv = byView(R.id.recommend_head_tv);
         recyclerView = byView(R.id.recommend_rv_boluo);
         refreshIv = byView(R.id.refresh_civ);
+        rankRv = byView(R.id.recommend_rv_rank);
     }
 
     int i = 1;
@@ -66,12 +76,41 @@ public class RecommendFragment extends AbsFragment {
     @Override
     protected void initDatas() {
         startRoll();  // 上方自定义3D轮播图
-        strongRv();
+        strongRv(); // 菠萝力荐
         refreshIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 i++;
                 strongRv();
+            }
+        });
+        rank(); // 人气周榜
+    }
+
+    private void rank() {
+        rankRvAdapter = new RecommendRankRvAdapter(context);
+        GridLayoutManager managerRank = new GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        rankRv.setLayoutManager(managerRank);
+        rankRv.setAdapter(rankRvAdapter);
+        VolleyInstance.getInstance().startRequest(ValueTool.RANK_RV, new IVolleyResult() {
+            @Override
+            public void success(String resultStr) {
+                rankBeanList = JSON.parseArray(resultStr, RecommendRankBean.class);
+                List<RecommendRankBean> beanRank = new ArrayList<>();
+                for (int i1 = 0; i1 < 6; i1++) {
+                    beanRank.add(rankBeanList.get(i1));
+                }
+                rankRvAdapter.setDatas(beanRank);
+            }
+
+            @Override
+            public void failure() {
+
             }
         });
     }
@@ -99,6 +138,19 @@ public class RecommendFragment extends AbsFragment {
 
             }
         });
+        recommendStrongRvAdapter.setOnRvItemClick(new OnRvItemClick() {
+            @Override
+            public void onRvItemClickListener(int position, Object o) {
+                Intent intent = new Intent(context, DynamicInfoActivity.class);
+                intent.putExtra(DynamicInfoActivity.TITLE, strongBeanList.get(position).getTitle());
+                intent.putExtra(DynamicInfoActivity.INTRO, strongBeanList.get(position).getIntro());
+                intent.putExtra(DynamicInfoActivity.TAG, strongBeanList.get(position).getTag());
+                intent.putExtra(DynamicInfoActivity.PLAYCOUNT, strongBeanList.get(position).getPlayCount());
+                intent.putExtra(DynamicInfoActivity.LINKMP4, strongBeanList.get(position).getLinkMp4());
+                intent.putExtra(DynamicInfoActivity.VIDEOID, strongBeanList.get(position).getVideoId());
+                startActivity(intent);
+            }
+        });
     }
 
     private int pagerWidth;
@@ -109,7 +161,6 @@ public class RecommendFragment extends AbsFragment {
             @Override
             public void success(String resultStr) {
                 datas = JSON.parseArray(resultStr, HeadBean.class);
-                Toast.makeText(context, "datas.size():" + datas.size(), Toast.LENGTH_SHORT).show();
 //                Gson gson = new Gson();
 //                Type type = new TypeToken<List<HeadBean>>(){}.getType();
 //                datas = gson.fromJson(resultStr, type);

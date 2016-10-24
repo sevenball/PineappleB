@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.HeadBean;
-import com.wangshiqi.pineappleb.ui.activity.discovery.TestActivity;
+import com.wangshiqi.pineappleb.ui.activity.focus.DynamicInfoActivity;
 
 import java.util.List;
 
@@ -50,12 +49,10 @@ public class RecommendHeadAdapter extends PagerAdapter{
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
-        Log.d("RecommendHeadAdapter", "des position:" + position);
     }
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         // position是int最大值所以这里可能是几百甚至上千, 因此取余避免数组越界
-        Log.d("RecommendHeadAdapter", "init position:" + position);
         View convertView = inflater.inflate(R.layout.item_recommend_head, container, false);
         if (datas != null) {
             final int newPosition = position % datas.size();
@@ -65,8 +62,11 @@ public class RecommendHeadAdapter extends PagerAdapter{
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, TestActivity.class);
-                    intent.putExtra("mp4Url", bean.getLinkMp4());
+                    Intent intent = new Intent(context, DynamicInfoActivity.class);
+                    intent.putExtra(DynamicInfoActivity.TITLE, bean.getTitle());
+                    intent.putExtra(DynamicInfoActivity.TAG, bean.getTag());
+                    intent.putExtra(DynamicInfoActivity.LINKMP4, bean.getLinkMp4());
+                    intent.putExtra(DynamicInfoActivity.VIDEOID, bean.getVideoId());
                     context.startActivity(intent);
                 }
             });

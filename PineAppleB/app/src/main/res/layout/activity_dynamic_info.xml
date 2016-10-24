@@ -19,7 +19,8 @@
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="哈哈哈">
+            app:title="播放"
+            app:collapsedTitleGravity="center">
 
             <FrameLayout
                 android:layout_width="match_parent"
