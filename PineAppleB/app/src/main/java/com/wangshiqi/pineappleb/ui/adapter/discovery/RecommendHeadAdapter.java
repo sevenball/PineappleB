@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,10 +49,13 @@ public class RecommendHeadAdapter extends PagerAdapter{
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((View) object);
+        Log.d("RecommendHeadAdapter", "des position:" + position);
     }
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         // position是int最大值所以这里可能是几百甚至上千, 因此取余避免数组越界
+        Log.d("RecommendHeadAdapter", "init position:" + position);
         View convertView = inflater.inflate(R.layout.item_recommend_head, container, false);
         if (datas != null) {
             final int newPosition = position % datas.size();
