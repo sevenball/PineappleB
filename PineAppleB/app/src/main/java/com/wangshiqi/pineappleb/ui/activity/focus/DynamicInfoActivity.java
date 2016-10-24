@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ListView;
+
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -25,6 +25,7 @@ import com.wangshiqi.pineappleb.ui.activity.AbsBaseActivity;
 import com.wangshiqi.pineappleb.ui.adapter.focus.DiscussAdapter;
 import com.wangshiqi.pineappleb.ui.adapter.focus.RecmmendMoreAdapter;
 import com.wangshiqi.pineappleb.ui.adapter.focus.SortSetAdapter;
+import com.wangshiqi.pineappleb.utils.ValueTool;
 import com.wangshiqi.pineappleb.view.DiscussListView;
 
 import java.lang.reflect.Type;
@@ -40,22 +41,24 @@ import wkvideoplayer.view.SuperVideoPlayer;
 public class DynamicInfoActivity extends AbsBaseActivity {
     // 要接收的值
 
+    private TextView titleTv;
+    private TextView introTv;
+    private TextView tagTv;
+    private TextView playCount;
+    private TextView setTv;
+    // 接收暂存
     public static final String TITLE = "title";// 标题
     public static final String INTRO = "intro";// 内容
     public static final String TAG = "tag";// 标签
     public static final String PLAYCOUNT = "playCount";// 评论数
     public static final String LINKMP4 = "linkMp4";// Mp4  url
     public static final String VIDEOID= "videoId"; // 评论
-
-
-    private TextView titleTv;
-    private TextView introTv;
-    private TextView tagTv;
-    private TextView playCount;
-    private TextView setTv;
+    private long videoId ;
     private String linkMp4;
+    private String formatTag;
+    private String finalTag;
 
-    //
+    // 视频播放
     private SuperVideoPlayer player;
 
     // 分集RecyclerView
@@ -69,10 +72,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private DiscussAdapter discussAdapter;
     private TextView discussCount;
 
-
-    private String recommmendMoreUrl = "http://m.live.netease.com/bolo/api/video/relations.htm?videoId=14760157184861";
-    private String sortSetUrl = "http://m.live.netease.com/bolo/api/channel/setVideoList.htm?pageNum=1&sid=14642625033311&pageSize=-1";
-    private String discussUrl = "http://m.live.netease.com/bolo/api/video/commentList.htm?userId=-2798972347206426236&pageSize=15&pageNum=1&videoId=14760157196091&encryptToken=5f724098912f342454785185628447bc&random=0.02496582080295462&type=0&timeStamp=1476793248225";
     @Override
     protected int setLayout() {
         return R.layout.activity_dynamic_info;
@@ -124,7 +123,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     // 评论区数据的设置
     private void discussData() {
         discussAdapter = new DiscussAdapter(this);
-        VolleyInstance.getInstance().startRequest(discussUrl, new IVolleyResult() {
+        VolleyInstance.getInstance().startRequest(ValueTool.DISCUSSURLLEFT+videoId+ValueTool.DISCUSSURLRIGHT, new IVolleyResult() {
             @Override
             public void success(String resultStr) {
                 Gson gson = new Gson();
@@ -146,7 +145,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private void recommendData() {
         recommendMoreAdapter = new RecmmendMoreAdapter(this);
         recommendMoreRl.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        VolleyInstance.getInstance().startRequest(recommmendMoreUrl, new IVolleyResult() {
+        VolleyInstance.getInstance().startRequest(ValueTool.RECOMMENDMOREURLLEFT+videoId, new IVolleyResult() {
             @Override
             public void success(String resultStr) {
                 Gson gson = new Gson();
@@ -169,7 +168,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private void sortSetData() {
         sortSetAdapter = new SortSetAdapter(this);
         sortSetRl.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        VolleyInstance.getInstance().startRequest(sortSetUrl, new IVolleyResult() {
+        VolleyInstance.getInstance().startRequest(ValueTool.SORTSETURL, new IVolleyResult() {
             @Override
             public void success(String resultStr) {
                 Gson gson = new Gson();
@@ -193,10 +192,10 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         Intent intent = getIntent();
         titleTv.setText(intent.getStringExtra("title"));
         introTv.setText(intent.getStringExtra("intro"));
-        String formatTag = intent.getStringExtra("tag");
-        String finalTag = formatTag.replace(",","   #  ");
-        tagTv.setText("#  "+finalTag);
-
+        formatTag = intent.getStringExtra("tag");
+        finalTag = formatTag.replace(",","   #  ");
+        tagTv.setText("#  "+ finalTag);
+        videoId = intent.getLongExtra("videoId", 0);
         playCount.setText(intent.getIntExtra("playCount", 0) + "");
 
 
