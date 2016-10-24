@@ -17,9 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.focus.DynamicInfoActivity" />
-
-        <activity android:name=".ui.activity.discovery.TestActivity" />
+        <activity
+            android:name=".ui.activity.focus.DynamicInfoActivity"
+            android:theme="@style/ActivityTheme.Full" />
         <!--最火界面详情页-->
         <activity android:name=".ui.activity.hotest.HotestInfoActivity" />
 
