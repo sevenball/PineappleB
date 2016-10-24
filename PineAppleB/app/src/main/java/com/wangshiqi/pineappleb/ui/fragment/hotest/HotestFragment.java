@@ -107,14 +107,14 @@ public class HotestFragment extends AbsFragment {
                     intent.putExtra("intro", bean.get(index % bean.size()).getIntro());
                     intent.putExtra("playCount", bean.get(index % bean.size()).getPlayCount());
                     intent.putExtra("tag", bean.get(index % bean.size()).getTag());
-                    intent.putExtra("video", bean.get(index % bean.size()).getVideoId());
+                    intent.putExtra("videoId", bean.get(index % bean.size()).getVideoId());
                 } else {
                     intent.putExtra("linkMp4", bean.get(index % bean.size() + 1).getLinkMp4());
                     intent.putExtra("title", bean.get(index % bean.size() + 1).getTitle());
                     intent.putExtra("intro", bean.get(index % bean.size() + 1).getIntro());
                     intent.putExtra("playCount", bean.get(index % bean.size() + 1).getPlayCount());
                     intent.putExtra("tag", bean.get(index % bean.size() + 1).getTag());
-                    intent.putExtra("video", bean.get(index % bean.size() + 1).getVideoId());
+                    intent.putExtra("videoId", bean.get(index % bean.size() + 1).getVideoId());
                 }
                 Log.d("HotestFragment", "index%15:" + index + "---->" + (index % 15) + "");
                 context.startActivity(intent);
