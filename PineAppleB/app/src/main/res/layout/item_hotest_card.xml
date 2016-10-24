@@ -139,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="4.5万次"
+                android:text=" "
                 android:textSize="@dimen/hot_card_tag_text_size" />
         </LinearLayout>
 
@@ -199,11 +199,13 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="2">
 
-            <android.support.v4.view.ViewPager
+            <com.wangshiqi.pineappleb.view.LooperFrameLayout
+                android:id="@+id/hot_card_looper_frame"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </android.support.v4.view.ViewPager>
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#dfdfdf" />
 
         </LinearLayout>
 

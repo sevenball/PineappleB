@@ -349,8 +349,7 @@ public class SuperVideoPlayer extends RelativeLayout {
             setCloseButton(true);
             mMediaController.setVisibility(View.VISIBLE);
             mMediaController.clearAnimation();
-            Animation animation = AnimationUtils.loadAnimation(mContext,
-                    R.anim.anim_enter_from_bottom);
+            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.anim_enter_from_bottom);
             mMediaController.startAnimation(animation);
             resetHideTimer();
         }

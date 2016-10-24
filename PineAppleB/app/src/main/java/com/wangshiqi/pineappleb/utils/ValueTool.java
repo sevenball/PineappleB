@@ -5,10 +5,16 @@ package com.wangshiqi.pineappleb.utils;
  */
 public class ValueTool {
     /**
-     *  最火界面卡片的接口
+     * 最火界面卡片的接口
      */
     public static final String HOT_CARD = "http://m.live.netease.com/bolo/api/rank/hotVideo.htm?userId=-2798972347206426236";
     /**
+     * 最火界面卡片下面的评论接口前部分
+     */
+    public static final String HOT_CARD_DISCUSS = "http://m.live.netease.com/bolo/api/video/bulletBroadcastHistory.htm?videoId=";
+
+
+    /*
      * 发现界面接口
      */
     // 发现-推荐-轮播图

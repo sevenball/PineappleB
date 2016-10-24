@@ -14,7 +14,7 @@ import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.hotest.HotCardBean;
 import com.wangshiqi.pineappleb.model.net.IVolleyResult;
 import com.wangshiqi.pineappleb.model.net.VolleyInstance;
-import com.wangshiqi.pineappleb.ui.activity.hotest.HotestInfoActivity;
+import com.wangshiqi.pineappleb.ui.activity.focus.DynamicInfoActivity;
 import com.wangshiqi.pineappleb.ui.adapter.hotest.HotCardAdapter;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
 import com.wangshiqi.pineappleb.utils.ValueTool;
@@ -32,6 +32,8 @@ public class HotestFragment extends AbsFragment {
     private SwipeCardsView cardsView;
     private List<HotCardBean> bean;
     private boolean isState = false;
+    private int index;
+
 
 
     public static HotestFragment newInstance() {
@@ -60,62 +62,60 @@ public class HotestFragment extends AbsFragment {
         hotestTitle.setText(getResources().getString(R.string.hotest_tv));
 
         cardAdapter = new HotCardAdapter(context);
-        /**
-         *  卡片数据的请求
-         */
+        // 卡片的数据请求
         cardDataRequest();
-
+        // 卡片的滑动监听和点击事件
         cardsSlideListener();
+        // 卡片
     }
 
+    /**
+     * 卡片的滑动监听和点击事件
+     */
     private void cardsSlideListener() {
         cardsView.setCardsSlideListener(new SwipeCardsView.CardsSlideListener() {
+
             @Override
             public void onShow(int index) {
-
             }
 
             @Override
             public void onCardVanish(int index, SwipeCardsView.SlideType type) {
                 switch (type) {
                     case LEFT:
-
-                        Log.d("zzz", "index:" + index);
                         if (index == bean.size() - 3) {
                             bean.addAll(bean);
                             Toast.makeText(context, "向左滑动了图片", Toast.LENGTH_SHORT).show();
                         }
-                        Log.d("HotestFragment", "index = :" + index + "");
-
                         break;
                     case RIGHT:
                         if (index == bean.size() - 3) {
                             bean.addAll(bean);
                             Toast.makeText(context, "向右滑动了图片", Toast.LENGTH_SHORT).show();
                         }
-                        Log.d("HotestFragment", "bean.size():" + bean.size() + "这是总数");
-                        Log.d("HotestFragment", "index = :" + index + "");
                         break;
                 }
             }
 
             @Override
             public void onItemClick(View cardImageView, int index) {
-                Intent intent = new Intent(context, HotestInfoActivity.class);
+                HotestFragment.this.index = index;
+                Intent intent = new Intent(context, DynamicInfoActivity.class);
                 if (index < 4) {
-                    intent.putExtra("mp4Url", bean.get(index % bean.size()).getLinkMp4());
+                    intent.putExtra("linkMp4", bean.get(index % bean.size()).getLinkMp4());
                     intent.putExtra("title", bean.get(index % bean.size()).getTitle());
                     intent.putExtra("intro", bean.get(index % bean.size()).getIntro());
-                    intent.putExtra("count", bean.get(index % bean.size()).getPlayCount());
+                    intent.putExtra("playCount", bean.get(index % bean.size()).getPlayCount());
                     intent.putExtra("tag", bean.get(index % bean.size()).getTag());
+                    intent.putExtra("videoId", bean.get(index % bean.size()).getVideoId());
                 } else {
-                    intent.putExtra("mp4Url", bean.get(index % bean.size() + 1).getLinkMp4());
+                    intent.putExtra("linkMp4", bean.get(index % bean.size() + 1).getLinkMp4());
                     intent.putExtra("title", bean.get(index % bean.size() + 1).getTitle());
                     intent.putExtra("intro", bean.get(index % bean.size() + 1).getIntro());
-                    intent.putExtra("count", bean.get(index % bean.size() + 1).getPlayCount());
+                    intent.putExtra("playCount", bean.get(index % bean.size() + 1).getPlayCount());
                     intent.putExtra("tag", bean.get(index % bean.size() + 1).getTag());
+                    intent.putExtra("videoId", bean.get(index % bean.size() + 1).getVideoId());
                 }
-
                 Log.d("HotestFragment", "index%15:" + index + "---->" + (index % 15) + "");
                 context.startActivity(intent);
                 Toast.makeText(context, "卡片的点击事件", Toast.LENGTH_SHORT).show();
@@ -123,7 +123,11 @@ public class HotestFragment extends AbsFragment {
         });
     }
 
+    /**
+     * 卡片的数据请求
+     */
     private void cardDataRequest() {
+
         VolleyInstance volleyInstance = VolleyInstance.getInstance();
         volleyInstance.startRequest(ValueTool.HOT_CARD, new IVolleyResult() {
 
@@ -145,4 +149,10 @@ public class HotestFragment extends AbsFragment {
             }
         });
     }
+
+    /**
+     * 卡片上的评论数据请求
+     */
+
+
 }
