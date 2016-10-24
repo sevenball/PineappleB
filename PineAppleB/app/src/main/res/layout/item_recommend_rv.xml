@@ -2,13 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-
+    android:layout_margin="10dp"
     android:orientation="vertical">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
         android:background="@drawable/item_img_sp">
 
 
@@ -27,31 +26,29 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:orientation="horizontal"
-                android:background="#e0000000"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
                 android:layout_marginBottom="3dp"
                 android:layout_marginRight="3dp"
                 android:alpha="0.6"
-               >
+                android:background="#e0000000"
+                android:orientation="horizontal"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@mipmap/ic_home_list_row_video_play" />
+
                 <TextView
                     android:id="@+id/item_strong_playcount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_margin="5dp"
+                    android:gravity="center"
                     android:text="11"
                     android:textColor="#ffffff"
-                    android:textSize="7sp"
-                    android:alpha="1"
-                   />
+                    android:textSize="8sp" />
 
 
             </LinearLayout>

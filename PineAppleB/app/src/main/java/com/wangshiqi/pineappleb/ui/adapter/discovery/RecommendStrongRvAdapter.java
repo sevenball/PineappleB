@@ -1,7 +1,6 @@
 package com.wangshiqi.pineappleb.ui.adapter.discovery;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dllo on 16/10/22.
+ * 菠萝力荐适配器
  */
 public class RecommendStrongRvAdapter extends RecyclerView.Adapter<RecommendStrongRvAdapter.MyViewHolder> {
     private Context context;
@@ -48,13 +48,22 @@ public class RecommendStrongRvAdapter extends RecyclerView.Adapter<RecommendStro
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        RecommendStrongBean bean = datas.get(position);
-        Picasso.with(context).load(bean.getAvatar()).config(Bitmap.Config.RGB_565).into(holder.avatarImg);
-        Picasso.with(context).load(bean.getCover()).config(Bitmap.Config.RGB_565).into(holder.coverImg);
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
+        final RecommendStrongBean bean = datas.get(position);
+        Picasso.with(context).load(bean.getAvatar()).into(holder.avatarImg);
+        Picasso.with(context).load(bean.getCover()).into(holder.coverImg);
         holder.titleTv.setText(bean.getTitle());
         holder.playCount.setText(bean.getPlayCount() + "次");
         holder.channelName.setText(bean.getChannelName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onRvItemClick != null) {
+                    int p = holder.getLayoutPosition();
+                    onRvItemClick.onRvItemClickListener(p, bean);
+                }
+            }
+        });
     }
 
     @Override

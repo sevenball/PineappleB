@@ -51,12 +51,12 @@ public class DynamicFragment extends AbsFragment {
         // 动态界面数据获取
         getDatas();
         // listview监听事件
-        ItemListener();
+        itemListener();
 
 
     }
-    // listview监听事件
-    private void ItemListener() {
+    // listview监听事件和传值
+    private void itemListener() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -67,12 +67,14 @@ public class DynamicFragment extends AbsFragment {
                     String intro = listBean.getIntro();
                     int  playCount = listBean.getPlayCount();
                     String tag = listBean.getTag();
+                    long videoId = listBean.getVideoId();
                     Intent intent = new Intent(context, DynamicInfoActivity.class);
-                    intent.putExtra("title",title);
-                    intent.putExtra("linkMp4",linkMp4);
-                    intent.putExtra("intro",intro);
-                    intent.putExtra("tag",tag);
-                    intent.putExtra("playCount",playCount);
+                    intent.putExtra(DynamicInfoActivity.TITLE,title);
+                    intent.putExtra(DynamicInfoActivity.LINKMP4,linkMp4);
+                    intent.putExtra(DynamicInfoActivity.INTRO,intro);
+                    intent.putExtra(DynamicInfoActivity.TAG,tag);
+                    intent.putExtra(DynamicInfoActivity.VIDEOID,videoId);
+                    intent.putExtra(DynamicInfoActivity.PLAYCOUNT,playCount);
                     context.startActivity(intent);
                 }
             }

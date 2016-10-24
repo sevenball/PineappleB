@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.HeadBean;
-import com.wangshiqi.pineappleb.ui.activity.discovery.TestActivity;
+import com.wangshiqi.pineappleb.ui.activity.focus.DynamicInfoActivity;
 
 import java.util.List;
 
@@ -48,6 +48,7 @@ public class RecommendHeadAdapter extends PagerAdapter{
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((View) object);
     }
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
@@ -61,8 +62,11 @@ public class RecommendHeadAdapter extends PagerAdapter{
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, TestActivity.class);
-                    intent.putExtra("mp4Url", bean.getLinkMp4());
+                    Intent intent = new Intent(context, DynamicInfoActivity.class);
+                    intent.putExtra(DynamicInfoActivity.TITLE, bean.getTitle());
+                    intent.putExtra(DynamicInfoActivity.TAG, bean.getTag());
+                    intent.putExtra(DynamicInfoActivity.LINKMP4, bean.getLinkMp4());
+                    intent.putExtra(DynamicInfoActivity.VIDEOID, bean.getVideoId());
                     context.startActivity(intent);
                 }
             });

@@ -21,6 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:background="#fff"
                 android:clipChildren="false" />
         </FrameLayout>
 
@@ -28,6 +29,7 @@
             android:id="@+id/recommend_head_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#fff"
             android:gravity="center"
             android:padding="5dp"
             android:textSize="12sp" />
@@ -35,6 +37,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#fff"
             android:orientation="horizontal">
 
             <TextView
@@ -47,51 +50,75 @@
                 android:gravity="center_vertical"
                 android:text="菠萝君力荐"
                 android:textSize="12sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="再来一波"
-                android:textSize="10sp"
+                android:layout_margin="5dp"
                 android:gravity="center_vertical"
-                android:layout_margin="5dp"/>
+                android:text="再来一波"
+                android:textSize="10sp" />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/refresh_civ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@mipmap/home_refresh_btn_ic_inner"
-                android:background="#f9dbf4"/>
+                android:layout_margin="5dp"
+                android:background="#f9dbf4"
+                android:src="@mipmap/home_refresh_btn_ic_inner" />
 
         </LinearLayout>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recommend_rv_boluo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:background="#fff" />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#fff"
+            android:orientation="horizontal">
 
-        <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/home_title_img_ranking"
+                android:drawablePadding="3dp"
+                android:gravity="center_vertical"
+                android:text="人气周榜"
+                android:textSize="12sp" />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:text="更多"
+                android:textSize="10sp" />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:src="@mipmap/home_title_more_btn_ic" />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+        </LinearLayout>
 
-        <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recommend_rv_rank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="#fff"/>
+
+
     </LinearLayout>
 </ScrollView>
