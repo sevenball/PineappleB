@@ -1,14 +1,33 @@
 package com.wangshiqi.pineappleb.ui.fragment.focus;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.wangshiqi.pineappleb.R;
+import com.wangshiqi.pineappleb.model.bean.focus.ChannelBean;
+import com.wangshiqi.pineappleb.model.net.IVolleyResult;
+import com.wangshiqi.pineappleb.model.net.VolleyInstance;
+import com.wangshiqi.pineappleb.ui.adapter.focus.ChannelAdapter;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
+import com.wangshiqi.pineappleb.utils.OnRvItemClick;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 /**
  * Created by dllo on 16/10/19.
  */
 public class ChannelFragment extends AbsFragment{
+    private String url = "http://m.live.netease.com/bolo/api/user/follows.htm?pageNum=1&encryptToken=5f724098912f342454785185628447bc&random=0.02496582080295462&userId=-2798972347206426236&pageSize=21&timeStamp=1476793248225";
+    private ChannelAdapter channelAdapter;
+    private RecyclerView recyclerView;
+
+
     public static ChannelFragment newInstance() {
         
         Bundle args = new Bundle();
@@ -19,16 +38,51 @@ public class ChannelFragment extends AbsFragment{
     }
     @Override
     protected int setLayout() {
-        return R.layout.activity_dynamic_info;
+        return R.layout.fragment_channel;
     }
 
     @Override
     protected void initView() {
-
+        recyclerView = byView(R.id.channel_rv);
     }
 
     @Override
     protected void initDatas() {
+        // 加载数据
+        loadData();
+        // RecyclerView的监听事件
+        itemListenner();
+    }
+    // RecyclerView的监听事件
+    private void itemListenner() {
+        channelAdapter.setOnRvItemClick(new OnRvItemClick() {
+            @Override
+            public void onRvItemClickListener(int position, Object o) {
+                Toast.makeText(context, "position:" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // 加载数据
+    private void loadData() {
+        channelAdapter = new ChannelAdapter(context);
+        recyclerView.setLayoutManager(new GridLayoutManager(context,4));
+
+        VolleyInstance.getInstance().startRequest(url, new IVolleyResult() {
+            @Override
+            public void success(String resultStr) {
+                Gson gson = new Gson();
+                Type type= new TypeToken<List<ChannelBean>>(){}.getType();
+                List<ChannelBean> bean = gson.fromJson(resultStr,type);
+                channelAdapter.setChannelBeen(bean);
+                recyclerView.setAdapter(channelAdapter);
+            }
+
+            @Override
+            public void failure() {
+
+            }
+        });
 
     }
 }

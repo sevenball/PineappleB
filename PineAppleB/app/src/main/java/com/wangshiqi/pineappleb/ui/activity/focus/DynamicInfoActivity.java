@@ -38,6 +38,16 @@ import wkvideoplayer.view.SuperVideoPlayer;
  * Created by dllo on 16/10/19.
  */
 public class DynamicInfoActivity extends AbsBaseActivity {
+    // 要接收的值
+
+    public static final String TITLE = "title";// 标题
+    public static final String INTRO = "intro";// 内容
+    public static final String TAG = "tag";// 标签
+    public static final String PLAYCOUNT = "playCount";// 评论数
+    public static final String LINKMP4 = "linkMp4";// Mp4  url
+    public static final String VIDEOID= "videoId"; // 评论
+
+
     private TextView titleTv;
     private TextView introTv;
     private TextView tagTv;
@@ -58,7 +68,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private DiscussListView listView;
     private DiscussAdapter discussAdapter;
     private TextView discussCount;
-
 
 
     private String recommmendMoreUrl = "http://m.live.netease.com/bolo/api/video/relations.htm?videoId=14760157184861";
