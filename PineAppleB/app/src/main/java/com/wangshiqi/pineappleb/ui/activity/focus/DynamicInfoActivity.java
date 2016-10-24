@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -71,6 +72,8 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private DiscussListView listView;
     private DiscussAdapter discussAdapter;
     private TextView discussCount;
+    // CollapsingToolbarLayout的声明
+    private CollapsingToolbarLayout ctl;
 
     @Override
     protected int setLayout() {
@@ -92,6 +95,9 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         discussCount = byView(R.id.discuss_count);
         // 视频播放相关
         player = byView(R.id.dynamic_info_video);
+
+        ctl = byView(R.id.dynamic_coolapsing);
+
 
     }
 
