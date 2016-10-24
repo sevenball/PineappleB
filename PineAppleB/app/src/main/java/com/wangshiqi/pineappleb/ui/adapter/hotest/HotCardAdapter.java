@@ -12,7 +12,9 @@ import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.hotest.HotCardBean;
 import com.wangshiqi.pineappleb.utils.ImageLoaderTool;
+import com.wangshiqi.pineappleb.view.LooperFrameLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -27,6 +29,7 @@ public class HotCardAdapter extends BaseCardAdapter implements View.OnClickListe
     private Context context;
     private boolean favorState = false;
     private SuperVideoPlayer mSuperVideoPlayer;
+    private LooperFrameLayout looperFrameLayout;
 
 
     public HotCardAdapter(Context context) {
@@ -60,7 +63,9 @@ public class HotCardAdapter extends BaseCardAdapter implements View.OnClickListe
         TextView hotCardTitle = (TextView) cardview.findViewById(R.id.hot_card_title);
         TextView hotCardPlayCount = (TextView) cardview.findViewById(R.id.hot_card_play_count);
         TextView hotCardTag = (TextView) cardview.findViewById(R.id.hot_card_tag);
-
+        // 评论轮播
+        looperFrameLayout = (LooperFrameLayout) cardview.findViewById(R.id.hot_card_looper_frame);
+        looperFrameLayout.setTipList(genertateTips());
 
         /**
          *  播放器控件初始化
@@ -100,6 +105,17 @@ public class HotCardAdapter extends BaseCardAdapter implements View.OnClickListe
         // 播放按钮的点击事件
         hotCardPlayer.setOnClickListener(this);
         mSuperVideoPlayer.setVideoPlayCallback(mVideoPlayCallback);
+    }
+
+    /**
+     * 评论的数据
+     */
+    private List<String> genertateTips() {
+        List<String> tips = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            tips.add("QTL" + i + "是我老婆");
+        }
+        return tips;
     }
 
     /**
