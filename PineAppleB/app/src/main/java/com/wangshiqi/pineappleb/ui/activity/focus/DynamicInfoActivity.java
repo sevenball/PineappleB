@@ -292,4 +292,5 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             player.setPageType(MediaController.PageType.SHRINK);
         }
     }
+
 }
