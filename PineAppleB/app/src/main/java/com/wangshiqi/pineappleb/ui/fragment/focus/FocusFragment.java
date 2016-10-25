@@ -58,6 +58,7 @@ public class FocusFragment extends AbsFragment {
         fragmentAdapter = new FocusFragmentAdapter(getChildFragmentManager(),fragments);
         focusVp.setAdapter(fragmentAdapter);
         titleTab.setupWithViewPager(focusVp);
+
         String [] titles = getResources().getStringArray(R.array.focus_tab);
         for (int i = 0; i < 2; i++) {
             titleTab.getTabAt(i).setText(titles[i]);

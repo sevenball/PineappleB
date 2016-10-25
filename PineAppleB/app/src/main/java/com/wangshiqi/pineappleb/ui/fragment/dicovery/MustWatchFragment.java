@@ -51,6 +51,11 @@ public class MustWatchFragment extends AbsFragment implements IVolleyResult {
     @Override
     public void success(String resultStr) {
         datas = JSON.parseArray(resultStr, MustWatchBean.class);
+//        for (int i = 0; i < datas.size() - 1; i++) {
+//            if (datas.get(i).getBannerName().equals(datas.get(i + 1).getBannerName())) {
+//                datas.remove(i);
+//            }
+//        }
         mustWatchLvAdapter.setmDatas(datas);
     }
 

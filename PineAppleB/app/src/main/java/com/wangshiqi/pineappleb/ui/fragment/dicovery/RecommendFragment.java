@@ -28,7 +28,6 @@ import com.wangshiqi.pineappleb.utils.MyTransformation;
 import com.wangshiqi.pineappleb.utils.OnRvItemClick;
 import com.wangshiqi.pineappleb.utils.ValueTool;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -101,11 +100,7 @@ public class RecommendFragment extends AbsFragment {
             @Override
             public void success(String resultStr) {
                 rankBeanList = JSON.parseArray(resultStr, RecommendRankBean.class);
-                List<RecommendRankBean> beanRank = new ArrayList<>();
-                for (int i1 = 0; i1 < 6; i1++) {
-                    beanRank.add(rankBeanList.get(i1));
-                }
-                rankRvAdapter.setDatas(beanRank);
+                rankRvAdapter.setDatas(rankBeanList);
             }
 
             @Override
