@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -75,6 +76,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private TextView discussCount;
     // CollapsingToolbarLayout的声明
     private CollapsingToolbarLayout ctl;
+    private ImageView backImg;
 
     @Override
     protected int setLayout() {
@@ -98,6 +100,14 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         player = byView(R.id.dynamic_info_video);
 
         ctl = byView(R.id.dynamic_coolapsing);
+        backImg = byView(R.id.dynamic_info_back);
+        backImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
 
     }
