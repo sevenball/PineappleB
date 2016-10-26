@@ -54,6 +54,7 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         } else if (view.getId() == R.id.shrink) {
             mMediaControl.onPageTurn();
         }
+<<<<<<< HEAD
 //        switch (view.getId()) {
 //            case R.id.pause:
 //                mMediaControl.onPlayTurn();
@@ -63,6 +64,8 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
 //            case R.id.shrink:
 //                mMediaControl.onPageTurn();
 //        }
+=======
+>>>>>>> feature/Q
     }
 
     /**
