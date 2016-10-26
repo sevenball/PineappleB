@@ -37,9 +37,7 @@ public class HotestFragment extends AbsFragment {
 
 
     public static HotestFragment newInstance() {
-
         Bundle args = new Bundle();
-
         HotestFragment fragment = new HotestFragment();
         fragment.setArguments(args);
         return fragment;
