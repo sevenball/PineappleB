@@ -1,54 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:scrollbars="none"
+    android:id="@+id/dynamic_sv"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
 
-    <android.support.design.widget.AppBarLayout
+
+    <LinearLayout
+        android:id="@+id/dyanmic_ll"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        >
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/dynamic_coolapsing"
+        <FrameLayout
+            android:id="@+id/dynamic_fl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:collapsedTitleGravity="center"
-            app:contentScrim="@color/colorClassic"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
-            app:layout_collapseMode="parallax"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:titleEnabled="true">
+            android:layout_height="wrap_content">
 
-
-
-                <wkvideoplayer.view.SuperVideoPlayer
-                    android:id="@+id/dynamic_info_video"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <wkvideoplayer.view.SuperVideoPlayer
+                android:id="@+id/dynamic_info_video"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                android:layout_height="220dp" />
 
+            <ImageView
+                android:id="@+id/dynamic_info_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@mipmap/channel_intro_back" />
 
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -270,14 +254,7 @@
         </LinearLayout>
 
 
-    </android.support.v4.widget.NestedScrollView>
-
-    <ImageView
-        android:id="@+id/dynamic_info_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:src="@mipmap/channel_intro_back" />
+    </LinearLayout>
 
 
-</android.support.design.widget.CoordinatorLayout>
+</ScrollView>
