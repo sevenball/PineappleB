@@ -3,8 +3,6 @@
     package="com.wangshiqi.pineappleb">
     <!--网络权限-->
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
-=======
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -18,7 +16,6 @@
 
     <uses-feature android:name="android.hardware.nfc.hce" />
 
->>>>>>> 4b360584622b88150f56a12692706a3045542b13
     <!--二维码权限-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -43,8 +40,6 @@
     <uses-permission android:name="android.permission.NFC" />
 
     <uses-feature android:name="android.hardware.nfc.hce" />
-<<<<<<< HEAD
-=======
 
     //地图包、搜索包需要的基础权限
     <!--允许程序打开网络套接字-->
@@ -60,7 +55,6 @@
     <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
->>>>>>> 4b360584622b88150f56a12692706a3045542b13
     <application
         android:name=".ui.app.PineAppleApp"
         android:allowBackup="true"
@@ -81,19 +75,14 @@
         </activity>
         <activity
             android:name=".ui.activity.focus.DynamicInfoActivity"
-<<<<<<< HEAD
             android:configChanges="orientation|screenSize|screenLayout|keyboard"
             android:theme="@style/ActivityTheme.Full"
             />
         <!--最火界面详情页-->
         <activity android:name=".ui.activity.hotest.HotestInfoActivity" />
-=======
 
             android:theme="@style/ActivityTheme.Full" />
-        <!--最火界面详情页-->
-        <activity android:name=".ui.activity.hotest.HotestInfoActivity" />
 
->>>>>>> 4b360584622b88150f56a12692706a3045542b13
         <!--二维码界面Activity-->
         <activity android:name=".ui.activity.mine.QRPlayActivity" />
         <activity
@@ -104,11 +93,7 @@
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
         <activity android:name=".ui.activity.focus.ShowActivity" />
 
-<<<<<<< HEAD
         <activity android:name=".ui.activity.mine.PayPlayActivity"/>
-=======
-        <activity android:name=".ui.activity.mine.PayPlayActivity" />
->>>>>>> 4b360584622b88150f56a12692706a3045542b13
         <!-- 支付宝 sdk -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
@@ -124,13 +109,10 @@
             android:name="com.fuqianla.paysdk.app.FuQianLaActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-<<<<<<< HEAD
-=======
 
 
         <activity android:name=".ui.activity.mine.GPSPlayActivity" />
 
->>>>>>> 4b360584622b88150f56a12692706a3045542b13
     </application>
 
 </manifest>
