@@ -50,21 +50,21 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.pause) {
-
+            mMediaControl.onPlayTurn();
         } else if (view.getId() == R.id.expand) {
-
+            mMediaControl.onPageTurn();
         } else if (view.getId() == R.id.shrink) {
             mMediaControl.onPageTurn();
         }
-        switch (view.getId()) {
-            case R.id.pause:
-                mMediaControl.onPlayTurn();
-            case R.id.expand:
-                mMediaControl.onPageTurn();
-                getContext().startActivity(new Intent(getContext(), MainActivity.class));
-            case R.id.shrink:
-                mMediaControl.onPageTurn();
-        }
+//        switch (view.getId()) {
+//            case R.id.pause:
+//                mMediaControl.onPlayTurn();
+//            case R.id.expand:
+//                mMediaControl.onPageTurn();
+////                getContext().startActivity(new Intent(getContext(), MainActivity.class));
+//            case R.id.shrink:
+//                mMediaControl.onPageTurn();
+//        }
     }
 
     /**
@@ -75,6 +75,8 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         mExpandImg.setVisibility(INVISIBLE);
         mShrinkImg.setVisibility(INVISIBLE);
     }
+
+
 
     /***
      * 强制横屏模式

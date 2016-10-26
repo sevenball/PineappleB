@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".ui.activity.focus.DynamicInfoActivity"
-            android:configChanges="orientation|screenSize|screenLayout|keyboard|keyboardHidden"
+
             android:theme="@style/ActivityTheme.Full"
             />
         <!--最火界面详情页-->
