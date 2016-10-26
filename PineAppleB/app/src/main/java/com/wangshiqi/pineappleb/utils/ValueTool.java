@@ -38,4 +38,9 @@ public class ValueTool {
     // 评论接口
     public static final String DISCUSSURLLEFT = "http://m.live.netease.com/bolo/api/video/commentList.htm?userId=-2798972347206426236&pageSize=15&pageNum=1&videoId=";
     public static final String DISCUSSURLRIGHT = "&encryptToken=5f724098912f342454785185628447bc&random=0.02496582080295462&type=0&timeStamp=1476793248225";
+
+    /**
+     * 频道界面的接口
+     */
+    public static final String CHANNELURL = "http://m.live.netease.com/bolo/api/user/follows.htm?pageNum=1&encryptToken=5f724098912f342454785185628447bc&random=0.02496582080295462&userId=-2798972347206426236&pageSize=21&timeStamp=1476793248225";
 }

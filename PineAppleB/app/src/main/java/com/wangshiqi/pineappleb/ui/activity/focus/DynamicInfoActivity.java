@@ -20,14 +20,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wangshiqi.pineappleb.R;
 
+import com.wangshiqi.pineappleb.model.bean.dicovery.MustWatchBean;
 import com.wangshiqi.pineappleb.model.bean.focus.DiscussBean;
+import com.wangshiqi.pineappleb.model.bean.focus.DynamicBean;
 import com.wangshiqi.pineappleb.model.bean.focus.RecommendMoreBean;
 import com.wangshiqi.pineappleb.model.bean.focus.SortSetBean;
 import com.wangshiqi.pineappleb.model.net.IVolleyResult;
+import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
 import com.wangshiqi.pineappleb.model.net.VolleyInstance;
 import com.wangshiqi.pineappleb.ui.activity.AbsBaseActivity;
 import com.wangshiqi.pineappleb.ui.adapter.focus.DiscussAdapter;
@@ -39,6 +43,7 @@ import com.wangshiqi.pineappleb.view.DiscussListView;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import okhttp3.Call;
 import wkvideoplayer.util.DensityUtil;
 import wkvideoplayer.view.MediaController;
 import wkvideoplayer.view.SuperVideoPlayer;
@@ -87,6 +92,11 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private GestureDetectorCompat detectorCompat;
     private int saveHeight;
     private int saveWidth;
+
+    //
+    List<SortSetBean> sortSetBeen;
+    List<RecommendMoreBean> recommendMoreBeen;
+
 
     @Override
     protected int setLayout() {
@@ -155,45 +165,43 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     // 评论区数据的设置
     private void discussData() {
         discussAdapter = new DiscussAdapter(this);
-        VolleyInstance.getInstance().startRequest(ValueTool.DISCUSSURLLEFT+videoId+ValueTool.DISCUSSURLRIGHT, new IVolleyResult() {
+        OkHttpInstance.getAsyn(ValueTool.DISCUSSURLLEFT+videoId+ValueTool.DISCUSSURLRIGHT, new OkHttpInstance.ResultCallback() {
             @Override
-            public void success(String resultStr) {
+            public void onError(Call call, Exception e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Object response) {
                 Gson gson = new Gson();
-                DiscussBean bean = gson.fromJson(resultStr,DiscussBean.class);
+                DiscussBean bean = gson.fromJson(response.toString(),DiscussBean.class);
                 List<DiscussBean.DataBean> listBean = bean.getData();
                 discussCount.setText("("+listBean.size()+")");
                 discussCount.setTextColor(Color.parseColor("#F09800"));
                 discussAdapter.setmDatas(listBean);
-                listView.setAdapter(discussAdapter);
-            }
-
-            @Override
-            public void failure() {
 
             }
         });
+        listView.setAdapter(discussAdapter);
     }
 
     // 更多推荐数据的设置
     private void recommendData() {
         recommendMoreAdapter = new RecmmendMoreAdapter(this);
         recommendMoreRl.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        VolleyInstance.getInstance().startRequest(ValueTool.RECOMMENDMOREURLLEFT+videoId, new IVolleyResult() {
+        OkHttpInstance.getAsyn(ValueTool.RECOMMENDMOREURLLEFT+videoId, new OkHttpInstance.ResultCallback() {
             @Override
-            public void success(String resultStr) {
-                Gson gson = new Gson();
-                Type type = new TypeToken<List<RecommendMoreBean>>(){}.getType();
-                List<RecommendMoreBean> bean = gson.fromJson(resultStr,type);
-                recommendMoreAdapter.setRecommendMoreBeen(bean);
-                recommendMoreRl.setAdapter(recommendMoreAdapter);
-
+            public void onError(Call call, Exception e) {
+                e.printStackTrace();
             }
 
             @Override
-            public void failure() {
-
+            public void onResponse(Object response) {
+                recommendMoreBeen = JSON.parseArray(response.toString(), RecommendMoreBean.class);
+                recommendMoreAdapter.setRecommendMoreBeen(recommendMoreBeen);
             }
         });
+        recommendMoreRl.setAdapter(recommendMoreAdapter);
 
     }
 
@@ -201,23 +209,22 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private void sortSetData() {
         sortSetAdapter = new SortSetAdapter(this);
         sortSetRl.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        VolleyInstance.getInstance().startRequest(ValueTool.SORTSETURL, new IVolleyResult() {
+
+        OkHttpInstance.getAsyn(ValueTool.SORTSETURL, new OkHttpInstance.ResultCallback() {
             @Override
-            public void success(String resultStr) {
-                Gson gson = new Gson();
-                Type type = new TypeToken<List<SortSetBean>>(){}.getType();
-                List<SortSetBean> bean= gson.fromJson(resultStr,type);
-                sortSetAdapter.setSortSetBean(bean);
-                setTv.setText("("+bean.size()+")");
-                setTv.setTextColor(Color.parseColor("#F09800"));
-                sortSetRl.setAdapter(sortSetAdapter);
+            public void onError(Call call, Exception e) {
+                e.printStackTrace();
             }
 
             @Override
-            public void failure() {
-
+            public void onResponse(Object response) {
+                sortSetBeen = JSON.parseArray(response.toString(), SortSetBean.class);
+                setTv.setText("("+sortSetBeen.size()+")");
+                setTv.setTextColor(Color.parseColor("#F09800"));
+                sortSetAdapter.setSortSetBean(sortSetBeen);
             }
         });
+        sortSetRl.setAdapter(sortSetAdapter);
     }
 
     // 接收传来的值设置给视频播放下面的内容

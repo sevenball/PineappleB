@@ -2,6 +2,7 @@ package com.wangshiqi.pineappleb.ui.fragment.focus;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,10 +10,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.focus.DynamicBean;
+import com.wangshiqi.pineappleb.model.bean.focus.SortSetBean;
 import com.wangshiqi.pineappleb.model.net.IVolleyResult;
+import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
 import com.wangshiqi.pineappleb.model.net.VolleyInstance;
 import com.wangshiqi.pineappleb.ui.activity.focus.DynamicInfoActivity;
 import com.wangshiqi.pineappleb.ui.adapter.focus.DynamicFragmentAdapter;
@@ -20,6 +24,8 @@ import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
 import com.wangshiqi.pineappleb.utils.ValueTool;
 
 import java.util.List;
+
+import okhttp3.Call;
 
 /**
  * 动态界面Fragment
@@ -89,22 +95,21 @@ public class DynamicFragment extends AbsFragment {
 
     // 动态界面数据获取
     private void getDatas() {
-        VolleyInstance.getInstance().startRequest(ValueTool.DYNAMICURL, new IVolleyResult() {
+        OkHttpInstance.getAsyn(ValueTool.DYNAMICURL, new OkHttpInstance.ResultCallback() {
             @Override
-            public void success(String resultStr) {
-                Gson gson = new Gson();
-                DynamicBean dynamicBean = gson.fromJson(resultStr,DynamicBean.class);
-                List<DynamicBean.ListBean> list = dynamicBean.getList();
-                adapter.setmDatas(list);
-                listView.setAdapter(adapter);
-
-
+            public void onError(Call call, Exception e) {
+                e.printStackTrace();
             }
 
             @Override
-            public void failure() {
+            public void onResponse(Object response) {
+                Gson gson = new Gson();
+                DynamicBean dynamicBean = gson.fromJson(response.toString(),DynamicBean.class);
+                List<DynamicBean.ListBean> list = dynamicBean.getList();
+                adapter.setmDatas(list);
 
             }
         });
+        listView.setAdapter(adapter);
     }
 }
