@@ -2,6 +2,7 @@ package wkvideoplayer.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -10,6 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.wangshiqi.pineappleb.R;
+import com.wangshiqi.pineappleb.ui.activity.MainActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -48,11 +50,20 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.pause) {
-            mMediaControl.onPlayTurn();
+
         } else if (view.getId() == R.id.expand) {
-            mMediaControl.onPageTurn();
+
         } else if (view.getId() == R.id.shrink) {
             mMediaControl.onPageTurn();
+        }
+        switch (view.getId()) {
+            case R.id.pause:
+                mMediaControl.onPlayTurn();
+            case R.id.expand:
+                mMediaControl.onPageTurn();
+                getContext().startActivity(new Intent(getContext(), MainActivity.class));
+            case R.id.shrink:
+                mMediaControl.onPageTurn();
         }
     }
 
@@ -68,7 +79,7 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
     /***
      * 强制横屏模式
      */
-    public void forceLandscapeMode(){
+    public void forceLandscapeMode() {
         mExpandImg.setVisibility(INVISIBLE);
         mShrinkImg.setVisibility(INVISIBLE);
     }
@@ -190,8 +201,9 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
 
         /**
          * 进度条点击
-         * @param state     进度条状态
-         * @param progress  进度
+         *
+         * @param state    进度条状态
+         * @param progress 进度
          */
         void onProgressTurn(ProgressState state, int progress);
 

@@ -1,5 +1,6 @@
 package com.wangshiqi.pineappleb.ui.activity.mine;
 
+import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.ui.activity.AbsBaseActivity;
 
 /**
@@ -8,7 +9,7 @@ import com.wangshiqi.pineappleb.ui.activity.AbsBaseActivity;
 public class PayPlayActivity extends AbsBaseActivity {
     @Override
     protected int setLayout() {
-        return 0;
+        return R.layout.activity_pay;
     }
 
     @Override
