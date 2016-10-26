@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
+
     <TextView
         android:id="@+id/tv_order"
         android:layout_width="wrap_content"
@@ -14,14 +15,6 @@
         android:text="@string/order"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
-=======
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-
->>>>>>> feature/dongkui
 
 
     <LinearLayout
@@ -41,7 +34,6 @@
             android:id="@+id/et_commodity"
             style="@style/OrderEtStyle"
             android:hint="@string/input_commodity" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -90,4 +82,5 @@
         style="@style/PayBtnStyle"
         android:layout_alignParentBottom="true"
         android:text="@string/payment" />
+
 </RelativeLayout>

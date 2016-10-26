@@ -3,9 +3,7 @@
     package="com.wangshiqi.pineappleb">
     <!--网络权限-->
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,27 +15,20 @@
     <uses-permission android:name="android.permission.NFC" />
 
     <uses-feature android:name="android.hardware.nfc.hce" />
-=======
-=======
->>>>>>> feature/王林
+
     <!--二维码权限-->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <!--FLASHLIGHT or HARDWARE_TEST-->
     <!--二维码权限-->
 
 
-
-<<<<<<< HEAD
->>>>>>> feature/王林
-=======
-=======
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -49,9 +40,7 @@
     <uses-permission android:name="android.permission.NFC" />
 
     <uses-feature android:name="android.hardware.nfc.hce" />
->>>>>>> 8079df0c5050911ac2472cdd6229884ceecfb2f8
->>>>>>> feature/王林
-=======
+
     //地图包、搜索包需要的基础权限
     <!--允许程序打开网络套接字-->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -66,7 +55,6 @@
     <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
->>>>>>> feature/dongkui
     <application
         android:name=".ui.app.PineAppleApp"
         android:allowBackup="true"
@@ -76,9 +64,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="132c68e370463c7576dd1cc7675b4ec1">// 董--申请的高德地图的key
-
-        </meta-data>
+            android:value="key">132c68e370463c7576dd1cc7675b4ec1</meta-data>
 
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
@@ -93,24 +79,18 @@
             android:theme="@style/ActivityTheme.Full" />
         <!--最火界面详情页-->
         <activity android:name=".ui.activity.hotest.HotestInfoActivity" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
         <!--二维码界面Activity-->
-        <activity android:name=".ui.activity.mine.QRPlayActivity"/>
+        <activity android:name=".ui.activity.mine.QRPlayActivity" />
         <activity
             android:name="zxing.activity.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateAlwaysHidden" >
-        </activity>
-        <activity android:name=".ui.activity.focus.ShowActivity"/>
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+        <activity android:name=".ui.activity.focus.ShowActivity" />
 
-=======
->>>>>>> feature/王林
-        <activity android:name=".ui.activity.mine.PayPlayActivity"/>
+        <activity android:name=".ui.activity.mine.PayPlayActivity" />
         <!-- 支付宝 sdk -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
@@ -121,30 +101,15 @@
         <meta-data
             android:name="ONEPAY_APPKEY"
             android:value="bm5ZHRTdvb89KYD1B6xg0Q" />
+
         <activity
             android:name="com.fuqianla.paysdk.app.FuQianLaActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-<<<<<<< HEAD
-=======
-        <!--二维码界面Activity-->
-        <activity android:name=".ui.activity.mine.QRPlayActivity"/>
-        <activity
-            android:name="zxing.activity.CaptureActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateAlwaysHidden" >
-        </activity>
-        <activity android:name=".ui.activity.focus.ShowActivity"/>
-=======
-        <activity android:name=".ui.activity.mine.GPSPlayActivity" />
->>>>>>> feature/dongkui
 
->>>>>>> feature/王林
-=======
->>>>>>> 8079df0c5050911ac2472cdd6229884ceecfb2f8
->>>>>>> feature/王林
+
+        <activity android:name=".ui.activity.mine.GPSPlayActivity" />
+
     </application>
 
 </manifest>
