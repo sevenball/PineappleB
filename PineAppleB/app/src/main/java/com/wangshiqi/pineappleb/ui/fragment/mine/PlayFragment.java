@@ -48,6 +48,7 @@ public class PlayFragment extends AbsFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.QR_code:
+
                 startActivity(new Intent(context, QRPlayActivity.class));
                 break;
             case R.id.pay_btn:

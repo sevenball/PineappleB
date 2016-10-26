@@ -3,6 +3,7 @@
     package="com.wangshiqi.pineappleb">
     <!--网络权限-->
     <uses-permission android:name="android.permission.INTERNET" />
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,6 +15,22 @@
     <uses-permission android:name="android.permission.NFC" />
 
     <uses-feature android:name="android.hardware.nfc.hce" />
+=======
+    <!--二维码权限-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+
+    <!--FLASHLIGHT or HARDWARE_TEST-->
+    <!--二维码权限-->
+
+
+
+>>>>>>> feature/王林
     <application
         android:name=".ui.app.PineAppleApp"
         android:allowBackup="true"
@@ -36,6 +53,7 @@
             />
         <!--最火界面详情页-->
         <activity android:name=".ui.activity.hotest.HotestInfoActivity" />
+<<<<<<< HEAD
         <activity android:name=".ui.activity.mine.PayPlayActivity"/>
         <!-- 支付宝 sdk -->
         <activity
@@ -51,6 +69,19 @@
             android:name="com.fuqianla.paysdk.app.FuQianLaActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+=======
+        <!--二维码界面Activity-->
+        <activity android:name=".ui.activity.mine.QRPlayActivity"/>
+        <activity
+            android:name="zxing.activity.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity android:name=".ui.activity.focus.ShowActivity"/>
+
+>>>>>>> feature/王林
     </application>
 
 </manifest>
