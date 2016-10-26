@@ -3,6 +3,7 @@ package com.wangshiqi.pineappleb.ui.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.fuqianla.paysdk.FuQianLa;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
@@ -23,6 +24,7 @@ public class PineAppleApp extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        FuQianLa.getInstance().init(getApplicationContext());
         // 配置UniversalImageLoader的信息
         //缓存文件的目录
         File cacheDir = StorageUtils.getOwnCacheDirectory(this, "appName/Cache");
