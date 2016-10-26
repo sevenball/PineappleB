@@ -180,6 +180,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
                 discussCount.setTextColor(Color.parseColor("#F09800"));
                 discussAdapter.setmDatas(listBean);
 
+
             }
         });
         listView.setAdapter(discussAdapter);
