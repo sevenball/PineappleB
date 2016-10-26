@@ -52,6 +52,9 @@ import wkvideoplayer.view.SuperVideoPlayer;
  * Created by dllo on 16/10/19.
  */
 public class DynamicInfoActivity extends AbsBaseActivity {
+
+    private MediaController mediaController;
+
     // 要接收的值
 
     private TextView titleTv;
