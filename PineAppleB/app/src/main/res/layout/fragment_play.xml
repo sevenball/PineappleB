@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/QR_code"
+        style="@style/mine_btn"
+        android:text="二维码" />
+
+    <Button
+        android:id="@+id/pay_btn"
+        style="@style/mine_btn"
+        android:text="支付" />
+
+    <Button
+        android:id="@+id/GPS_btn"
+        style="@style/mine_btn"
+        android:text="定位" />
+
+</LinearLayout>

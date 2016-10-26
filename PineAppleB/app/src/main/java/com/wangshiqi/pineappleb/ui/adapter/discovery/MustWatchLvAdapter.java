@@ -1,7 +1,6 @@
 package com.wangshiqi.pineappleb.ui.adapter.discovery;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +32,6 @@ public class MustWatchLvAdapter extends AbsBaseAdapter<MustWatchBean, MustWatchL
 
     @Override
     protected void onBindViewHolder(MustWatchViewHolder mustWatchViewHolder, MustWatchBean itemData, int position) {
-        Log.d("xxx", "mustWatchViewHolder.bannerTag:" + mustWatchViewHolder.bannerTag);
         mustWatchViewHolder.bannerName.setText(itemData.getBannerName());
         if (!itemData.getBannerTag().equals("")) {
             mustWatchViewHolder.bannerTag.setVisibility(View.VISIBLE);

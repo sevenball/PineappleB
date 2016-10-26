@@ -8,6 +8,7 @@ import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.ui.fragment.dicovery.DiscoveryFragment;
 import com.wangshiqi.pineappleb.ui.fragment.focus.FocusFragment;
 import com.wangshiqi.pineappleb.ui.fragment.hotest.HotestFragment;
+import com.wangshiqi.pineappleb.ui.fragment.mine.PlayFragment;
 
 public class MainActivity extends AbsBaseActivity {
     private RadioGroup radioGroup;
@@ -40,7 +41,7 @@ public class MainActivity extends AbsBaseActivity {
                         transaction.replace(R.id.replace_view, FocusFragment.newInstance());
                         break;
                     case R.id.mine_rb:
-                        transaction.replace(R.id.replace_view, FocusFragment.newInstance());
+                        transaction.replace(R.id.replace_view, PlayFragment.newInstance());
                         break;
                 }
                 transaction.commit();
