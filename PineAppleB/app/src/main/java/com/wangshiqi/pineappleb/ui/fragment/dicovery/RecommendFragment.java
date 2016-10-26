@@ -17,8 +17,7 @@ import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.HeadBean;
 import com.wangshiqi.pineappleb.model.bean.dicovery.RecommendRankBean;
 import com.wangshiqi.pineappleb.model.bean.dicovery.RecommendStrongBean;
-import com.wangshiqi.pineappleb.model.net.IVolleyResult;
-import com.wangshiqi.pineappleb.model.net.VolleyInstance;
+import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
 import com.wangshiqi.pineappleb.ui.activity.focus.DynamicInfoActivity;
 import com.wangshiqi.pineappleb.ui.adapter.discovery.RecommendHeadAdapter;
 import com.wangshiqi.pineappleb.ui.adapter.discovery.RecommendRankRvAdapter;
@@ -29,6 +28,8 @@ import com.wangshiqi.pineappleb.utils.OnRvItemClick;
 import com.wangshiqi.pineappleb.utils.ValueTool;
 
 import java.util.List;
+
+import okhttp3.Call;
 
 /**
  * 推荐
@@ -88,7 +89,7 @@ public class RecommendFragment extends AbsFragment {
 
     private void rank() {
         rankRvAdapter = new RecommendRankRvAdapter(context);
-        GridLayoutManager managerRank = new GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false){
+        GridLayoutManager managerRank = new GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false) {
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -96,16 +97,16 @@ public class RecommendFragment extends AbsFragment {
         };
         rankRv.setLayoutManager(managerRank);
         rankRv.setAdapter(rankRvAdapter);
-        VolleyInstance.getInstance().startRequest(ValueTool.RANK_RV, new IVolleyResult() {
+        OkHttpInstance.getAsyn(ValueTool.RANK_RV, new OkHttpInstance.ResultCallback() {
             @Override
-            public void success(String resultStr) {
-                rankBeanList = JSON.parseArray(resultStr, RecommendRankBean.class);
-                rankRvAdapter.setDatas(rankBeanList);
+            public void onError(Call call, Exception e) {
+                e.printStackTrace();
             }
 
             @Override
-            public void failure() {
-
+            public void onResponse(Object response) {
+                rankBeanList = JSON.parseArray(response.toString(), RecommendRankBean.class);
+                rankRvAdapter.setDatas(rankBeanList);
             }
         });
     }
@@ -120,19 +121,19 @@ public class RecommendFragment extends AbsFragment {
         };
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(recommendStrongRvAdapter);
-
-        VolleyInstance.getInstance().startRequest(ValueTool.STRONG_RV + i, new IVolleyResult() {
+        OkHttpInstance.getAsyn(ValueTool.STRONG_RV + i, new OkHttpInstance.ResultCallback() {
             @Override
-            public void success(String resultStr) {
-                strongBeanList = JSON.parseArray(resultStr, RecommendStrongBean.class);
+            public void onError(Call call, Exception e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                strongBeanList = JSON.parseArray(response.toString(), RecommendStrongBean.class);
                 recommendStrongRvAdapter.setDatas(strongBeanList);
             }
-
-            @Override
-            public void failure() {
-
-            }
         });
+
         recommendStrongRvAdapter.setOnRvItemClick(new OnRvItemClick() {
             @Override
             public void onRvItemClickListener(int position, Object o) {
@@ -152,14 +153,15 @@ public class RecommendFragment extends AbsFragment {
 
     private void startRoll() {
         headAdapter = new RecommendHeadAdapter(context);
-        VolleyInstance.getInstance().startRequest(ValueTool.HEAD_VP, new IVolleyResult() {
+        OkHttpInstance.getAsyn(ValueTool.HEAD_VP, new OkHttpInstance.ResultCallback() {
             @Override
-            public void success(String resultStr) {
-                datas = JSON.parseArray(resultStr, HeadBean.class);
-//                Gson gson = new Gson();
-//                Type type = new TypeToken<List<HeadBean>>(){}.getType();
-//                datas = gson.fromJson(resultStr, type);
-//                Toast.makeText(context, "datas.size():" + datas.size(), Toast.LENGTH_SHORT).show();
+            public void onError(Call call, Exception e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                datas = JSON.parseArray(response.toString(), HeadBean.class);
                 recommendTv.setText(datas.get(0).getTitle());
                 pagerWidth = (int) (getResources().getDisplayMetrics().widthPixels * 4.0f / 5.0f);
                 headAdapter.setDatas(datas);
@@ -191,10 +193,6 @@ public class RecommendFragment extends AbsFragment {
 
                     }
                 });
-            }
-
-            @Override
-            public void failure() {
             }
         });
         startRotate(); //开始轮播
