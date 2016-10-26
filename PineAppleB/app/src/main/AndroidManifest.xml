@@ -37,7 +37,6 @@
         <!--最火界面详情页-->
         <activity android:name=".ui.activity.hotest.HotestInfoActivity" />
         <activity android:name=".ui.activity.mine.PayPlayActivity"/>
-        <activity android:name=".ui.activity.mine.pay.CustomPayActivity"/>
         <!-- 支付宝 sdk -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
