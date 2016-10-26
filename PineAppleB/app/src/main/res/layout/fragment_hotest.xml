@@ -11,7 +11,7 @@
         android:id="@+id/hot_swipe_card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        card:alphaOffsetStep="10"
+        card:alphaOffsetStep="0"
         card:scaleOffsetStep="0.05"
         card:yOffsetStep="15dp" />
 
