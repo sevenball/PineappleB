@@ -1,5 +1,6 @@
 package com.wangshiqi.pineappleb.ui.fragment.focus;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,27 +8,31 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.focus.ChannelBean;
+import com.wangshiqi.pineappleb.model.bean.focus.SortSetBean;
 import com.wangshiqi.pineappleb.model.net.IVolleyResult;
+import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
 import com.wangshiqi.pineappleb.model.net.VolleyInstance;
 import com.wangshiqi.pineappleb.ui.adapter.focus.ChannelAdapter;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
 import com.wangshiqi.pineappleb.utils.OnRvItemClick;
+import com.wangshiqi.pineappleb.utils.ValueTool;
 
 import java.lang.reflect.Type;
 import java.util.List;
+
+import okhttp3.Call;
 
 /**
  * Created by dllo on 16/10/19.
  */
 public class ChannelFragment extends AbsFragment{
-    private String url = "http://m.live.netease.com/bolo/api/user/follows.htm?pageNum=1&encryptToken=5f724098912f342454785185628447bc&random=0.02496582080295462&userId=-2798972347206426236&pageSize=21&timeStamp=1476793248225";
     private ChannelAdapter channelAdapter;
     private RecyclerView recyclerView;
-
 
     public static ChannelFragment newInstance() {
         
@@ -60,7 +65,7 @@ public class ChannelFragment extends AbsFragment{
             @Override
             public void onRvItemClickListener(int position, Object o) {
                 Toast.makeText(context, "position:" + position, Toast.LENGTH_SHORT).show();
-                Log.d("ChannelFragment", "o:" + o);
+                
             }
         });
     }
@@ -69,22 +74,22 @@ public class ChannelFragment extends AbsFragment{
     private void loadData() {
         channelAdapter = new ChannelAdapter(context);
         recyclerView.setLayoutManager(new GridLayoutManager(context,4));
-
-        VolleyInstance.getInstance().startRequest(url, new IVolleyResult() {
+        OkHttpInstance.getAsyn(ValueTool.CHANNELURL, new OkHttpInstance.ResultCallback() {
             @Override
-            public void success(String resultStr) {
-                Gson gson = new Gson();
-                Type type= new TypeToken<List<ChannelBean>>(){}.getType();
-                List<ChannelBean> bean = gson.fromJson(resultStr,type);
-                channelAdapter.setChannelBeen(bean);
-                recyclerView.setAdapter(channelAdapter);
+            public void onError(Call call, Exception e) {
+                e.printStackTrace();
             }
 
             @Override
-            public void failure() {
+            public void onResponse(Object response) {
+                Gson gson = new Gson();
+                Type type= new TypeToken<List<ChannelBean>>(){}.getType();
+                List<ChannelBean> bean = gson.fromJson(response.toString(),type);
+                channelAdapter.setChannelBeen(bean);
 
             }
         });
+        recyclerView.setAdapter(channelAdapter);
 
     }
 }
