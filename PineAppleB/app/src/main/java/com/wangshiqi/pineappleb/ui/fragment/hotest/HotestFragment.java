@@ -11,9 +11,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.huxq17.swipecardsview.SwipeCardsView;
 import com.wangshiqi.pineappleb.R;
+import com.wangshiqi.pineappleb.model.bean.focus.DiscussBean;
 import com.wangshiqi.pineappleb.model.bean.hotest.HotCardBean;
-import com.wangshiqi.pineappleb.model.net.IVolleyResult;
-import com.wangshiqi.pineappleb.model.net.VolleyInstance;
+import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
 import com.wangshiqi.pineappleb.ui.activity.focus.DynamicInfoActivity;
 import com.wangshiqi.pineappleb.ui.adapter.hotest.HotCardAdapter;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
@@ -21,6 +21,8 @@ import com.wangshiqi.pineappleb.utils.ValueTool;
 
 import java.lang.reflect.Type;
 import java.util.List;
+
+import okhttp3.Call;
 
 /**
  * Created by dllo on 16/10/17.
@@ -33,7 +35,7 @@ public class HotestFragment extends AbsFragment {
     private List<HotCardBean> bean;
     private boolean isState = false;
     private int index;
-
+    private List<DiscussBean.DataBean> data;
 
 
     public static HotestFragment newInstance() {
@@ -64,7 +66,8 @@ public class HotestFragment extends AbsFragment {
         cardDataRequest();
         // 卡片的滑动监听和点击事件
         cardsSlideListener();
-        // 卡片
+        // 卡片评论数据请求
+
     }
 
     /**
@@ -81,13 +84,13 @@ public class HotestFragment extends AbsFragment {
             public void onCardVanish(int index, SwipeCardsView.SlideType type) {
                 switch (type) {
                     case LEFT:
-                        if (index == bean.size() - 3) {
+                        if (index == bean.size() - 4) {
                             bean.addAll(bean);
                             Toast.makeText(context, "向左滑动了图片", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case RIGHT:
-                        if (index == bean.size() - 3) {
+                        if (index == bean.size() - 4) {
                             bean.addAll(bean);
                             Toast.makeText(context, "向右滑动了图片", Toast.LENGTH_SHORT).show();
                         }
@@ -126,31 +129,25 @@ public class HotestFragment extends AbsFragment {
      */
     private void cardDataRequest() {
 
-        VolleyInstance volleyInstance = VolleyInstance.getInstance();
-        volleyInstance.startRequest(ValueTool.HOT_CARD, new IVolleyResult() {
+        OkHttpInstance okHttpInstance = OkHttpInstance.getInstance();
+        okHttpInstance.getAsyn(ValueTool.HOT_CARD, new OkHttpInstance.ResultCallback() {
+            @Override
+            public void onError(Call call, Exception e) {
+
+            }
 
             @Override
-            public void success(String resultStr) {
+            public void onResponse(Object response) {
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<HotCardBean>>() {
                 }.getType();
-                bean = gson.fromJson(resultStr, type);
+                bean = gson.fromJson(String.valueOf(response), type);
                 // 把这个集合每一个元素放一个新集合里
                 cardAdapter.setDatas(bean);
                 cardsView.setAdapter(cardAdapter);
                 cardsView.notifyDatasetChanged(bean);
             }
-
-            @Override
-            public void failure() {
-
-            }
         });
     }
-
-    /**
-     * 卡片上的评论数据请求
-     */
-
 
 }

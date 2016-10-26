@@ -166,7 +166,7 @@ public class LooperFrameLayout extends FrameLayout {
         }
         String tip = getNextTip();
         if (!TextUtils.isEmpty(tip)) {
-            tipView.setText(tip + TIP_PREFIX);
+            tipView.setText(tip);
         }
     }
 
@@ -196,4 +196,5 @@ public class LooperFrameLayout extends FrameLayout {
         updateTip(tv_tip_out);
         updateTipAndPlayAnimation();
     }
+
 }
