@@ -21,6 +21,13 @@ android {
         abortOnError false
     }
 }
+android {
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -41,4 +48,5 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile files('libs/alipaySDK.jar')
     compile files('libs/libammsdk.jar')
+    compile files('jniLibs/AMap3DMap_4.1.1_AMapNavi_1.9.3_AMapSearch_3.5.0_AMapLocation_3.0.0_20161019.jar')
 }
