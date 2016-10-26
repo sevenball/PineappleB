@@ -6,14 +6,19 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -78,6 +83,11 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private CollapsingToolbarLayout ctl;
     private ImageView backImg;
 
+    // 加手势退出界面
+    private GestureDetectorCompat detectorCompat;
+    private int saveHeight;
+    private int saveWidth;
+
     @Override
     protected int setLayout() {
         return R.layout.activity_dynamic_info;
@@ -105,8 +115,13 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+
+                overridePendingTransition(R.anim.anim_enter_translate,R.anim.anim_exit_translate);
             }
         });
+        // 手势退出相关
+        detectorCompat = new GestureDetectorCompat(this,new MyGestureListener());
+
 
 
 
@@ -245,6 +260,10 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 player.setPageType(MediaController.PageType.SHRINK);
+
+                saveHeight = ctl.getMeasuredHeight();
+                saveWidth = ctl.getMeasuredWidth();
+
             } else {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 player.setPageType(MediaController.PageType.EXPAND);
@@ -269,11 +288,19 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (null == player) return;
+        if (null == player)
+            return;
         /***
          * 根据屏幕方向重新设置播放器的大小
          */
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.d("xxx", "=======");
+//            WindowManager wm1 = this.getWindowManager();
+//            int width = wm1.getDefaultDisplay().getWidth();
+//            ViewGroup.LayoutParams params = ctl.getLayoutParams();
+//            params.height = saveHeight;
+//            ctl.setLayoutParams(params);
+
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
             getWindow().getDecorView().invalidate();
@@ -282,6 +309,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             player.getLayoutParams().height = (int) width;
             player.getLayoutParams().width = (int) height;
         } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+//
             final WindowManager.LayoutParams attrs = getWindow().getAttributes();
             attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
             getWindow().setAttributes(attrs);
@@ -290,6 +318,14 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             float height = DensityUtil.dip2px(this, 200.f);
             player.getLayoutParams().height = (int) height;
             player.getLayoutParams().width = (int) width;
+
+            Log.d("xxx", "----------");
+//            WindowManager wm1 = this.getWindowManager();
+//            int height = wm1.getDefaultDisplay().getHeight();
+//
+//            ViewGroup.LayoutParams params =ctl.getLayoutParams();
+//            params.height = height;
+//            ctl.setLayoutParams(params);
         }
     }
 
@@ -300,6 +336,38 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             player.setPageType(MediaController.PageType.SHRINK);
+        }
+    }
+    /**
+     * 手势监听内部类
+     *
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        this.detectorCompat.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
+        private static final String DEBUG_TAG = "Gestures";
+
+        @Override
+        public boolean onDown(MotionEvent event) {
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent event1, MotionEvent event2,
+                               float velocityX, float velocityY) {
+//            if (event2.getX() - event1.getX() > 30 && Math.abs(velocityX) > 0 && (Math.abs(event2.getY() - event1.getY()) < 150)) {
+//                finish();
+//                // 退出动画
+////                overridePendingTransition(R.anim.translate_exit_in, R.anim.translate_exit_out);
+//            } else if (event1.getX() - event2.getX() > 30 && Math.abs(velocityX) > 0 && (Math.abs(event2.getY() - event1.getY())) < 150) {
+////                Toast.makeText(MainActivity.this, "左滑", Toast.LENGTH_SHORT).show();
+//            }
+            finish();
+
+            return false;
         }
     }
 

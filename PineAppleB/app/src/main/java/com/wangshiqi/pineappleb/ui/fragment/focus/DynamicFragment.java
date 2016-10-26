@@ -77,6 +77,8 @@ public class DynamicFragment extends AbsFragment {
                     intent.putExtra(DynamicInfoActivity.VIDEOID,videoId);
                     intent.putExtra(DynamicInfoActivity.PLAYCOUNT,playCount);
                     context.startActivity(intent);
+                    // 页面切换动画
+//                    getActivity().overridePendingTransition(R.anim.anim_enter_translate,R.anim.anim_exit_translate);
 
 
 
