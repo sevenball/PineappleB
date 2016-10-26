@@ -2,7 +2,6 @@ package wkvideoplayer.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -11,7 +10,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.wangshiqi.pineappleb.R;
-import com.wangshiqi.pineappleb.ui.activity.MainActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

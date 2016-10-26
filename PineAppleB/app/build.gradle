@@ -42,4 +42,5 @@ dependencies {
     compile files('libs/alipaySDK.jar')
     compile files('libs/libammsdk.jar')
     compile files('libs/zxing.jar')
+    compile files('libs/fuqianla2_2_1.jar')
 }
