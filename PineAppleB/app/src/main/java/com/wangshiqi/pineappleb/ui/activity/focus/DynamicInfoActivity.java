@@ -16,7 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,7 +59,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private MediaController mediaController;
 
     // 要接收的值
-
     private TextView titleTv;
     private TextView introTv;
     private TextView tagTv;
@@ -88,17 +90,20 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     private DiscussAdapter discussAdapter;
     private TextView discussCount;
     // CollapsingToolbarLayout的声明
-    private CollapsingToolbarLayout ctl;
+
     private ImageView backImg;
 
     // 加手势退出界面
     private GestureDetectorCompat detectorCompat;
+    // 横竖屏保存高度
+
     private int saveHeight;
     private int saveWidth;
 
     //
     List<SortSetBean> sortSetBeen;
     List<RecommendMoreBean> recommendMoreBeen;
+    private ScrollView scrollView;
 
 
     @Override
@@ -113,7 +118,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         tagTv = byView(R.id.dynamic_info_tag);
         playCount = byView(R.id.dynamic_info_play);
         setTv = byView(R.id.dynamic_set_tv);
-
+        scrollView = byView(R.id.dynamic_sv);
         sortSetRl = byView(R.id.sort_set_rl);
         recommendMoreRl = byView(R.id.recommend_more_rl);
 
@@ -121,8 +126,9 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         discussCount = byView(R.id.discuss_count);
         // 视频播放相关
         player = byView(R.id.dynamic_info_video);
+        // 横竖屏切换布局
 
-        ctl = byView(R.id.dynamic_coolapsing);
+
         backImg = byView(R.id.dynamic_info_back);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,8 +138,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
                 overridePendingTransition(R.anim.anim_enter_translate,R.anim.anim_exit_translate);
             }
         });
-        // 手势退出相关
-        detectorCompat = new GestureDetectorCompat(this,new MyGestureListener());
 
 
 
@@ -153,7 +157,10 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         // 视频播放相关
         mp4Play();
 
+
     }
+
+
     // 视频播放相关
     private void mp4Play() {
         player.setVideoPlayCallback(mVideoPlayCallback);
@@ -182,8 +189,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
                 discussCount.setText("("+listBean.size()+")");
                 discussCount.setTextColor(Color.parseColor("#F09800"));
                 discussAdapter.setmDatas(listBean);
-
-
             }
         });
         listView.setAdapter(discussAdapter);
@@ -272,12 +277,12 @@ public class DynamicInfoActivity extends AbsBaseActivity {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 player.setPageType(MediaController.PageType.SHRINK);
 
-                saveHeight = ctl.getMeasuredHeight();
-                saveWidth = ctl.getMeasuredWidth();
-
             } else {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 player.setPageType(MediaController.PageType.EXPAND);
+                saveWidth = player.getMeasuredWidth();
+                saveHeight = player.getMeasuredHeight();
+
             }
         }
 
@@ -305,38 +310,32 @@ public class DynamicInfoActivity extends AbsBaseActivity {
          * 根据屏幕方向重新设置播放器的大小
          */
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Log.d("xxx", "=======");
-//            WindowManager wm1 = this.getWindowManager();
-//            int width = wm1.getDefaultDisplay().getWidth();
-//            ViewGroup.LayoutParams params = ctl.getLayoutParams();
-//            params.height = saveHeight;
-//            ctl.setLayoutParams(params);
 
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            getWindow().getDecorView().invalidate();
-            float height = DensityUtil.getWidthInPx(this);
-            float width = DensityUtil.getHeightInPx(this);
-            player.getLayoutParams().height = (int) width;
-            player.getLayoutParams().width = (int) height;
+            WindowManager wm1 = this.getWindowManager();
+            int height = wm1.getDefaultDisplay().getHeight();
+            Log.d("MainActivity", "height:" + height);
+            ViewGroup.LayoutParams params =player.getLayoutParams();
+            params.height = height;
+            player.setLayoutParams(params);
+            scrollView.setOnTouchListener(new View.OnTouchListener(){
+                @Override
+                public boolean onTouch(View arg0, MotionEvent arg1) {
+                    return true;
+                }
+            });
+
         } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-//
-            final WindowManager.LayoutParams attrs = getWindow().getAttributes();
-            attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            getWindow().setAttributes(attrs);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-            float width = DensityUtil.getWidthInPx(this);
-            float height = DensityUtil.dip2px(this, 200.f);
-            player.getLayoutParams().height = (int) height;
-            player.getLayoutParams().width = (int) width;
-
-            Log.d("xxx", "----------");
-//            WindowManager wm1 = this.getWindowManager();
-//            int height = wm1.getDefaultDisplay().getHeight();
-//
-//            ViewGroup.LayoutParams params =ctl.getLayoutParams();
-//            params.height = height;
-//            ctl.setLayoutParams(params);
+            WindowManager wm1 = this.getWindowManager();
+            int width = wm1.getDefaultDisplay().getWidth();
+            ViewGroup.LayoutParams params = player.getLayoutParams();
+            params.height = saveHeight;
+            player.setLayoutParams(params);
+            scrollView.setOnTouchListener(new View.OnTouchListener(){
+                @Override
+                public boolean onTouch(View arg0, MotionEvent arg1) {
+                    return false;
+                }
+            });
         }
     }
 
@@ -347,38 +346,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             player.setPageType(MediaController.PageType.SHRINK);
-        }
-    }
-    /**
-     * 手势监听内部类
-     *
-     */
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
-        this.detectorCompat.onTouchEvent(event);
-        return super.onTouchEvent(event);
-    }
-    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-        private static final String DEBUG_TAG = "Gestures";
-
-        @Override
-        public boolean onDown(MotionEvent event) {
-            return true;
-        }
-
-        @Override
-        public boolean onFling(MotionEvent event1, MotionEvent event2,
-                               float velocityX, float velocityY) {
-//            if (event2.getX() - event1.getX() > 30 && Math.abs(velocityX) > 0 && (Math.abs(event2.getY() - event1.getY()) < 150)) {
-//                finish();
-//                // 退出动画
-////                overridePendingTransition(R.anim.translate_exit_in, R.anim.translate_exit_out);
-//            } else if (event1.getX() - event2.getX() > 30 && Math.abs(velocityX) > 0 && (Math.abs(event2.getY() - event1.getY())) < 150) {
-////                Toast.makeText(MainActivity.this, "左滑", Toast.LENGTH_SHORT).show();
-//            }
-            finish();
-
-            return false;
         }
     }
 
