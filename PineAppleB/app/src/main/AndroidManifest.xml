@@ -4,6 +4,7 @@
     <!--网络权限-->
     <uses-permission android:name="android.permission.INTERNET" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,6 +17,8 @@
 
     <uses-feature android:name="android.hardware.nfc.hce" />
 =======
+=======
+>>>>>>> feature/王林
     <!--二维码权限-->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA" />
@@ -30,6 +33,22 @@
 
 
 
+<<<<<<< HEAD
+>>>>>>> feature/王林
+=======
+=======
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature android:name="android.hardware.nfc.hce" />
+>>>>>>> 8079df0c5050911ac2472cdd6229884ceecfb2f8
 >>>>>>> feature/王林
     <application
         android:name=".ui.app.PineAppleApp"
@@ -54,6 +73,21 @@
         <!--最火界面详情页-->
         <activity android:name=".ui.activity.hotest.HotestInfoActivity" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        <!--二维码界面Activity-->
+        <activity android:name=".ui.activity.mine.QRPlayActivity"/>
+        <activity
+            android:name="zxing.activity.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity android:name=".ui.activity.focus.ShowActivity"/>
+
+=======
+>>>>>>> feature/王林
         <activity android:name=".ui.activity.mine.PayPlayActivity"/>
         <!-- 支付宝 sdk -->
         <activity
@@ -69,6 +103,7 @@
             android:name="com.fuqianla.paysdk.app.FuQianLaActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+<<<<<<< HEAD
 =======
         <!--二维码界面Activity-->
         <activity android:name=".ui.activity.mine.QRPlayActivity"/>
@@ -81,6 +116,9 @@
         </activity>
         <activity android:name=".ui.activity.focus.ShowActivity"/>
 
+>>>>>>> feature/王林
+=======
+>>>>>>> 8079df0c5050911ac2472cdd6229884ceecfb2f8
 >>>>>>> feature/王林
     </application>
 
