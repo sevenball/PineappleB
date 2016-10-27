@@ -176,7 +176,7 @@ public class RecommendFragment extends AbsFragment {
                 viewPager.setPageTransformer(true, new MyTransformation());
                 viewPager.setOffscreenPageLimit(3);
                 viewPager.setAdapter(headAdapter);
-                viewPager.setCurrentItem(datas.size() * 1000);
+                viewPager.setCurrentItem(datas.size() * 100);
                 viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -228,7 +228,7 @@ public class RecommendFragment extends AbsFragment {
     @Override
     public void onPause() {
         super.onPause();
-        isRotate = true;
+        isRotate = false;
     }
 
 }
