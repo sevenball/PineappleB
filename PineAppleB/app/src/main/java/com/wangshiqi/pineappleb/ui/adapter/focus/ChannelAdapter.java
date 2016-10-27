@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.focus.ChannelBean;
+import com.wangshiqi.pineappleb.utils.ImageLoaderTool;
 import com.wangshiqi.pineappleb.utils.OnRvItemClick;
 
 import java.io.PipedInputStream;
@@ -69,7 +70,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.ChannelV
         });
 
         holder.titleTv.setText(channelBeen.get(position).getNick());
-        Picasso.with(context).load(channelBeen.get(position).getAvatar()).into(holder.circleImageView);
+        ImageLoaderTool.loadImage(channelBeen.get(position).getAvatar(),holder.circleImageView);
     }
 
     @Override
