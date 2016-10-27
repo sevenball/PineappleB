@@ -15,6 +15,8 @@ import com.wangshiqi.pineappleb.ui.adapter.AbsBaseAdapter;
 
 
 import java.io.PipedInputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -40,7 +42,12 @@ public class DynamicFragmentAdapter extends AbsBaseAdapter<DynamicBean.ListBean,
 
     @Override
     protected void onBindViewHolder(ViewHolder viewHolder, DynamicBean.ListBean itemData, int position) {
-        viewHolder.durationBtn.setText(itemData.getDuration()+"");
+        // 视频时长格式转换
+        long formatTime = itemData.getDuration()*1000;
+        SimpleDateFormat formatter = new SimpleDateFormat("mm:ss");
+        String time = formatter.format(formatTime);
+
+        viewHolder.durationBtn.setText(time);
         viewHolder.titleTv.setText(itemData.getTitle());
         viewHolder.channelNameTv.setText(itemData.getChannelName());
         viewHolder.nameTv.setText(itemData.getSetName());

@@ -124,14 +124,14 @@ public class QRPlayActivity extends AbsBaseActivity implements View.OnClickListe
                     cursor.close();
 
                     Result ret = parseQRcodeBitmap(imgPath);
-                    Toast.makeText(QRPlayActivity.this, "���������" + ret.toString(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(QRPlayActivity.this, "" + ret.toString(), Toast.LENGTH_LONG).show();
                     break;
                 case PHOTO_PIC:
                     String result = data.getExtras().getString("result");
                     Intent intent = new Intent(QRPlayActivity.this, ShowActivity.class);
                     intent.putExtra("result", result);
                     startActivity(intent);
-                    Toast.makeText(QRPlayActivity.this, "" + result, Toast.LENGTH_LONG).show();
+//                    Toast.makeText(QRPlayActivity.this, "" + result, Toast.LENGTH_LONG).show();
                     break;
 
                 default:
@@ -156,7 +156,6 @@ public class QRPlayActivity extends AbsBaseActivity implements View.OnClickListe
 //                }
 //
 //                try {
-//                    //���ɶ�ά��ͼƬ����һ�������Ƕ�ά������ݣ��ڶ���������������ͼƬ�ı߳�����λ������
 //                    Bitmap qrcodeBitmap = EncodingHandler.createQRCode(content, 400);
 //                    qrcodeImageView.setImageBitmap(qrcodeBitmap);
 //                } catch (Exception e) {
@@ -174,8 +173,8 @@ public class QRPlayActivity extends AbsBaseActivity implements View.OnClickListe
 //                intent1.setAction(Intent.ACTION_PICK);
 //
 //                intent1.setType("image/*");
-//
-//                Intent intent2 =  Intent.createChooser(intent1, "ѡ���ά��ͼƬ");
+////
+//                Intent intent2 =  Intent.createChooser(intent1, "你好");
 //                startActivityForResult(intent2, CHOOSE_PIC);
 //                break;
             case R.id.code_img:

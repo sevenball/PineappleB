@@ -90,11 +90,11 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name=".ui.activity.focus.ShowActivity" />
 
-        <activity android:name=".ui.activity.mine.PayPlayActivity"/>
         <!-- 支付宝 sdk -->
+        <activity android:name=".ui.activity.mine.PayPlayActivity"/>
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
