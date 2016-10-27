@@ -85,8 +85,6 @@
     </style>
 
 
-<<<<<<< HEAD
-=======
     <!--卫星菜单-->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
@@ -97,6 +95,5 @@
     </style>
 
 
->>>>>>> feature/王林
 
 </resources>
