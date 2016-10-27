@@ -76,13 +76,9 @@
         <activity
             android:name=".ui.activity.focus.DynamicInfoActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboard"
-            android:theme="@style/ActivityTheme.Full"
-            />
+            android:theme="@style/ActivityTheme.Full" />
         <!--最火界面详情页-->
         <activity android:name=".ui.activity.hotest.HotestInfoActivity" />
-
-            android:theme="@style/ActivityTheme.Full" />
-
         <!--二维码界面Activity-->
         <activity android:name=".ui.activity.mine.QRPlayActivity" />
         <activity
@@ -90,10 +86,10 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name=".ui.activity.focus.ShowActivity" />
 
-        <activity android:name=".ui.activity.mine.PayPlayActivity"/>
+        <activity android:name=".ui.activity.mine.PayPlayActivity" />
         <!-- 支付宝 sdk -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

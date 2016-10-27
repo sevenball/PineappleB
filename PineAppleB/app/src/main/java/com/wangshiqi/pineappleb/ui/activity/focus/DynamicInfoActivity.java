@@ -5,37 +5,27 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.view.GestureDetectorCompat;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.jude.swipbackhelper.SwipeBackHelper;
 import com.wangshiqi.pineappleb.R;
-
-import com.wangshiqi.pineappleb.model.bean.dicovery.MustWatchBean;
 import com.wangshiqi.pineappleb.model.bean.focus.DiscussBean;
-import com.wangshiqi.pineappleb.model.bean.focus.DynamicBean;
 import com.wangshiqi.pineappleb.model.bean.focus.RecommendMoreBean;
 import com.wangshiqi.pineappleb.model.bean.focus.SortSetBean;
-import com.wangshiqi.pineappleb.model.net.IVolleyResult;
 import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
-import com.wangshiqi.pineappleb.model.net.VolleyInstance;
 import com.wangshiqi.pineappleb.ui.activity.AbsBaseActivity;
 import com.wangshiqi.pineappleb.ui.adapter.focus.DiscussAdapter;
 import com.wangshiqi.pineappleb.ui.adapter.focus.RecmmendMoreAdapter;
@@ -43,11 +33,9 @@ import com.wangshiqi.pineappleb.ui.adapter.focus.SortSetAdapter;
 import com.wangshiqi.pineappleb.utils.ValueTool;
 import com.wangshiqi.pineappleb.view.DiscussListView;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 import okhttp3.Call;
-import wkvideoplayer.util.DensityUtil;
 import wkvideoplayer.view.MediaController;
 import wkvideoplayer.view.SuperVideoPlayer;
 
@@ -70,8 +58,8 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     public static final String TAG = "tag";// 标签
     public static final String PLAYCOUNT = "playCount";// 评论数
     public static final String LINKMP4 = "linkMp4";// Mp4  url
-    public static final String VIDEOID= "videoId"; // 评论
-    private long videoId ;
+    public static final String VIDEOID = "videoId"; // 评论
+    private long videoId;
     private String linkMp4;
     private String formatTag;
     private String finalTag;
@@ -93,8 +81,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
 
     private ImageView backImg;
 
-    // 加手势退出界面
-    private GestureDetectorCompat detectorCompat;
     // 横竖屏保存高度
 
     private int saveHeight;
@@ -109,10 +95,22 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     @Override
     protected int setLayout() {
         return R.layout.activity_dynamic_info;
+
     }
+
 
     @Override
     protected void initViews() {
+        SwipeBackHelper.onCreate(this); // 手势相关
+        SwipeBackHelper.getCurrentPage(this)//获取当前页面
+                .setSwipeBackEnable(true)//设置是否可滑动
+                .setSwipeEdge(200)//可滑动的范围。px。200表示为左边200px的屏幕
+                .setSwipeEdgePercent(0.2f)//可滑动的范围。百分比。0.2表示为左边20%的屏幕
+                .setSwipeSensitivity(0.5f)//对横向滑动手势的敏感程度。0为迟钝 1为敏感
+                .setClosePercent(0.8f)//触发关闭Activity百分比
+                .setSwipeRelateEnable(false)//是否与下一级activity联动(微信效果)。默认关
+                .setSwipeRelateOffset(500)//activity联动时的偏移量。默认500px。
+                .setDisallowInterceptTouchEvent(false);//不抢占事件，默认关（事件将先由子View处理再由滑动关闭处理）
         titleTv = byView(R.id.dynamic_info_title);
         introTv = byView(R.id.dynamic_info_intro);
         tagTv = byView(R.id.dynamic_info_tag);
@@ -122,7 +120,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         sortSetRl = byView(R.id.sort_set_rl);
         recommendMoreRl = byView(R.id.recommend_more_rl);
 
-        listView =byView(R.id.dynamic_info_lv);
+        listView = byView(R.id.dynamic_info_lv);
         discussCount = byView(R.id.discuss_count);
         // 视频播放相关
         player = byView(R.id.dynamic_info_video);
@@ -135,11 +133,9 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             public void onClick(View v) {
                 finish();
 
-                overridePendingTransition(R.anim.anim_enter_translate,R.anim.anim_exit_translate);
+                overridePendingTransition(R.anim.anim_enter_translate, R.anim.anim_exit_translate);
             }
         });
-
-
 
 
     }
@@ -175,7 +171,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     // 评论区数据的设置
     private void discussData() {
         discussAdapter = new DiscussAdapter(this);
-        OkHttpInstance.getAsyn(ValueTool.DISCUSSURLLEFT+videoId+ValueTool.DISCUSSURLRIGHT, new OkHttpInstance.ResultCallback() {
+        OkHttpInstance.getAsyn(ValueTool.DISCUSSURLLEFT + videoId + ValueTool.DISCUSSURLRIGHT, new OkHttpInstance.ResultCallback() {
             @Override
             public void onError(Call call, Exception e) {
                 e.printStackTrace();
@@ -184,9 +180,9 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             @Override
             public void onResponse(Object response) {
                 Gson gson = new Gson();
-                DiscussBean bean = gson.fromJson(response.toString(),DiscussBean.class);
+                DiscussBean bean = gson.fromJson(response.toString(), DiscussBean.class);
                 List<DiscussBean.DataBean> listBean = bean.getData();
-                discussCount.setText("("+listBean.size()+")");
+                discussCount.setText("(" + listBean.size() + ")");
                 discussCount.setTextColor(Color.parseColor("#F09800"));
                 discussAdapter.setmDatas(listBean);
             }
@@ -197,8 +193,8 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     // 更多推荐数据的设置
     private void recommendData() {
         recommendMoreAdapter = new RecmmendMoreAdapter(this);
-        recommendMoreRl.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        OkHttpInstance.getAsyn(ValueTool.RECOMMENDMOREURLLEFT+videoId, new OkHttpInstance.ResultCallback() {
+        recommendMoreRl.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        OkHttpInstance.getAsyn(ValueTool.RECOMMENDMOREURLLEFT + videoId, new OkHttpInstance.ResultCallback() {
             @Override
             public void onError(Call call, Exception e) {
                 e.printStackTrace();
@@ -217,7 +213,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     // 分集数据的设置
     private void sortSetData() {
         sortSetAdapter = new SortSetAdapter(this);
-        sortSetRl.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        sortSetRl.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         OkHttpInstance.getAsyn(ValueTool.SORTSETURL, new OkHttpInstance.ResultCallback() {
             @Override
@@ -228,7 +224,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             @Override
             public void onResponse(Object response) {
                 sortSetBeen = JSON.parseArray(response.toString(), SortSetBean.class);
-                setTv.setText("("+sortSetBeen.size()+")");
+                setTv.setText("(" + sortSetBeen.size() + ")");
                 setTv.setTextColor(Color.parseColor("#F09800"));
                 sortSetAdapter.setSortSetBean(sortSetBeen);
             }
@@ -243,8 +239,8 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         titleTv.setText(intent.getStringExtra("title"));
         introTv.setText(intent.getStringExtra("intro"));
         formatTag = intent.getStringExtra("tag");
-        finalTag = formatTag.replace(",","   #  ");
-        tagTv.setText("#  "+ finalTag);
+        finalTag = formatTag.replace(",", "   #  ");
+        tagTv.setText("#  " + finalTag);
         videoId = intent.getLongExtra("videoId", 0);
         playCount.setText(intent.getIntExtra("playCount", 0) + "次");
         playCount.setTextColor(Color.parseColor("#000000"));
@@ -314,10 +310,10 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             WindowManager wm1 = this.getWindowManager();
             int height = wm1.getDefaultDisplay().getHeight();
             Log.d("MainActivity", "height:" + height);
-            ViewGroup.LayoutParams params =player.getLayoutParams();
+            ViewGroup.LayoutParams params = player.getLayoutParams();
             params.height = height;
             player.setLayoutParams(params);
-            scrollView.setOnTouchListener(new View.OnTouchListener(){
+            scrollView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View arg0, MotionEvent arg1) {
                     return true;
@@ -330,7 +326,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             ViewGroup.LayoutParams params = player.getLayoutParams();
             params.height = saveHeight;
             player.setLayoutParams(params);
-            scrollView.setOnTouchListener(new View.OnTouchListener(){
+            scrollView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View arg0, MotionEvent arg1) {
                     return false;
@@ -349,4 +345,15 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         }
     }
 
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
+    }
 }

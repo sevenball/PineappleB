@@ -163,7 +163,7 @@ public class RecommendFragment extends AbsFragment {
             public void onResponse(Object response) {
                 datas = JSON.parseArray(response.toString(), HeadBean.class);
                 recommendTv.setText(datas.get(0).getTitle());
-                pagerWidth = (int) (getResources().getDisplayMetrics().widthPixels * 4.0f / 5.0f);
+                pagerWidth = (int) (context.getResources().getDisplayMetrics().widthPixels * 4.0f / 5.0f);
                 headAdapter.setDatas(datas);
                 ViewGroup.LayoutParams lp = viewPager.getLayoutParams();
                 if (lp == null) {

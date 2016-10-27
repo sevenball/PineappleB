@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsTranslucent">false</item>
     </style>
     <!--RadioButton-->
     <style name="main_rb">
@@ -45,6 +46,9 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
     <style name="mine_btn">
@@ -79,6 +83,7 @@
         <item name="android:layout_margin">16dp</item>
         <item name="android:background">@drawable/fql_btn_pay</item>
     </style>
+
 
 
 </resources>
