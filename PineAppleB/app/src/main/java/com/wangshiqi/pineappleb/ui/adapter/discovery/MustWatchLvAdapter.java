@@ -9,6 +9,7 @@ import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.MustWatchBean;
 import com.wangshiqi.pineappleb.ui.adapter.AbsBaseAdapter;
+import com.wangshiqi.pineappleb.utils.ImageLoaderTool;
 import com.wangshiqi.pineappleb.utils.ScreenSizeUtil;
 
 /**
@@ -40,7 +41,7 @@ public class MustWatchLvAdapter extends AbsBaseAdapter<MustWatchBean, MustWatchL
         } else {
             mustWatchViewHolder.bannerTag.setVisibility(View.INVISIBLE);
         }
-        Picasso.with(context).load(itemData.getBannerPic()).resize(ScreenSizeUtil.getScreenWidth(context), ScreenSizeUtil.getScreenHeight(context) / 4).into(mustWatchViewHolder.bannerPic);
+        ImageLoaderTool.loadImage(itemData.getBannerPic(), mustWatchViewHolder.bannerPic);
     }
 
 

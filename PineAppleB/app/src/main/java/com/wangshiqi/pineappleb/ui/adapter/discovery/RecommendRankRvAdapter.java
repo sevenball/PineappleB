@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.RecommendRankBean;
+import com.wangshiqi.pineappleb.utils.ImageLoaderTool;
 import com.wangshiqi.pineappleb.utils.OnRvItemClick;
 
 import java.text.DecimalFormat;
@@ -50,7 +50,7 @@ public class RecommendRankRvAdapter extends RecyclerView.Adapter<RecommendRankRv
     public void onBindViewHolder(MyViewHolder holder, int position) {
         RecommendRankBean bean = datas.get(position);
         holder.topTv.setText("TOP " + (position + 1));
-        Picasso.with(context).load(bean.getCover()).into(holder.coverImg);
+        ImageLoaderTool.loadImage(bean.getCover(), holder.coverImg);
         holder.nameTv.setText(bean.getName());
         float degree = bean.getDegree();
         DecimalFormat df = new DecimalFormat("###.0");

@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.dicovery.RecommendStrongBean;
+import com.wangshiqi.pineappleb.utils.ImageLoaderTool;
 import com.wangshiqi.pineappleb.utils.OnRvItemClick;
 
 import java.util.List;
@@ -50,8 +50,8 @@ public class RecommendStrongRvAdapter extends RecyclerView.Adapter<RecommendStro
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final RecommendStrongBean bean = datas.get(position);
-        Picasso.with(context).load(bean.getAvatar()).into(holder.avatarImg);
-        Picasso.with(context).load(bean.getCover()).into(holder.coverImg);
+        ImageLoaderTool.loadImage(bean.getAvatar(), holder.avatarImg);
+        ImageLoaderTool.loadImage(bean.getAvatar(), holder.coverImg);
         holder.titleTv.setText(bean.getTitle());
         holder.playCount.setText(bean.getPlayCount() + "次");
         holder.channelName.setText(bean.getChannelName());
