@@ -177,7 +177,7 @@ public class RecommendFragment extends AbsFragment {
                 viewPager.setOffscreenPageLimit(3);
                 viewPager.setAdapter(headAdapter);
                 viewPager.setCurrentItem(datas.size() * 100);
-                viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
