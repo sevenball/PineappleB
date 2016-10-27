@@ -42,7 +42,7 @@ public class RecommendStrongRvAdapter extends RecyclerView.Adapter<RecommendStro
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_recommend_rv, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_recommend_strong_rv, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
