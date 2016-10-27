@@ -1,6 +1,7 @@
 package com.wangshiqi.pineappleb.ui.adapter.focus;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,9 +13,12 @@ import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.focus.DynamicBean;
 import com.wangshiqi.pineappleb.ui.adapter.AbsBaseAdapter;
+import com.wangshiqi.pineappleb.utils.ImageLoaderTool;
 
 
 import java.io.PipedInputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -40,15 +44,20 @@ public class DynamicFragmentAdapter extends AbsBaseAdapter<DynamicBean.ListBean,
 
     @Override
     protected void onBindViewHolder(ViewHolder viewHolder, DynamicBean.ListBean itemData, int position) {
-        viewHolder.durationBtn.setText(itemData.getDuration()+"");
+        // 视频时长格式转换
+        long formatTime = itemData.getDuration()*1000;
+        SimpleDateFormat formatter = new SimpleDateFormat("mm:ss");
+        String time = formatter.format(formatTime);
+
+        viewHolder.durationBtn.setText(time);
+        viewHolder.durationBtn.setTextColor(Color.parseColor("#ffffff"));
         viewHolder.titleTv.setText(itemData.getTitle());
         viewHolder.channelNameTv.setText(itemData.getChannelName());
         viewHolder.nameTv.setText(itemData.getSetName());
         viewHolder.countTv.setText(itemData.getPlayCount()+"次");
-        Picasso.with(context).load(itemData.getAvatar()).into(viewHolder.circleImg);
+        ImageLoaderTool.loadImage(itemData.getAvatar(),viewHolder.circleImg);
         viewHolder.tagOneTv.setText("#"+itemData.getTag());
-        Picasso.with(context).load(itemData.getCover()).into(viewHolder.coverImg);
-
+        ImageLoaderTool.loadImage(itemData.getCover(),viewHolder.coverImg);
     }
 
     class ViewHolder extends AbsBaseAdapter.BaseHolder{

@@ -31,4 +31,6 @@
     <string name="input_details">请输入商品详情</string>
     <string name="alipay">支付宝</string>
     <string name="wxpay">微信支付</string>
+    <!--卫星菜单-->
+    <string name="action_settings">Settings</string>
 </resources>

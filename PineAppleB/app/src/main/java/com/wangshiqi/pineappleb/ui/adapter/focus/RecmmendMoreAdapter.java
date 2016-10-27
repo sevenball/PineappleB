@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.focus.RecommendMoreBean;
+import com.wangshiqi.pineappleb.utils.ImageLoaderTool;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class RecmmendMoreAdapter extends RecyclerView.Adapter<RecmmendMoreAdapte
     @Override
     public void onBindViewHolder(RecommendMoreViewHolder holder, int position) {
         holder.titleTv.setText(recommendMoreBeen.get(position).getTitle());
-        Picasso.with(context).load(recommendMoreBeen.get(position).getCover()).into(holder.coverImg);
+        ImageLoaderTool.loadImage(recommendMoreBeen.get(position).getCover(),holder.coverImg);
     }
 
     @Override
