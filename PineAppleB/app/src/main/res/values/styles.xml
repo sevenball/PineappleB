@@ -84,7 +84,6 @@
         <item name="android:background">@drawable/fql_btn_pay</item>
     </style>
 
-
     <!--卫星菜单-->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
@@ -93,7 +92,5 @@
             backward-compatibility can go here.
         -->
     </style>
-
-
-
+    
 </resources>
