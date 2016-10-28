@@ -1,22 +1,21 @@
 package com.wangshiqi.pineappleb.ui.fragment.focus;
 
-import android.graphics.Color;
+
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
+
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.focus.ChannelBean;
-import com.wangshiqi.pineappleb.model.bean.focus.SortSetBean;
-import com.wangshiqi.pineappleb.model.net.IVolleyResult;
+
 import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
-import com.wangshiqi.pineappleb.model.net.VolleyInstance;
+
 import com.wangshiqi.pineappleb.ui.adapter.focus.ChannelAdapter;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
 import com.wangshiqi.pineappleb.utils.OnRvItemClick;
