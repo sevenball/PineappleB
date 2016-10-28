@@ -30,6 +30,7 @@ public class MainActivity extends AbsBaseActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
+//                transaction.setCustomAnimations(R.anim.slide_right_in, R.anim.slide_left_out);
                 switch (checkedId) {
                     case R.id.discovery_rb:
                         transaction.replace(R.id.replace_view, DiscoveryFragment.newInstance());
