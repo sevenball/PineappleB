@@ -10,30 +10,56 @@
         android:id="@+id/replace_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/load_anim_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/load_anim"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/load_anim_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/load_anim_iv"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:text="菠萝正在运输中..." />
+        </RelativeLayout>
+    </FrameLayout>
 
     <RadioGroup
         android:id="@+id/main_rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#fff">
+        android:background="#fff"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/discovery_rb"
             style="@style/main_rb"
             android:drawableTop="@drawable/dicovery_rb"
             android:text="发现" />
+
         <RadioButton
             android:id="@+id/hotest_rb"
             style="@style/main_rb"
             android:drawableTop="@drawable/hotest_rb"
             android:text="最火" />
+
         <RadioButton
             android:id="@+id/focus_rb"
             style="@style/main_rb"
             android:drawableTop="@drawable/focus_rb"
             android:text="关注" />
+
         <RadioButton
             android:id="@+id/mine_rb"
             style="@style/main_rb"

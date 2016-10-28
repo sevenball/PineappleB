@@ -51,7 +51,7 @@ public class RecommendStrongRvAdapter extends RecyclerView.Adapter<RecommendStro
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final RecommendStrongBean bean = datas.get(position);
         ImageLoaderTool.loadImage(bean.getAvatar(), holder.avatarImg);
-        ImageLoaderTool.loadImage(bean.getAvatar(), holder.coverImg);
+        ImageLoaderTool.loadImage(bean.getCover(), holder.coverImg);
         holder.titleTv.setText(bean.getTitle());
         holder.playCount.setText(bean.getPlayCount() + "次");
         holder.channelName.setText(bean.getChannelName());

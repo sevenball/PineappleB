@@ -21,9 +21,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:focusableInTouchMode="true"
                 android:background="#fff"
-                android:clipChildren="false" />
+                android:clipChildren="false"
+                android:focusableInTouchMode="true" />
         </FrameLayout>
 
         <TextView
@@ -33,6 +33,7 @@
             android:background="#fff"
             android:gravity="center"
             android:padding="5dp"
+            android:textColor="#000"
             android:textSize="12sp" />
 
         <LinearLayout
@@ -50,6 +51,7 @@
                 android:drawablePadding="3dp"
                 android:gravity="center_vertical"
                 android:text="菠萝君力荐"
+                android:textColor="#000"
                 android:textSize="12sp" />
 
             <TextView
@@ -94,6 +96,7 @@
                 android:drawablePadding="3dp"
                 android:gravity="center_vertical"
                 android:text="人气周榜"
+                android:textColor="#000"
                 android:textSize="12sp" />
 
             <TextView
@@ -118,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="#fff"/>
+            android:background="#fff" />
 
 
     </LinearLayout>
