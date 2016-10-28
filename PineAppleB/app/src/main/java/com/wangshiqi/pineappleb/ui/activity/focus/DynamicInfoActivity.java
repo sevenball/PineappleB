@@ -287,7 +287,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
          */
         @Override
         public void onPlayFinish() {
-            Log.d("MainActivity", "是");
+            Log.d("MainActivity", "完成");
         }
     };
 
@@ -309,7 +309,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
 
             WindowManager wm1 = this.getWindowManager();
             int height = wm1.getDefaultDisplay().getHeight();
-            Log.d("MainActivity", "height:" + height);
             ViewGroup.LayoutParams params = player.getLayoutParams();
             params.height = height;
             player.setLayoutParams(params);
