@@ -41,7 +41,7 @@
 
     <uses-feature android:name="android.hardware.nfc.hce" />
 
-    //地图包、搜索包需要的基础权限
+    //地图包、搜索包需要的基础权限 定位需要的权限
     <!--允许程序打开网络套接字-->
     <uses-permission android:name="android.permission.INTERNET" />
     <!--允许程序设置内置sd卡的写权限-->
@@ -54,6 +54,16 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!--用于写入缓存数据到扩展存储卡-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--用于申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
         android:name=".ui.app.PineAppleApp"
@@ -64,7 +74,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="key">132c68e370463c7576dd1cc7675b4ec1</meta-data>
+            android:value="0f3078d8a171335cc3b1042ab233ec83" />
 
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
@@ -109,6 +119,7 @@
 
         <activity android:name=".ui.activity.mine.GPSPlayActivity" />
 
+        <service android:name="com.amap.api.location.APSService"></service>
     </application>
 
 </manifest>
