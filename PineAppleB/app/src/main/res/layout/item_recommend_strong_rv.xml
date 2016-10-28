@@ -47,7 +47,7 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:text="11"
-                    android:textColor="#ffffff"
+                    android:textColor="#fff"
                     android:textSize="8sp" />
 
 
@@ -81,6 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="111"
-        android:textSize="12sp" />
+        android:layout_margin="5dp"
+        android:textSize="10sp" />
 
 </LinearLayout>

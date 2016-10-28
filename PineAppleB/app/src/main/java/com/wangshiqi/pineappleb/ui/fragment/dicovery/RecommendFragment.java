@@ -2,9 +2,13 @@ package com.wangshiqi.pineappleb.ui.fragment.dicovery;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -40,6 +44,7 @@ public class RecommendFragment extends AbsFragment {
     private RecommendHeadAdapter headAdapter;
     private List<HeadBean> datas;
     private TextView recommendTv;
+    private SwipeRefreshLayout recommendSr;
 
     private RecyclerView recyclerView;
     private RecommendStrongRvAdapter recommendStrongRvAdapter;
@@ -69,12 +74,27 @@ public class RecommendFragment extends AbsFragment {
         recyclerView = byView(R.id.recommend_rv_boluo);
         refreshIv = byView(R.id.refresh_civ);
         rankRv = byView(R.id.recommend_rv_rank);
+        recommendSr = byView(R.id.recommend_sr);
     }
 
     int i = 1;
 
     @Override
     protected void initDatas() {
+        recommendSr.setSize(SwipeRefreshLayout.LARGE);
+        // 设置下拉刷新距离
+        recommendSr.setDistanceToTriggerSync(100);
+        // 设置进度条背景颜色
+        recommendSr.setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.colorClassic));
+        // 设置动画的颜色
+        recommendSr.setColorSchemeColors(Color.WHITE);
+        recommendSr.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                LongTimeOperationTask task = new LongTimeOperationTask();
+                task.execute();
+            }
+        });
         startRoll();  // 上方自定义3D轮播图
         strongRv(); // 菠萝力荐
         refreshIv.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +105,25 @@ public class RecommendFragment extends AbsFragment {
             }
         });
         rank(); // 人气周榜
+    }
+    private class LongTimeOperationTask extends AsyncTask<String, Integer, String> {
+        @Override
+        protected void onPreExecute() {
+            recommendSr.setRefreshing(true);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            SystemClock.sleep(2000);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            headAdapter.notifyDataSetChanged();
+            rankRvAdapter.notifyDataSetChanged();
+            recommendSr.setRefreshing(false);
+        }
     }
 
     private void rank() {
@@ -177,7 +216,7 @@ public class RecommendFragment extends AbsFragment {
                 viewPager.setOffscreenPageLimit(3);
                 viewPager.setAdapter(headAdapter);
                 viewPager.setCurrentItem(datas.size() * 100);
-                viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
