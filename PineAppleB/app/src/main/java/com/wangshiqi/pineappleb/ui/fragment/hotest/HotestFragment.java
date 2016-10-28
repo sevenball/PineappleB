@@ -2,6 +2,7 @@ package com.wangshiqi.pineappleb.ui.fragment.hotest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class HotestFragment extends AbsFragment {
     private boolean isState = false;
     private int index;
     private List<DiscussBean.DataBean> data;
+    private CoordinatorLayout hotCardCrd;
 
 
     public static HotestFragment newInstance() {
@@ -54,6 +56,7 @@ public class HotestFragment extends AbsFragment {
     protected void initView() {
         hotestTitle = byView(R.id.title_tv);
         cardsView = byView(R.id.hot_swipe_card_view);
+//        hotCardCrd = byView(R.id.hot_card_crd);
 
     }
 

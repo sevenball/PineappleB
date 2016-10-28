@@ -22,6 +22,7 @@ import com.amap.api.maps.AMap;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.wangshiqi.pineappleb.R;
+import com.wangshiqi.pineappleb.ui.app.PineAppleApp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -208,7 +209,7 @@ public class GPSPlayActivity extends Activity implements LocationSource, View.On
                 String s = amapLocation.getAddress() + amapLocation.getCountry() + amapLocation.getProvince() + amapLocation.getCity() + amapLocation.getDistrict() + amapLocation.getStreet() + amapLocation.getStreetNum() + amapLocation.getCityCode() + amapLocation.getAdCode() + amapLocation.getAoiName();
                 Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
 
-                String GEOFENCE_BROADCAST_ACTION = "com.location.apis.geofencedemo.broadcast";
+                String GEOFENCE_BROADCAST_ACTION = "location";
                 IntentFilter fliter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
                 fliter.addAction(GEOFENCE_BROADCAST_ACTION);
                 //mGeoFenceReceiver为自定义的广播接收器
@@ -216,7 +217,7 @@ public class GPSPlayActivity extends Activity implements LocationSource, View.On
                 //创建PendingIntent对象
                 Intent intent = new Intent(GEOFENCE_BROADCAST_ACTION);
                 PendingIntent mPendingIntent = null;
-                mPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+                mPendingIntent = PendingIntent.getBroadcast(PineAppleApp.getContext(), 0, intent, 0);
                 //添加地理围栏，设置地理围栏中心点，半径等参数
                 mLocationClient.addGeoFenceAlert("556", latitude, longitude, 1000, 1000 * 60 * 30, mPendingIntent);
             } else {
