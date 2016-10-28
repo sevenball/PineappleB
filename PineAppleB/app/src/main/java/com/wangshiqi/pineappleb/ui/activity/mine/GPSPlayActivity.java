@@ -2,12 +2,6 @@ package com.wangshiqi.pineappleb.ui.activity.mine;
 
 
 import android.app.Activity;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,10 +13,11 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.LatLng;
 import com.wangshiqi.pineappleb.R;
-import com.wangshiqi.pineappleb.ui.app.PineAppleApp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,6 +41,8 @@ public class GPSPlayActivity extends Activity implements LocationSource, View.On
     //声明mLocationOption对象
     public AMapLocationClientOption mLocationOption = null;
     public AMapLocationClient mLocationClient = null;
+    private OnLocationChangedListener mListener = null;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -118,12 +115,12 @@ public class GPSPlayActivity extends Activity implements LocationSource, View.On
 
     @Override
     public void activate(OnLocationChangedListener onLocationChangedListener) {
-
+        mListener = onLocationChangedListener;
     }
 
     @Override
     public void deactivate() {
-
+        mListener = null;
     }
 
     @Override
@@ -208,18 +205,25 @@ public class GPSPlayActivity extends Activity implements LocationSource, View.On
 
                 String s = amapLocation.getAddress() + amapLocation.getCountry() + amapLocation.getProvince() + amapLocation.getCity() + amapLocation.getDistrict() + amapLocation.getStreet() + amapLocation.getStreetNum() + amapLocation.getCityCode() + amapLocation.getAdCode() + amapLocation.getAoiName();
                 Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+                // 这是缩放级别
+                aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+                // 将地图移动到定位点
+                aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(latitude, longitude)));
+                // 点击定位按钮能够将地图的中心移到定位点
+                mListener.onLocationChanged(amapLocation);
 
-                String GEOFENCE_BROADCAST_ACTION = "location";
-                IntentFilter fliter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-                fliter.addAction(GEOFENCE_BROADCAST_ACTION);
-                //mGeoFenceReceiver为自定义的广播接收器
-                registerReceiver(mGeoFenceReceiver, fliter);
-                //创建PendingIntent对象
-                Intent intent = new Intent(GEOFENCE_BROADCAST_ACTION);
-                PendingIntent mPendingIntent = null;
-                mPendingIntent = PendingIntent.getBroadcast(PineAppleApp.getContext(), 0, intent, 0);
-                //添加地理围栏，设置地理围栏中心点，半径等参数
-                mLocationClient.addGeoFenceAlert("556", latitude, longitude, 1000, 1000 * 60 * 30, mPendingIntent);
+
+//                String GEOFENCE_BROADCAST_ACTION = "location";
+//                IntentFilter fliter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+//                fliter.addAction(GEOFENCE_BROADCAST_ACTION);
+//                //mGeoFenceReceiver为自定义的广播接收器
+//                registerReceiver(mGeoFenceReceiver, fliter);
+//                //创建PendingIntent对象
+//                Intent intent = new Intent(GEOFENCE_BROADCAST_ACTION);
+//                PendingIntent mPendingIntent = null;
+//                mPendingIntent = PendingIntent.getBroadcast(PineAppleApp.getContext(), 0, intent, 0);
+//                //添加地理围栏，设置地理围栏中心点，半径等参数
+//                mLocationClient.addGeoFenceAlert("556", latitude, longitude, 1000, 1000 * 60 * 30, mPendingIntent);
             } else {
                 //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
                 Log.e("AmapError", "location Error, ErrCode:"
@@ -230,11 +234,11 @@ public class GPSPlayActivity extends Activity implements LocationSource, View.On
 
     }
 
-    //自定义广播接收器
-    private BroadcastReceiver mGeoFenceReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // 接收广播内容，处理进出的具体操作。
-        }
-    };
+//    //自定义广播接收器
+//    private BroadcastReceiver mGeoFenceReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            // 接收广播内容，处理进出的具体操作。
+//        }
+//    };
 }
