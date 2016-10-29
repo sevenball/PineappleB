@@ -18,6 +18,7 @@ import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
 import com.wangshiqi.pineappleb.ui.activity.focus.DynamicInfoActivity;
 import com.wangshiqi.pineappleb.ui.adapter.hotest.HotCardAdapter;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
+
 import com.wangshiqi.pineappleb.utils.ValueTool;
 
 import java.lang.reflect.Type;
@@ -149,6 +150,7 @@ public class HotestFragment extends AbsFragment {
                 cardAdapter.setDatas(bean);
                 cardsView.setAdapter(cardAdapter);
                 cardsView.notifyDatasetChanged(bean);
+
             }
         });
     }

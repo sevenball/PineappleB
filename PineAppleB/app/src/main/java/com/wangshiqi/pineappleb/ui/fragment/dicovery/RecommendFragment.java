@@ -107,6 +107,7 @@ public class RecommendFragment extends AbsFragment {
             public void onResponse(Object response) {
                 rankBeanList = JSON.parseArray(response.toString(), RecommendRankBean.class);
                 rankRvAdapter.setDatas(rankBeanList);
+
             }
         });
     }
