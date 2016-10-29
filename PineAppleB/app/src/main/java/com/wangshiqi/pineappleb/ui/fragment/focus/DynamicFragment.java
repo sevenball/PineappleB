@@ -67,6 +67,7 @@ public class DynamicFragment extends AbsFragment {
         // 刷新设置
         refreshDatas();
     }
+
     // 刷新设置方法
     private void refreshDatas() {
         swipeRefreshLayout.setSize(SwipeRefreshLayout.LARGE);

@@ -1,78 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="#fff"
     android:descendantFocusability="blocksDescendants"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/dynamic_cover"
-                android:scaleType="fitXY"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/dynamic_circle_img"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:src="@mipmap/ic_launcher" />
+                <ImageView
+                    android:id="@+id/dynamic_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/ic_launcher" />
 
-            <TextView
-                android:id="@+id/dynamic_channel_name"
-                android:layout_width="wrap_content"
-                android:textColor="@color/cardview_light_background"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_alignTop="@id/dynamic_circle_img"
-                android:layout_toRightOf="@id/dynamic_circle_img"
-                android:text="六点半变变" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/dynamic_circle_img"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/ic_launcher" />
 
-            <TextView
-                android:id="@+id/dynamic_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/cardview_light_background"
-                android:layout_alignBottom="@id/dynamic_circle_img"
-                android:layout_toRightOf="@id/dynamic_circle_img"
-                android:text="正片" />
+                <TextView
+                    android:id="@+id/dynamic_channel_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/dynamic_circle_img"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/dynamic_circle_img"
+                    android:text="六点半变变"
+                    android:textColor="@color/cardview_light_background" />
 
-            <ImageView
-                android:id="@+id/dynamic_play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@mipmap/focus_play" />
-            <Button
-                android:id="@+id/dynamic_duration"
-                android:layout_alignParentRight="true"
-                android:background="@null"
-                android:layout_marginRight="5dp"
-                android:layout_alignParentBottom="true"
-                android:layout_width="70dp"
-                android:layout_height="30dp" />
+                <TextView
+                    android:id="@+id/dynamic_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/dynamic_circle_img"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/dynamic_circle_img"
+                    android:text="正片"
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/dynamic_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/focus_play" />
+
+                <Button
+                    android:id="@+id/dynamic_duration"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    android:background="@null" />
 
 
-        </RelativeLayout>
+            </RelativeLayout>
         </FrameLayout>
 
         <TextView
@@ -92,49 +93,56 @@
                 android:id="@+id/dynamic_tag_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textSize="10sp"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="#搞笑" />
+                android:ellipsize="end"
+                android:maxEms="21"
+                android:singleLine="true"
+                android:text="#搞笑"
+                android:textSize="10sp" />
+
             <TextView
                 android:id="@+id/dynamic_tag_two"
-                android:layout_toRightOf="@id/dynamic_tag_one"
-                android:layout_alignTop="@id/dynamic_tag_one"
-                android:layout_marginLeft="5dp"
-
-                android:textSize="10sp"
-                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/dynamic_tag_one"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/dynamic_tag_one"
+                android:textSize="10sp" />
+
             <TextView
                 android:id="@+id/dynamic_tag_three"
                 android:layout_width="wrap_content"
-                android:textSize="10sp"
+                android:layout_height="wrap_content"
                 android:layout_alignTop="@id/dynamic_tag_one"
-                android:layout_toRightOf="@id/dynamic_tag_two"
-
                 android:layout_centerVertical="true"
+
                 android:layout_marginLeft="5dp"
-                android:layout_height="wrap_content" />
+                android:layout_toRightOf="@id/dynamic_tag_two"
+                android:textSize="10sp" />
+
             <TextView
                 android:id="@+id/dynamic_play_count"
-                android:text="215次"
-                android:textColor="#000000"
-                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@id/dynamic_tag_one"
-                android:layout_marginRight="10dp"
                 android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_marginRight="10dp"
+                android:text="215次"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+
             <ImageView
                 android:id="@+id/dynamic_count_img"
                 android:layout_width="wrap_content"
-                android:layout_toLeftOf="@id/dynamic_play_count"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/focus_dynamic"/>
+                android:layout_toLeftOf="@id/dynamic_play_count"
+                android:src="@mipmap/focus_dynamic" />
 
 
         </RelativeLayout>

@@ -23,4 +23,18 @@
     <dimen name="hot_card_play_share_text_size">10sp</dimen>
 
 
+    <!--详情页相关-->
+    <dimen name="dynamic_SuperVideoPlayer">220dp</dimen>
+    <dimen name="dynamic_base">10dp</dimen>
+    <dimen name="dynamic_five">5dp</dimen>
+    <dimen name="dynamic_title_top">15dp</dimen>
+    <dimen name="dynamic_set_size">3dp</dimen>
+    <dimen name="dynamic_download">20dp</dimen>
+
+
+
+    <dimen name="dynamic_intro_size">8sp</dimen>
+    <dimen name="dynamic_tag_size">10sp</dimen>
+
+
 </resources>

@@ -105,13 +105,11 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
     List<RecommendMoreBean> recommendMoreBeen;
     private ScrollView scrollView;
 
-
     @Override
     protected int setLayout() {
         return R.layout.activity_dynamic_info;
 
     }
-
 
     @Override
     protected void initViews() {
@@ -178,7 +176,6 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
         mp4Play();
 
     }
-
 
     // 视频播放相关
     private void mp4Play() {
@@ -272,7 +269,6 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
 
     }
 
-
     //===========视频播放相关============
     /**
      * 播放器的回调函数
@@ -314,7 +310,6 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
             Log.d("MainActivity", "完成");
         }
     };
-
 
     /***
      * 旋转屏幕之后回调
@@ -388,6 +383,7 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
                 break;
         }
     }
+
     // 弹出Dialog
     private void dialogCreate() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

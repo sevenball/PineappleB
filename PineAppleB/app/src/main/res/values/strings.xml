@@ -14,6 +14,14 @@
         <item>动态</item>
         <item>频道</item>
     </string-array>
+    <!--详情页相关-->
+    <string name="dynamic_talk">评论区</string>
+    <string name="dynamic_recommend">更多推荐</string>
+    <string name="dynamic_set">分集</string>
+    <string name="dynamic_download">下载</string>
+    <string name="dynamic_favor">马克</string>
+    <string name="dynamic_share">安利</string>
+
 
     <!--最火标题-->
     <string name="hotest_tv">

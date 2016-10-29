@@ -30,7 +30,9 @@ public class ValueTool {
      * 关注界面的接口
      */
     // 动态界面接口
-    public static final String DYNAMICURL = "http://m.live.netease.com/bolo/api/user/timeLine.htm?pageNum=1&lastTime=2016-10-15%2010%3A59%3A46&encryptToken=dfc23870c7ad025e735f8a76859d1a0d&random=0.2582823928479111&userId=-2798972347206426236&pageSize=40&timeStamp=1476446520350";
+//    public static final String DYNAMICURL = "http://m.live.netease.com/bolo/api/user/timeLine.htm?pageNum=1&lastTime=2016-10-15%2010%3A59%3A46&encryptToken=dfc23870c7ad025e735f8a76859d1a0d&random=0.2582823928479111&userId=-2798972347206426236&pageSize=40&timeStamp=1476446520350";
+    public static final String DYNAMICURL = "http://m.live.netease.com/bolo/api/user/timeLine.htm?pageNum=1&lastTime=2016-10-29%2017%3A28%3A08&encryptToken=5f724098912f342454785185628447bc&random=0.02496582080295462&userId=-2798972347206426236&pageSize=60&timeStamp=1476793248225";
+
     // 更多推荐接口
     public static final String RECOMMENDMOREURLLEFT = "http://m.live.netease.com/bolo/api/video/relations.htm?videoId=";
     // 分集接口
@@ -42,5 +44,6 @@ public class ValueTool {
     /**
      * 频道界面的接口
      */
+//    public static final String CHANNELURL = "http://m.live.netease.com/bolo/api/user/follows.htm?pageNum=1&encryptToken=5f724098912f342454785185628447bc&random=0.02496582080295462&userId=-2798972347206426236&pageSize=21&timeStamp=1476793248225";
     public static final String CHANNELURL = "http://m.live.netease.com/bolo/api/user/follows.htm?pageNum=1&encryptToken=5f724098912f342454785185628447bc&random=0.02496582080295462&userId=-2798972347206426236&pageSize=21&timeStamp=1476793248225";
 }

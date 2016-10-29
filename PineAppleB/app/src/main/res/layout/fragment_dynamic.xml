@@ -8,6 +8,6 @@
         android:id="@+id/dynamic_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="#fff"/>
+        android:divider="@color/dynamic_title_ll"/>
 
 </android.support.v4.widget.SwipeRefreshLayout>

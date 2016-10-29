@@ -17,6 +17,13 @@
     <!--主题颜色 屎黄-->
     <color name="colorClassic">#F09800</color>
     <color name="black">#000000</color>
+    <!--详情页相关-->
+    <color name="dynamic_ll">#eff5f7</color>
+    <color name="dynamic_title_ll">#ffffff</color>
+    <color name="dynamic_title_color">#000000</color>
+
+
+
 
 
     <!--二维码-->
