@@ -1,12 +1,20 @@
 package com.wangshiqi.pineappleb.ui.activity.focus;
 
+import android.app.Dialog;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +25,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
@@ -27,6 +36,7 @@ import com.wangshiqi.pineappleb.model.bean.focus.RecommendMoreBean;
 import com.wangshiqi.pineappleb.model.bean.focus.SortSetBean;
 import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
 import com.wangshiqi.pineappleb.ui.activity.AbsBaseActivity;
+import com.wangshiqi.pineappleb.ui.activity.MainActivity;
 import com.wangshiqi.pineappleb.ui.adapter.focus.DiscussAdapter;
 import com.wangshiqi.pineappleb.ui.adapter.focus.RecmmendMoreAdapter;
 import com.wangshiqi.pineappleb.ui.adapter.focus.SortSetAdapter;
@@ -42,10 +52,14 @@ import wkvideoplayer.view.SuperVideoPlayer;
 /**
  * Created by dllo on 16/10/19.
  */
-public class DynamicInfoActivity extends AbsBaseActivity {
+public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClickListener {
+    // 下载相关
+    private TextView downLoadTv;
+    DownloadManager downManager;
+    long id;
+    private DownLoadCompleteReceiver receiver;
 
     private MediaController mediaController;
-
     // 要接收的值
     private TextView titleTv;
     private TextView introTv;
@@ -101,7 +115,8 @@ public class DynamicInfoActivity extends AbsBaseActivity {
 
     @Override
     protected void initViews() {
-        SwipeBackHelper.onCreate(this); // 手势相关
+        // 手势相关
+        SwipeBackHelper.onCreate(this);
         SwipeBackHelper.getCurrentPage(this)//获取当前页面
                 .setSwipeBackEnable(true)//设置是否可滑动
                 .setSwipeEdge(200)//可滑动的范围。px。200表示为左边200px的屏幕
@@ -111,6 +126,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
                 .setSwipeRelateEnable(false)//是否与下一级activity联动(微信效果)。默认关
                 .setSwipeRelateOffset(500)//activity联动时的偏移量。默认500px。
                 .setDisallowInterceptTouchEvent(false);//不抢占事件，默认关（事件将先由子View处理再由滑动关闭处理）
+        //================================================================================================
         titleTv = byView(R.id.dynamic_info_title);
         introTv = byView(R.id.dynamic_info_intro);
         tagTv = byView(R.id.dynamic_info_tag);
@@ -124,14 +140,24 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         discussCount = byView(R.id.discuss_count);
         // 视频播放相关
         player = byView(R.id.dynamic_info_video);
+        // 视频下载相关
+        downLoadTv = byView(R.id.dynamic_info_download);
+        downLoadTv.setOnClickListener(this);
+        downManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
 
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+        filter.addAction(DownloadManager.ACTION_NOTIFICATION_CLICKED);
+        receiver = new DownLoadCompleteReceiver();
+        registerReceiver(receiver, filter);
+
+
+        // 返回键点击
         backImg = byView(R.id.dynamic_info_back);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-
-//                overridePendingTransition(R.anim.anim_enter_translate, R.anim.anim_exit_translate);
             }
         });
 
@@ -237,6 +263,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         introTv.setText(intent.getStringExtra("intro"));
         formatTag = intent.getStringExtra("tag");
         finalTag = formatTag.replace(",", "   #  ");
+        linkMp4 = intent.getStringExtra("linkMp4");
         tagTv.setText("#  " + finalTag);
         videoId = intent.getLongExtra("videoId", 0);
         playCount.setText(intent.getIntExtra("playCount", 0) + "次");
@@ -349,5 +376,88 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         SwipeBackHelper.onDestroy(this);
+        unregisterReceiver(receiver);
     }
+
+    // 视频下载点击事件
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.dynamic_info_download:
+                dialogCreate();
+                break;
+        }
+    }
+    // 弹出Dialog
+    private void dialogCreate() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // 对话框的标题和图标
+        builder.setTitle("网易菠萝为您服务");
+        builder.setIcon(R.drawable.ic_toast_bolo);
+        // 设置信息内容
+        builder.setMessage("您确定要下载吗?");
+        // 设置按钮
+        // 确定按钮
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // 下载视频方法
+                downLoadVideo();
+            }
+        });
+        // 忽略按钮
+        builder.setNeutralButton("忽略", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(DynamicInfoActivity.this, "下次再说", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 不确认的
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(DynamicInfoActivity.this, "已取消下载", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        // 对话框的显示需要  builder(创建者)生成并显示
+        builder.create().show();
+    }
+
+    // 视频下载相关
+    private void downLoadVideo() {
+        DownloadManager.Request request =
+                new DownloadManager.Request(Uri.parse(linkMp4));
+        //设置在什么网络情况下进行下载
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+        //设置通知栏标题
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+        request.setTitle("正在下载");
+        request.setDescription(getIntent().getStringExtra("title"));
+        request.setAllowedOverRoaming(false);
+        //设置文件存放目录
+        request.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, getIntent().getStringExtra("title"));
+        //将下载请求添加至downManager,注意enqueue方法的编号为当前
+        id = downManager.enqueue(request);
+
+    }
+
+    // 视频下载广播接收者
+    private class DownLoadCompleteReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) {
+                long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+
+                Toast.makeText(DynamicInfoActivity.this, "下载完成!", Toast.LENGTH_SHORT).show();
+            } else if (intent.getAction().equals(DownloadManager.ACTION_NOTIFICATION_CLICKED)) {
+//                Toast.makeText(MainActivity.this, "别瞎点!!!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
 }
