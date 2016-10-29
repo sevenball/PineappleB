@@ -75,9 +75,5 @@ public class MainActivity extends AbsBaseActivity  {
         radioGroup.check(R.id.discovery_rb);
     }
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> feature/王林
 }
