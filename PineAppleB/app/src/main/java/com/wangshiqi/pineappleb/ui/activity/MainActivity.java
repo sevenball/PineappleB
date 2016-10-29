@@ -29,8 +29,7 @@ public class MainActivity extends AbsBaseActivity {
         radioGroup = byView(R.id.main_rg);
         loadAnimIv = byView(R.id.load_anim_iv);
         loadAnimTv = byView(R.id.load_anim_tv);
-        AnimationDrawable animationDrawable = (AnimationDrawable) loadAnimIv.getBackground();
-        animationDrawable.start();
+
     }
 
     @Override
@@ -40,15 +39,24 @@ public class MainActivity extends AbsBaseActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-
+                AnimationDrawable animationDrawable = (AnimationDrawable) loadAnimIv.getBackground();
                 switch (checkedId) {
                     case R.id.discovery_rb:
+                        loadAnimIv.setVisibility(View.VISIBLE);
+                        loadAnimTv.setVisibility(View.VISIBLE);
+                        animationDrawable.start();
                         transaction.replace(R.id.replace_view, DiscoveryFragment.newInstance());
                         break;
                     case R.id.hotest_rb:
+                        loadAnimIv.setVisibility(View.VISIBLE);
+                        loadAnimTv.setVisibility(View.VISIBLE);
+                        animationDrawable.start();
                         transaction.replace(R.id.replace_view, HotestFragment.newInstance());
                         break;
                     case R.id.focus_rb:
+                        loadAnimIv.setVisibility(View.VISIBLE);
+                        loadAnimTv.setVisibility(View.VISIBLE);
+                        animationDrawable.start();
                         transaction.replace(R.id.replace_view, FocusFragment.newInstance());
                         break;
                     case R.id.mine_rb:
