@@ -1,6 +1,5 @@
 package com.wangshiqi.pineappleb.ui.activity.focus;
 
-import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -34,9 +33,9 @@ import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.focus.DiscussBean;
 import com.wangshiqi.pineappleb.model.bean.focus.RecommendMoreBean;
 import com.wangshiqi.pineappleb.model.bean.focus.SortSetBean;
+import com.wangshiqi.pineappleb.model.net.NetHttpJudge;
 import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
 import com.wangshiqi.pineappleb.ui.activity.AbsBaseActivity;
-import com.wangshiqi.pineappleb.ui.activity.MainActivity;
 import com.wangshiqi.pineappleb.ui.adapter.focus.DiscussAdapter;
 import com.wangshiqi.pineappleb.ui.adapter.focus.RecmmendMoreAdapter;
 import com.wangshiqi.pineappleb.ui.adapter.focus.SortSetAdapter;
@@ -105,6 +104,9 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
     List<RecommendMoreBean> recommendMoreBeen;
     private ScrollView scrollView;
 
+    //网络判断
+    private NetHttpJudge judge;
+
 
     @Override
     protected int setLayout() {
@@ -126,7 +128,6 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
                 .setSwipeRelateEnable(false)//是否与下一级activity联动(微信效果)。默认关
                 .setSwipeRelateOffset(500)//activity联动时的偏移量。默认500px。
                 .setDisallowInterceptTouchEvent(false);//不抢占事件，默认关（事件将先由子View处理再由滑动关闭处理）
-        //================================================================================================
         titleTv = byView(R.id.dynamic_info_title);
         introTv = byView(R.id.dynamic_info_intro);
         tagTv = byView(R.id.dynamic_info_tag);
@@ -176,8 +177,9 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
         discussData();
         // 视频播放相关
         mp4Play();
-
+        // 网络判断
     }
+
 
 
     // 视频播放相关
