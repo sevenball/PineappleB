@@ -3,24 +3,24 @@
 
     <item
         android:drawable="@drawable/list_loading1"
-        android:duration="100" />
+        android:duration="300" />
     <item
         android:drawable="@drawable/list_loading2"
-        android:duration="100" />
+        android:duration="300" />
     <item
         android:drawable="@drawable/list_loading3"
-        android:duration="100" />
+        android:duration="300" />
     <item
         android:drawable="@drawable/list_loading4"
-        android:duration="100" />
+        android:duration="300" />
     <item
         android:drawable="@drawable/list_loading5"
-        android:duration="100" />
+        android:duration="300" />
     <item
         android:drawable="@drawable/list_loading6"
-        android:duration="100" />
+        android:duration="300" />
     <item
         android:drawable="@drawable/list_loading7"
-        android:duration="100" />
+        android:duration="200" />
 
 </animation-list>
