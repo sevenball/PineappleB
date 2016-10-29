@@ -119,7 +119,6 @@ public class HotCardAdapter extends BaseCardAdapter implements View.OnClickListe
                 if (favorState.get(newPosition) == false) {
                     Log.d("HotCardAdapter", "position:" + position);
                     imageView.setImageResource(R.mipmap.video_player_favored);
-                    Toast.makeText(context, "点击了心", Toast.LENGTH_SHORT).show();
                     favorState.put(newPosition, true);
                 } else if (favorState.get(newPosition) == true) {
                     imageView.setImageResource(R.mipmap.video_player_favor);

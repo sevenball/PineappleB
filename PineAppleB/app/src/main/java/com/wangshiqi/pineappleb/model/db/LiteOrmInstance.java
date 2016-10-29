@@ -4,6 +4,7 @@ import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.assit.QueryBuilder;
 import com.litesuits.orm.db.assit.WhereBuilder;
 import com.wangshiqi.pineappleb.ui.app.PineAppleApp;
+
 import java.util.List;
 
 /**
@@ -69,18 +70,18 @@ public class LiteOrmInstance {
     /**
      * 根据条件查询
      */
-    public List<PineAppleBean> queryByTitle(String title) {
+    public List<PineAppleBean> queryByTitle(Object title) {
         QueryBuilder<PineAppleBean> qb = new QueryBuilder<>(PineAppleBean.class);
-        qb.where("title = ?", new String[]{title});
+        qb.where("title = ?", new Object[]{title});
         return liteOrm.query(qb);
     }
 
     /**
      * start end 限制条数 如果查询100条 限制使用多少条 从第几条到第几条
      */
-    public List<PineAppleBean> queryByTitle(String title, int start, int end) {
+    public List<PineAppleBean> queryByTitle(Object title, int start, int end) {
         QueryBuilder<PineAppleBean> qb = new QueryBuilder<>(PineAppleBean.class);
-        qb.where("title = ?", new String[]{title});
+        qb.where("title = ?", new Object[]{title});
         qb.limit(start, end);
         return liteOrm.query(qb);
     }
@@ -88,9 +89,9 @@ public class LiteOrmInstance {
     /**
      * 按条件删除
      */
-    public void deleteByTitle(String title) {
+    public void deleteByTitle(Object title) {
         WhereBuilder wb = new WhereBuilder(PineAppleBean.class);
-        wb.where("title = ?", new String[]{title});
+        wb.where("title = ?", new Object[]{title});
         liteOrm.delete(wb);
     }
 

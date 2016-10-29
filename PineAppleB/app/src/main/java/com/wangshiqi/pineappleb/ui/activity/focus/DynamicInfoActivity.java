@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
@@ -25,6 +26,7 @@ import com.wangshiqi.pineappleb.R;
 import com.wangshiqi.pineappleb.model.bean.focus.DiscussBean;
 import com.wangshiqi.pineappleb.model.bean.focus.RecommendMoreBean;
 import com.wangshiqi.pineappleb.model.bean.focus.SortSetBean;
+import com.wangshiqi.pineappleb.model.net.NetHttpJudge;
 import com.wangshiqi.pineappleb.model.net.OkHttpInstance;
 import com.wangshiqi.pineappleb.ui.activity.AbsBaseActivity;
 import com.wangshiqi.pineappleb.ui.adapter.focus.DiscussAdapter;
@@ -91,6 +93,9 @@ public class DynamicInfoActivity extends AbsBaseActivity {
     List<RecommendMoreBean> recommendMoreBeen;
     private ScrollView scrollView;
 
+    //网络判断
+    private NetHttpJudge judge;
+
 
     @Override
     protected int setLayout() {
@@ -152,8 +157,16 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         discussData();
         // 视频播放相关
         mp4Play();
+        // 网络判断
+        checkNet();
+    }
 
-
+    private void checkNet() {
+        if (judge.isNetworkAvailable(this)) {
+            Toast.makeText(this, "连接的无效网", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "移动网络", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
