@@ -106,6 +106,7 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
 
     //网络判断
     private NetHttpJudge judge;
+    private int netState;
 
 
     @Override
@@ -170,16 +171,74 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
         // 接收跳转时传来的值
         receiveData();
         // 分集数据的设置
-        sortSetData();
+//        sortSetData();
         // 更多推荐数据的设置
-        recommendData();
+//        recommendData();
         // 评论区数据的设置
-        discussData();
+//        discussData();
         // 视频播放相关
-        mp4Play();
+//        mp4Play();
         // 网络判断
+        netState = judge.GetNetype(this);
+        checkNet(netState);
     }
 
+    //
+    private void checkNet(int netState) {
+        switch (netState) {
+            case -1:
+                Toast.makeText(this, "没有可用的网络", Toast.LENGTH_SHORT).show();
+                break;
+            case 1: // WIFI网络
+                sortSetData();
+                // 更多推荐数据的设置
+                recommendData();
+                // 评论区数据的设置
+                discussData();
+                // 视频播放相关
+                mp4Play();
+                break;
+            case 2: // wap网络
+                showNetStateDialog();
+                break;
+            case 3: // net网络
+                showNetStateDialog();
+                break;
+        }
+    }
+
+    // 网络状态的Dialog
+    private void showNetStateDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.mipmap.logo);
+        builder.setTitle("网络状态判定");
+        builder.setMessage("现在的网络状态是手机移动数据, 继续将可能产生格外的费用, 是否继续观看?");
+        builder.setPositiveButton("继续", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                sortSetData();
+                // 更多推荐数据的设置
+                recommendData();
+                // 评论区数据的设置
+                discussData();
+                // 视频播放相关
+                mp4Play();
+            }
+        });
+        builder.setNegativeButton("返回", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+        builder.setNeutralButton("想想", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+        builder.create().show();
+    }
 
 
     // 视频播放相关
@@ -390,6 +449,7 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
                 break;
         }
     }
+
     // 弹出Dialog
     private void dialogCreate() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
