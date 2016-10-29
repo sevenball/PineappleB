@@ -124,8 +124,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         discussCount = byView(R.id.discuss_count);
         // 视频播放相关
         player = byView(R.id.dynamic_info_video);
-        // 横竖屏切换布局
-
 
         backImg = byView(R.id.dynamic_info_back);
         backImg.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +131,7 @@ public class DynamicInfoActivity extends AbsBaseActivity {
             public void onClick(View v) {
                 finish();
 
-                overridePendingTransition(R.anim.anim_enter_translate, R.anim.anim_exit_translate);
+//                overridePendingTransition(R.anim.anim_enter_translate, R.anim.anim_exit_translate);
             }
         });
 
@@ -152,7 +150,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
         discussData();
         // 视频播放相关
         mp4Play();
-
 
     }
 
@@ -294,8 +291,6 @@ public class DynamicInfoActivity extends AbsBaseActivity {
 
     /***
      * 旋转屏幕之后回调
-     *
-     * @param newConfig newConfig
      */
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

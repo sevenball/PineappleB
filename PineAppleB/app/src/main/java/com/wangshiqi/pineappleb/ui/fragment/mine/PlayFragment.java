@@ -12,6 +12,7 @@ import com.wangshiqi.pineappleb.ui.activity.mine.PayPlayActivity;
 import com.wangshiqi.pineappleb.ui.activity.mine.QRPlayActivity;
 import com.wangshiqi.pineappleb.ui.fragment.AbsFragment;
 
+
 /**
  * Created by dllo on 16/10/26.
  */
@@ -44,6 +45,7 @@ public class PlayFragment extends AbsFragment implements ArcMenu.onMenuItemClick
     @Override
     protected void initDatas() {
         centerArcMenu.setOnMenuItemClickListner(this);
+
     }
     @Override
     public void onClick(View childView, int position) {

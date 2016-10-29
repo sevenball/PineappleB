@@ -75,6 +75,7 @@ public class MustWatchFragment extends AbsFragment {
             public void onResponse(Object response) {
                 datas = JSON.parseArray(response.toString(), MustWatchBean.class);
                 mustWatchLvAdapter.setmDatas(datas);
+
             }
         });
         watchLv.setAdapter(mustWatchLvAdapter);

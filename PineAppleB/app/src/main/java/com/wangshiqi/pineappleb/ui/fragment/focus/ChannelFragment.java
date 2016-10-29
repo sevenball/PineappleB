@@ -85,7 +85,6 @@ public class ChannelFragment extends AbsFragment{
                 Type type= new TypeToken<List<ChannelBean>>(){}.getType();
                 List<ChannelBean> bean = gson.fromJson(response.toString(),type);
                 channelAdapter.setChannelBeen(bean);
-
             }
         });
         recyclerView.setAdapter(channelAdapter);

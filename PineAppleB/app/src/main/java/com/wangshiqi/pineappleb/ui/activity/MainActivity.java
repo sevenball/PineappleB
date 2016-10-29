@@ -9,13 +9,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.wangshiqi.pineappleb.R;
+
 import com.wangshiqi.pineappleb.ui.fragment.dicovery.DiscoveryFragment;
 import com.wangshiqi.pineappleb.ui.fragment.focus.FocusFragment;
 import com.wangshiqi.pineappleb.ui.fragment.hotest.HotestFragment;
 import com.wangshiqi.pineappleb.ui.fragment.mine.PlayFragment;
 
-public class MainActivity extends AbsBaseActivity {
+public class MainActivity extends AbsBaseActivity  {
     private RadioGroup radioGroup;
+
     private ImageView loadAnimIv;
     private TextView loadAnimTv;
 
@@ -65,6 +67,7 @@ public class MainActivity extends AbsBaseActivity {
                         transaction.replace(R.id.replace_view, PlayFragment.newInstance());
                         break;
                 }
+
                 transaction.commit();
             }
         });
@@ -72,6 +75,9 @@ public class MainActivity extends AbsBaseActivity {
         radioGroup.check(R.id.discovery_rb);
     }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> feature/王林
 }

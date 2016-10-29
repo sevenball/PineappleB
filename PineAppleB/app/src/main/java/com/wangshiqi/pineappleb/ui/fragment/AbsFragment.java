@@ -31,6 +31,7 @@ import com.wangshiqi.bestgift.ui.activity.AbsBaseActivity;
 public abstract class AbsFragment extends Fragment {
     protected Context context;
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -63,4 +64,5 @@ public abstract class AbsFragment extends Fragment {
     protected void goTo(Class<? extends AbsBaseActivity> to) {
         context.startActivity(new Intent(context, to));
     }
+
 }
