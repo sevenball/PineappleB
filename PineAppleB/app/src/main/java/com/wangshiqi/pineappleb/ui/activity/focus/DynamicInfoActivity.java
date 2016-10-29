@@ -178,16 +178,8 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
         // 视频播放相关
         mp4Play();
         // 网络判断
-        checkNet();
     }
 
-    private void checkNet() {
-        if (judge.isNetworkAvailable(this)) {
-            Toast.makeText(this, "连接的无效网", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "移动网络", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 
     // 视频播放相关
