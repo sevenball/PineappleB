@@ -422,7 +422,6 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
         });
 
 
-
         // 对话框的显示需要  builder(创建者)生成并显示
         builder.create().show();
     }
