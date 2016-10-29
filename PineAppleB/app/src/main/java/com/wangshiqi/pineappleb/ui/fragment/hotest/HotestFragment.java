@@ -57,7 +57,6 @@ public class HotestFragment extends AbsFragment {
     protected void initView() {
         hotestTitle = byView(R.id.title_tv);
         cardsView = byView(R.id.hot_swipe_card_view);
-//        hotCardCrd = byView(R.id.hot_card_crd);
 
     }
 
@@ -66,13 +65,17 @@ public class HotestFragment extends AbsFragment {
         hotestTitle.setText(getResources().getString(R.string.hotest_tv));
 
         cardAdapter = new HotCardAdapter(context);
+        // 网络判断
+//        checkNetState();
         // 卡片的数据请求
         cardDataRequest();
         // 卡片的滑动监听和点击事件
         cardsSlideListener();
         // 卡片评论数据请求
 
+
     }
+
 
     /**
      * 卡片的滑动监听和点击事件
@@ -123,7 +126,6 @@ public class HotestFragment extends AbsFragment {
                 }
                 Log.d("HotestFragment", "index%15:" + index + "---->" + (index % 15) + "");
                 context.startActivity(intent);
-                Toast.makeText(context, "卡片的点击事件", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -154,5 +156,10 @@ public class HotestFragment extends AbsFragment {
             }
         });
     }
+
+
+    /**
+     * 网络判断
+     */
 
 }
