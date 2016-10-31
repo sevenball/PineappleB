@@ -50,7 +50,7 @@ public class DynamicFragmentAdapter extends AbsBaseAdapter<DynamicBean.ListBean,
         String time = formatter.format(formatTime);
 
         viewHolder.durationBtn.setText(time);
-        viewHolder.durationBtn.setTextColor(Color.parseColor("#ffffff"));
+        viewHolder.durationBtn.setTextColor(Color.WHITE);
         viewHolder.titleTv.setText(itemData.getTitle());
         viewHolder.channelNameTv.setText(itemData.getChannelName());
         viewHolder.nameTv.setText(itemData.getSetName());
@@ -62,7 +62,7 @@ public class DynamicFragmentAdapter extends AbsBaseAdapter<DynamicBean.ListBean,
 
     class ViewHolder extends AbsBaseAdapter.BaseHolder{
         TextView channelNameTv,nameTv,titleTv,tagOneTv,tagTwoTv,tagThreeTv,countTv;
-        Button durationBtn;
+        TextView durationBtn;
         ImageView circleImg,playImg,countImg,coverImg;
 
         public ViewHolder(View itemView) {
@@ -78,7 +78,7 @@ public class DynamicFragmentAdapter extends AbsBaseAdapter<DynamicBean.ListBean,
             playImg = (ImageView) itemView.findViewById(R.id.dynamic_play);
             countImg = (ImageView) itemView.findViewById(R.id.dynamic_count_img);
             coverImg = (ImageView) itemView.findViewById(R.id.dynamic_cover);
-            durationBtn = (Button) itemView.findViewById(R.id.dynamic_duration);
+            durationBtn = (TextView) itemView.findViewById(R.id.dynamic_duration);
         }
     }
 

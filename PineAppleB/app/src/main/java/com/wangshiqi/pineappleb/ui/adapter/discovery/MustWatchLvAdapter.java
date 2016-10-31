@@ -39,6 +39,7 @@ public class MustWatchLvAdapter extends AbsBaseAdapter<MustWatchBean, MustWatchL
             mustWatchViewHolder.bannerTag.setText(itemData.getBannerTag());
             mustWatchViewHolder.bannerTag.setBackground(context.getDrawable(R.drawable.fuli_shape));
         } else {
+
             mustWatchViewHolder.bannerTag.setVisibility(View.INVISIBLE);
         }
         ImageLoaderTool.loadImage(itemData.getBannerPic(), mustWatchViewHolder.bannerPic);
