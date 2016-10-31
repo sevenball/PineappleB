@@ -16,7 +16,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,20 +89,16 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
     private DiscussListView listView;
     private DiscussAdapter discussAdapter;
     private TextView discussCount;
-    // CollapsingToolbarLayout的声明
 
     private ImageView backImg;
-
     // 横竖屏保存高度
 
     private int saveHeight;
     private int saveWidth;
 
-    //
     List<SortSetBean> sortSetBeen;
     List<RecommendMoreBean> recommendMoreBeen;
     private ScrollView scrollView;
-
 
     //网络判断
     private NetHttpJudge judge;
@@ -114,7 +109,6 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
     @Override
     protected int setLayout() {
         return R.layout.activity_dynamic_info;
-
     }
 
     @Override
@@ -138,7 +132,6 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
         scrollView = byView(R.id.dynamic_sv);
         sortSetRl = byView(R.id.sort_set_rl);
         recommendMoreRl = byView(R.id.recommend_more_rl);
-
         listView = byView(R.id.dynamic_info_lv);
         discussCount = byView(R.id.discuss_count);
         // 视频播放相关
@@ -183,6 +176,8 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
         netState = judge.GetNetype(this);
         checkNet(netState);
     }
+
+
 
     //
     private void checkNet(int netState) {
@@ -371,7 +366,6 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
          */
         @Override
         public void onPlayFinish() {
-            Log.d("MainActivity", "完成");
         }
     };
 

@@ -1,244 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dyanmic_parent_sv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:scrollbars="none">
 
-    <FrameLayout
-        android:id="@+id/dynamic_fl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <wkvideoplayer.view.SuperVideoPlayer
-            android:id="@+id/dynamic_info_video"
+
+        <FrameLayout
+            android:id="@+id/dynamic_fl"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dynamic_SuperVideoPlayer" />
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/dynamic_info_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dynamic_base"
-            android:src="@mipmap/channel_intro_back" />
+            <wkvideoplayer.view.SuperVideoPlayer
+                android:id="@+id/dynamic_info_video"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dynamic_SuperVideoPlayer" />
 
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/dynamic_info_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dynamic_base"
+                android:src="@mipmap/channel_intro_back" />
 
-    <ScrollView
-        android:id="@+id/dynamic_sv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+        </FrameLayout>
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/dynamic_sv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/dynamic_ll"
-            android:orientation="vertical">
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/dynamic_ll"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/dynamic_title_ll"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/dynamic_info_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dynamic_base"
-                        android:layout_marginRight="@dimen/dynamic_base"
-                        android:layout_marginTop="@dimen/dynamic_title_top"
-                        android:textColor="@color/dynamic_title_color" />
-
-                    <TextView
-                        android:id="@+id/dynamic_info_intro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dynamic_base"
-                        android:layout_marginLeft="@dimen/dynamic_base"
-                        android:layout_marginRight="@dimen/dynamic_base"
-                        android:layout_marginTop="@dimen/dynamic_base"
-                        android:textColor="@color/dynamic_title_color"
-                        android:textSize="@dimen/dynamic_intro_size" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:background="@color/dynamic_title_ll"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/dynamic_info_tag"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/dynamic_info_title"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dynamic_base"
                             android:layout_marginRight="@dimen/dynamic_base"
-                            android:textSize="@dimen/dynamic_tag_size" />
+                            android:layout_marginTop="@dimen/dynamic_title_top"
+                            android:textColor="@color/dynamic_title_color" />
+
+                        <TextView
+                            android:id="@+id/dynamic_info_intro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dynamic_base"
+                            android:layout_marginLeft="@dimen/dynamic_base"
+                            android:layout_marginRight="@dimen/dynamic_base"
+                            android:layout_marginTop="@dimen/dynamic_base"
+                            android:textColor="@color/dynamic_title_color"
+                            android:textSize="@dimen/dynamic_intro_size" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/dynamic_info_tag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dynamic_base"
+                                android:layout_marginRight="@dimen/dynamic_base"
+                                android:textSize="@dimen/dynamic_tag_size" />
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/dynamic_base"
+                            android:layout_marginRight="@dimen/dynamic_base"
+                            android:layout_marginTop="@dimen/dynamic_base">
+
+                            <TextView
+                                android:id="@+id/dynamic_info_play"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/dynamic_base"
+                                android:drawableLeft="@mipmap/focus_dynamic"
+                                android:drawablePadding="@dimen/dynamic_five"
+                                android:textColor="@color/dynamic_title_color"
+                                android:textSize="@dimen/dynamic_tag_size" />
+
+                            <TextView
+                                android:id="@+id/dynamic_info_share"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="@dimen/dynamic_download"
+                                android:drawableLeft="@mipmap/video_player_share"
+                                android:drawablePadding="@dimen/dynamic_five"
+                                android:text="@string/dynamic_share"
+                                android:textColor="@color/dynamic_title_color"
+                                android:textSize="@dimen/dynamic_tag_size" />
+
+                            <TextView
+                                android:id="@+id/dynamic_info_favor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/dynamic_download"
+                                android:layout_toLeftOf="@id/dynamic_info_share"
+                                android:drawableLeft="@mipmap/video_player_favor"
+                                android:drawablePadding="@dimen/dynamic_five"
+                                android:text="@string/dynamic_favor"
+                                android:textColor="@color/dynamic_title_color"
+                                android:textSize="@dimen/dynamic_tag_size" />
+
+                            <TextView
+                                android:id="@+id/dynamic_info_download"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/dynamic_download"
+                                android:layout_toLeftOf="@id/dynamic_info_favor"
+                                android:drawableLeft="@mipmap/video_player_content_download_n"
+                                android:drawablePadding="@dimen/dynamic_five"
+                                android:text="@string/dynamic_download"
+                                android:textColor="@color/dynamic_title_color"
+                                android:textSize="@dimen/dynamic_tag_size" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dynamic_five"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/dynamic_title_ll">
+
+                            <TextView
+                                android:id="@+id/dyanmic_sort_set_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dynamic_base"
+                                android:layout_marginRight="@dimen/dynamic_base"
+                                android:paddingBottom="@dimen/dynamic_base"
+                                android:paddingTop="@dimen/dynamic_base"
+                                android:text="@string/dynamic_set"
+                                android:textColor="@color/dynamic_title_color" />
+
+                            <TextView
+                                android:id="@+id/dynamic_set_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/dynamic_set_size"
+                                android:layout_toRightOf="@id/dyanmic_sort_set_tv" />
+
+                        </RelativeLayout>
+
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/sort_set_rl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/dynamic_title_ll">
+
+                        </android.support.v7.widget.RecyclerView>
 
                     </LinearLayout>
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="@dimen/dynamic_base"
-                        android:layout_marginRight="@dimen/dynamic_base"
-                        android:layout_marginTop="@dimen/dynamic_base">
+                        android:layout_marginTop="@dimen/dynamic_five"
+                        android:background="@color/dynamic_title_ll"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/dynamic_info_play"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/dynamic_base"
-                            android:drawableLeft="@mipmap/focus_dynamic"
-                            android:drawablePadding="@dimen/dynamic_five"
-                            android:textColor="@color/dynamic_title_color"
-                            android:textSize="@dimen/dynamic_tag_size" />
-
-                        <TextView
-                            android:id="@+id/dynamic_info_share"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/dynamic_download"
-                            android:drawableLeft="@mipmap/video_player_share"
-                            android:drawablePadding="@dimen/dynamic_five"
-                            android:text="@string/dynamic_share"
-                            android:textColor="@color/dynamic_title_color"
-                            android:textSize="@dimen/dynamic_tag_size" />
-
-                        <TextView
-                            android:id="@+id/dynamic_info_favor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/dynamic_download"
-                            android:layout_toLeftOf="@id/dynamic_info_share"
-                            android:drawableLeft="@mipmap/video_player_favor"
-                            android:drawablePadding="@dimen/dynamic_five"
-                            android:text="@string/dynamic_favor"
-                            android:textColor="@color/dynamic_title_color"
-                            android:textSize="@dimen/dynamic_tag_size" />
-
-                        <TextView
-                            android:id="@+id/dynamic_info_download"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/dynamic_download"
-                            android:layout_toLeftOf="@id/dynamic_info_favor"
-                            android:drawableLeft="@mipmap/video_player_content_download_n"
-                            android:drawablePadding="@dimen/dynamic_five"
-                            android:text="@string/dynamic_download"
-                            android:textColor="@color/dynamic_title_color"
-                            android:textSize="@dimen/dynamic_tag_size" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dynamic_five"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/dynamic_title_ll">
-
-                        <TextView
-                            android:id="@+id/dyanmic_sort_set_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dynamic_base"
                             android:layout_marginRight="@dimen/dynamic_base"
                             android:paddingBottom="@dimen/dynamic_base"
                             android:paddingTop="@dimen/dynamic_base"
-                            android:text="@string/dynamic_set"
+                            android:text="@string/dynamic_recommend"
+                            android:textColor="@color/dynamic_title_color" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recommend_more_rl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dynamic_five"
+                        android:background="@color/dynamic_title_ll"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dynamic_base"
+                            android:layout_marginRight="@dimen/dynamic_base"
+                            android:layout_marginTop="@dimen/dynamic_five"
+                            android:text="@string/dynamic_talk"
                             android:textColor="@color/dynamic_title_color" />
 
                         <TextView
-                            android:id="@+id/dynamic_set_tv"
+                            android:id="@+id/discuss_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/dynamic_set_size"
-                            android:layout_toRightOf="@id/dyanmic_sort_set_tv" />
-
-                    </RelativeLayout>
-
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/sort_set_rl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/dynamic_title_ll">
-
-                    </android.support.v7.widget.RecyclerView>
-
+                            android:layout_marginLeft="@dimen/dynamic_base"
+                            android:layout_marginTop="@dimen/dynamic_five" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
+                <com.wangshiqi.pineappleb.view.DiscussListView
+                    android:id="@+id/dynamic_info_lv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dynamic_five"
-                    android:background="@color/dynamic_title_ll"
-                    android:orientation="vertical">
+                    android:background="@color/dynamic_title_ll" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dynamic_base"
-                        android:layout_marginRight="@dimen/dynamic_base"
-                        android:paddingBottom="@dimen/dynamic_base"
-                        android:paddingTop="@dimen/dynamic_base"
-                        android:text="@string/dynamic_recommend"
-                        android:textColor="@color/dynamic_title_color" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recommend_more_rl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </android.support.v7.widget.RecyclerView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dynamic_five"
-                    android:background="@color/dynamic_title_ll"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dynamic_base"
-                        android:layout_marginRight="@dimen/dynamic_base"
-                        android:layout_marginTop="@dimen/dynamic_five"
-                        android:text="@string/dynamic_talk"
-                        android:textColor="@color/dynamic_title_color" />
-
-                    <TextView
-                        android:id="@+id/discuss_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dynamic_base"
-                        android:layout_marginTop="@dimen/dynamic_five" />
-                </LinearLayout>
             </LinearLayout>
-
-            <com.wangshiqi.pineappleb.view.DiscussListView
-                android:id="@+id/dynamic_info_lv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/dynamic_title_ll" />
-
-        </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 

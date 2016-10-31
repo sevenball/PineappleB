@@ -48,7 +48,7 @@ public class SuperVideoPlayer extends RelativeLayout {
     private MediaController.PageType mCurrPageType = MediaController.PageType.SHRINK;//当前是横屏还是竖屏
 
     private Context mContext;
-    private VideoView mVideoView;//播放器
+    public static VideoView mVideoView;//播放器
     private MediaController mMediaController;//控制器
     private Timer mUpdateTimer;
     private VideoPlayCallbackImpl mVideoPlayCallback;//回调函数
