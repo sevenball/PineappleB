@@ -81,4 +81,5 @@ public class DynamicFragmentAdapter extends AbsBaseAdapter<DynamicBean.ListBean,
             durationBtn = (Button) itemView.findViewById(R.id.dynamic_duration);
         }
     }
+
 }

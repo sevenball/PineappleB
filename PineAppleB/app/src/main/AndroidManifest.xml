@@ -80,13 +80,20 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="0f3078d8a171335cc3b1042ab233ec83" />
-
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.activity.MainActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".ui.activity.focus.DynamicInfoActivity"
@@ -125,6 +132,8 @@
         <activity android:name=".ui.activity.mine.GPSPlayActivity" />
 
         <service android:name="com.amap.api.location.APSService"></service>
+
+
     </application>
 
 </manifest>
