@@ -106,6 +106,7 @@ public class RecommendFragment extends AbsFragment {
         });
         rank(); // 人气周榜
     }
+
     private class LongTimeOperationTask extends AsyncTask<String, Integer, String> {
         @Override
         protected void onPreExecute() {

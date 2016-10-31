@@ -37,4 +37,6 @@
     <dimen name="dynamic_tag_size">10sp</dimen>
 
 
+    <!--推荐-->
+    <dimen name="recommend_vp_parent_hight">200dp</dimen>
 </resources>
