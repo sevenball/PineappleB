@@ -505,6 +505,7 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
             if (intent.getAction().equals(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) {
                 long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
 
+
                 Toast.makeText(DynamicInfoActivity.this, "下载完成!", Toast.LENGTH_SHORT).show();
             } else if (intent.getAction().equals(DownloadManager.ACTION_NOTIFICATION_CLICKED)) {
 //                Toast.makeText(MainActivity.this, "别瞎点!!!", Toast.LENGTH_SHORT).show();
