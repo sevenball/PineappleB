@@ -7,8 +7,6 @@ package com.wangshiqi.pineappleb.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +29,7 @@ public abstract class AbsBaseActivity extends AppCompatActivity {
          * Color.parseColor 将不是int类型的颜色转换为int类型
          * 为状态栏添加新的颜色
          */
-        window.setStatusBarColor(Color.parseColor("#F09800"));
+//        window.setStatusBarColor(Color.parseColor("#F09800"));
 
         initViews();// 初始化组件
 

@@ -110,7 +110,6 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
     private int netState;
 
 
-
     @Override
     protected int setLayout() {
         return R.layout.activity_dynamic_info;
@@ -226,13 +225,13 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
                 mp4Play();
             }
         });
-        builder.setNegativeButton("返回", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                return;
-            }
-        });
-        builder.setNeutralButton("想想", new DialogInterface.OnClickListener() {
+//        builder.setNegativeButton("返回", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                return;
+//            }
+//        });
+        builder.setNeutralButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 return;
@@ -480,7 +479,6 @@ public class DynamicInfoActivity extends AbsBaseActivity implements View.OnClick
                 Toast.makeText(DynamicInfoActivity.this, "已取消下载", Toast.LENGTH_SHORT).show();
             }
         });
-
 
         // 对话框的显示需要  builder(创建者)生成并显示
         builder.create().show();
